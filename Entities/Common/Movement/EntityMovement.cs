@@ -102,11 +102,20 @@ namespace GameOff_2019.Entities.Common.Movement {
             velocity.x = Mathf.Clamp(velocity.x, -internalMaxMovementSpeed, internalMaxMovementSpeed);
             velocity.y = Mathf.Clamp(velocity.y, -internalMaxMovementSpeed, internalMaxMovementSpeed);
 
+            if (IsMovingDiagonally()) {
+                velocity.x /= Mathf.Sqrt(Mathf.Pi);
+                velocity.y /= Mathf.Sqrt(Mathf.Pi);
+            }
+
             for (var i = 0; i < movementInputs.Length; i++) {
                 movementInputs[i] = false;
             }
 
             velocity = entityBody.MoveAndSlide(velocity);
+        }
+
+        private bool IsMovingDiagonally() {
+            return Math.Abs(velocity.x) > 0.1 && Math.Abs(velocity.y) > 0.1;
         }
 
         public void MoveToPosition(Action callback, Vector2 targetPosition) {
