@@ -85,7 +85,7 @@ namespace GameOff_2019.Entities.Common.Navigation {
                         var targetTile = tile + new Vector2(x - 1, y - 1);
                         var targetTileId = GetIdForTile(targetTile);
 
-                        if (tile == targetTile || !aStar.HasPoint(targetTileId) || !IsDiagonalAllowed(x, y, tile)) {
+                        if (tile == targetTile || !aStar.HasPoint(targetTileId) || !IsDiagonalAllowed(x, y, tile) || GetCell((int) targetTile.x, (int) targetTile.y) == InvalidCell) {
                             continue;
                         }
 
@@ -107,13 +107,13 @@ namespace GameOff_2019.Entities.Common.Navigation {
 
             switch (x) {
                 case 0 when y == 0: //topLeft
-                    return topTileId != blockedTilesId && leftTileId != blockedTilesId;
+                    return topTileId != blockedTilesId && leftTileId != blockedTilesId && topTileId != InvalidCell && leftTileId != InvalidCell;
                 case 2 when y == 0: //topRight
-                    return topTileId != blockedTilesId && rightTileId != blockedTilesId;
+                    return topTileId != blockedTilesId && rightTileId != blockedTilesId && topTileId != InvalidCell && rightTileId != InvalidCell;
                 case 2 when y == 2: //bottomRight
-                    return bottomTileId != blockedTilesId && rightTileId != blockedTilesId;
+                    return bottomTileId != blockedTilesId && rightTileId != blockedTilesId && bottomTileId != InvalidCell && rightTileId != InvalidCell;
                 case 0 when y == 2: //bottomLeft
-                    return bottomTileId != blockedTilesId && leftTileId != blockedTilesId;
+                    return bottomTileId != blockedTilesId && leftTileId != blockedTilesId && bottomTileId != InvalidCell && leftTileId != InvalidCell;
                 default:
                     return true;
             }

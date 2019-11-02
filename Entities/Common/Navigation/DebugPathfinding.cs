@@ -15,12 +15,12 @@ namespace GameOff_2019.Entities.Common.Navigation {
         }
 
         public override void _Input(InputEvent @event) {
-            if (@event.IsActionPressed("debugPathfinding")) {
-                var mousePosition = GetGlobalMousePosition();
-                var path = pathfindingTileMap.FindPathToTarget(lastTarget, mousePosition);
-                lastTarget = mousePosition;
-            }
-
+//            if (@event.IsActionPressed("debugPathfinding")) {
+//                var mousePosition = GetGlobalMousePosition();
+//                var path = pathfindingTileMap.FindPathToTarget(lastTarget, mousePosition);
+//                lastTarget = mousePosition;
+//            }
+//
             if (@event.IsActionPressed("debugPlantTree")) {
                 var mousePosition = GetGlobalMousePosition();
                 if (pathfindingTileMap.IsWorldPositionInTileMap(mousePosition)) {
