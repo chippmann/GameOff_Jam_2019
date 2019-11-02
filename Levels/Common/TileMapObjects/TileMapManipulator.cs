@@ -46,6 +46,17 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
 
 
             switch (cellId) {
+                case 0: //Tree
+                    var baseObject = new TreeTileMapObject();
+                    baseObject.Init(cell, worldPosition, packedScene);
+                    if (tileMapObjects.TryGetValue(uniqueTileId, out var optionalBaseObjectNode)) {
+                        ((ITileMapObject) optionalBaseObjectNode).Object().QueueFree();
+                    }
+
+                    tileMapObjects.Remove(uniqueTileId);
+                    tileMapObjects.Add(uniqueTileId, baseObject);
+                    AddTileMapObjectNode(baseObject);
+                    break;
                 case 1: //Tree
                     var tree = new TreeTileMapObject();
                     tree.Init(cell, worldPosition, packedScene);
@@ -53,6 +64,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
                         ((ITileMapObject) optionalTreeNode).Object().QueueFree();
                     }
 
+                    tileMapObjects.Remove(uniqueTileId);
                     tileMapObjects.Add(uniqueTileId, tree);
                     AddTileMapObjectNode(tree);
                     break;

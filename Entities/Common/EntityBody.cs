@@ -1,4 +1,5 @@
 using System;
+using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common.Movement;
 using GameOff_2019.Entities.Common.Navigation;
 using Godot;
@@ -12,7 +13,7 @@ namespace GameOff_2019.Entities.Common {
 
         public override void _Ready() {
             entityMovement = GetNode<EntityMovement>(entityMovementNodePath);
-            var tileMaps = GetTree().GetNodesInGroup("pathfindingTileMap");
+            var tileMaps = GetTree().GetNodesInGroup(GameConstants.PathfindingTileMapGroup);
             if (tileMaps.Count != 1) {
                 throw new Exception("There should be exactly one pathfindingTileMap in the sceneTree!");
             }

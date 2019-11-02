@@ -63,6 +63,8 @@
     <Compile Include="Entities\PlayerEntity\Player.cs" />
     <Compile Include="Entities\PlayerEntity\PlayerStateMachine.cs" />
     <Compile Include="Entities\PlayerEntity\States\Movement.cs" />
+    <Compile Include="Levels\Common\TileMapObjects\BaseObject\BaseTileMapObject.cs" />
+    <Compile Include="Levels\Common\TileMapObjects\BaseObject\HoverIndicator.cs" />
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\TransparencyManager.cs" />
     <Compile Include="Levels\Common\TileMapObjects\ITileMapObject.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TileMapManipulator.cs" />
