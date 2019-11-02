@@ -15,16 +15,15 @@ namespace GameOff_2019.Entities.Common.Navigation {
         }
 
         public override void _Input(InputEvent @event) {
-//            if (@event.IsActionPressed("debugPathfinding")) {
-//                var mousePosition = GetGlobalMousePosition();
-//                var path = pathfindingTileMap.FindPathToTarget(lastTarget, mousePosition);
-//                lastTarget = mousePosition;
-//            }
-//
             if (@event.IsActionPressed("debugPlantTree")) {
                 var mousePosition = GetGlobalMousePosition();
                 if (pathfindingTileMap.IsWorldPositionInTileMap(mousePosition)) {
-                    tileMapManipulator.MakeTileNotTraversable(mousePosition);
+                    if (pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == 0) {
+                        tileMapManipulator.SetupOrReplaceTileMapObject(pathfindingTileMap.WorldToMap(mousePosition), 1);
+                    }
+                    else if (pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == 1) {
+                        tileMapManipulator.SetupOrReplaceTileMapObject(pathfindingTileMap.WorldToMap(mousePosition), 0);
+                    }
                 }
             }
         }

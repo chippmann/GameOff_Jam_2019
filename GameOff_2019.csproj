@@ -64,6 +64,8 @@
       <Compile Include="Entities\PlayerEntity\PlayerStateMachine.cs" />
       <Compile Include="Entities\PlayerEntity\States\Movement.cs" />
     <Compile Include="Levels\Common\TileMapManipulator.cs" />
+      <Compile Include="Levels\Common\ITileMapObject.cs" />
+      <Compile Include="Levels\Common\TreeTileMapObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestScript.cs" />
   </ItemGroup>

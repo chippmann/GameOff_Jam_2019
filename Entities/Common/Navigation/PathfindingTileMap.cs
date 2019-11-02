@@ -7,7 +7,6 @@ using Godot.Collections;
 namespace GameOff_2019.Entities.Common.Navigation {
     public class PathfindingTileMap : TileMap {
         [Export] public readonly int traversableTilesId = 0;
-        [Export] public readonly int blockedTilesId = 1;
         [Export] private readonly NodePath pathfindingDebugCanvasNodePath = null;
         private DebugPathfindingCanvas pathfindingDebugCanvas;
         [Export] private readonly bool shouldDebugPathfinding = false;
@@ -70,7 +69,7 @@ namespace GameOff_2019.Entities.Common.Navigation {
         /// </summary>
         /// <param name="point">tile in tileMap</param>
         /// <returns>unique id</returns>
-        private int GetIdForTile(Vector2 point) {
+        public int GetIdForTile(Vector2 point) {
             var x = point.x - GetUsedRect().Position.x;
             var y = point.y - GetUsedRect().Position.y;
             return (int) (x + y * GetUsedRect().Size.x);
@@ -107,13 +106,13 @@ namespace GameOff_2019.Entities.Common.Navigation {
 
             switch (x) {
                 case 0 when y == 0: //topLeft
-                    return topTileId != blockedTilesId && leftTileId != blockedTilesId && topTileId != InvalidCell && leftTileId != InvalidCell;
+                    return topTileId == traversableTilesId && leftTileId == traversableTilesId && topTileId != InvalidCell && leftTileId != InvalidCell;
                 case 2 when y == 0: //topRight
-                    return topTileId != blockedTilesId && rightTileId != blockedTilesId && topTileId != InvalidCell && rightTileId != InvalidCell;
+                    return topTileId == traversableTilesId && rightTileId == traversableTilesId && topTileId != InvalidCell && rightTileId != InvalidCell;
                 case 2 when y == 2: //bottomRight
-                    return bottomTileId != blockedTilesId && rightTileId != blockedTilesId && bottomTileId != InvalidCell && rightTileId != InvalidCell;
+                    return bottomTileId == traversableTilesId && rightTileId == traversableTilesId && bottomTileId != InvalidCell && rightTileId != InvalidCell;
                 case 0 when y == 2: //bottomLeft
-                    return bottomTileId != blockedTilesId && leftTileId != blockedTilesId && bottomTileId != InvalidCell && leftTileId != InvalidCell;
+                    return bottomTileId == traversableTilesId && leftTileId == traversableTilesId && bottomTileId != InvalidCell && leftTileId != InvalidCell;
                 default:
                     return true;
             }
