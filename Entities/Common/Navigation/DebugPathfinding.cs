@@ -1,3 +1,4 @@
+using GameOff_2019.Levels.Common.TileMapObjects;
 using Godot;
 
 namespace GameOff_2019.Entities.Common.Navigation {

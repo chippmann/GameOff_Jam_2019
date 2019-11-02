@@ -4,7 +4,7 @@
 [ext_resource path="res://Levels/TileSets/PrototypeTileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://Entities/Common/Navigation/PathfindingTileMap.cs" type="Script" id=3]
 [ext_resource path="res://Entities/Common/Navigation/DebugPathfindingCanvas.cs" type="Script" id=4]
-[ext_resource path="res://Levels/Common/TileMapManipulator.cs" type="Script" id=5]
+[ext_resource path="res://Levels/Common/TileMapObjects/TileMapManipulator.cs" type="Script" id=5]
 [ext_resource path="res://Levels/Common/TileMapObjects/TreeTileMapObject.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Entities/PlayerEntity/PlayerBody.tscn" type="PackedScene" id=7]
 
@@ -37,5 +37,6 @@ tileIdToPackedSceneMapping = {
 }
 
 [node name="TileMapObjectsContainer" type="Node2D" parent="TileMap"]
+z_as_relative = false
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 7 )]

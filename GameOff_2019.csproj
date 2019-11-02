@@ -49,11 +49,11 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-      <Compile Include="EngineUtils\Eventing.cs" />
-      <Compile Include="EngineUtils\GameConstants.cs" />
-      <Compile Include="EngineUtils\Logger.cs" />
-      <Compile Include="Entities\Common\EntityBody.cs" />
-      <Compile Include="Entities\Common\Movement\EntityMovement.cs" />
+    <Compile Include="EngineUtils\Eventing.cs" />
+    <Compile Include="EngineUtils\GameConstants.cs" />
+    <Compile Include="EngineUtils\Logger.cs" />
+    <Compile Include="Entities\Common\EntityBody.cs" />
+    <Compile Include="Entities\Common\Movement\EntityMovement.cs" />
     <Compile Include="Entities\Common\Navigation\DebugPathfinding.cs" />
     <Compile Include="Entities\Common\Navigation\DebugPathfindingCanvas.cs" />
     <Compile Include="Entities\Common\Navigation\PathfindingTileMap.cs" />
@@ -63,14 +63,16 @@
       <Compile Include="Entities\PlayerEntity\Player.cs" />
       <Compile Include="Entities\PlayerEntity\PlayerStateMachine.cs" />
       <Compile Include="Entities\PlayerEntity\States\Movement.cs" />
-    <Compile Include="Levels\Common\TileMapManipulator.cs" />
-      <Compile Include="Levels\Common\ITileMapObject.cs" />
-      <Compile Include="Levels\Common\TreeTileMapObject.cs" />
+    <Compile Include="Levels\Common\TileMapObjects\ITileMapObject.cs" />
+    <Compile Include="Levels\Common\TileMapObjects\TileMapManipulator.cs" />
+    <Compile Include="Levels\Common\TileMapObjects\TransparencyManager.cs" />
+    <Compile Include="Levels\Common\TileMapObjects\TreeTileMapObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="executeGame.sh" />
+    <Content Include="Levels\Common\TileMapObjects\TreeTileMapObject.tscn" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

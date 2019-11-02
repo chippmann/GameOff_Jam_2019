@@ -26,7 +26,7 @@ namespace GameOff_2019.Entities.Common {
         }
 
         public override void _Process(float delta) {
-            ZIndex = (int) pathfindingTileMap.WorldToMap(GetGlobalPosition()).y + 1;
+            ZIndex = (int) pathfindingTileMap.WorldToMap(GetGlobalPosition()).y * 2 + 1;
         }
 
         public PathfindingTileMap GetPathfinderTileMap() {
