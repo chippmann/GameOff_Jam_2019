@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Entities/Common/Navigation/DebugPathfinding.cs" type="Script" id=1]
 [ext_resource path="res://Levels/TileSets/PrototypeTileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://Entities/Common/Navigation/PathfindingTileMap.cs" type="Script" id=3]
 [ext_resource path="res://Entities/Common/Navigation/DebugPathfindingCanvas.cs" type="Script" id=4]
+[ext_resource path="res://Levels/Common/TileMapManipulator.cs" type="Script" id=5]
 
 [node name="NavigationTestScene" type="Node2D"]
 script = ExtResource( 1 )
 pathfindingTileMapNodePath = NodePath("TileMap")
+tileMapManipulatorNodePath = NodePath("TileMap/TileMapManipulator")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
@@ -21,3 +23,7 @@ shouldDebugPathfinding = true
 [node name="DebugCanvas" type="Node2D" parent="TileMap"]
 z_index = 1
 script = ExtResource( 4 )
+
+[node name="TileMapManipulator" type="Node2D" parent="TileMap"]
+script = ExtResource( 5 )
+pathfindingTileMapNodePath = NodePath("..")

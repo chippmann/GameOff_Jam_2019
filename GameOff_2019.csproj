@@ -49,9 +49,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\Eventing.cs" />
     <Compile Include="Entities\Common\Navigation\DebugPathfinding.cs" />
     <Compile Include="Entities\Common\Navigation\DebugPathfindingCanvas.cs" />
     <Compile Include="Entities\Common\Navigation\PathfindingTileMap.cs" />
+    <Compile Include="Entities\Player.cs" />
+    <Compile Include="Levels\Common\TileMapManipulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestScript.cs" />
   </ItemGroup>

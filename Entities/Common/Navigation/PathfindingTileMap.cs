@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using GameOff_2019.Engine;
 using Godot;
 using Godot.Collections;
 
 namespace GameOff_2019.Entities.Common.Navigation {
     public class PathfindingTileMap : TileMap {
-        [Export] private readonly int traversableTilesId = 0;
+        [Export] public readonly int traversableTilesId = 0;
+        [Export] public readonly int blockedTilesId = 1;
         [Export] private readonly NodePath pathfindingDebugCanvasNodePath = null;
         private DebugPathfindingCanvas pathfindingDebugCanvas;
         [Export] private readonly bool shouldDebugPathfinding = false;
@@ -18,9 +20,7 @@ namespace GameOff_2019.Entities.Common.Navigation {
         public override void _Ready() {
             pathfindingDebugCanvas = GetNode<DebugPathfindingCanvas>(pathfindingDebugCanvasNodePath);
             halfCellSize = GetCellSize() / 2;
-            traversableTiles = new Array<Vector2>(GetUsedCellsById(traversableTilesId)).ToList();
-            AddTraversableTilesToAStar(traversableTiles);
-            ConnectTraversableTiles(traversableTiles);
+            UpdateAStarGrid();
         }
 
         public List<Vector2> FindPathToTarget(Vector2 start, Vector2 end) {
@@ -42,6 +42,19 @@ namespace GameOff_2019.Entities.Common.Navigation {
             }
 
             return worldPath;
+        }
+
+        public bool IsWorldPositionInTileMap(Vector2 worldPosition) {
+            var mapPosition = WorldToMap(worldPosition);
+            return GetCell((int) mapPosition.x, (int) mapPosition.y) != InvalidCell;
+        }
+
+        public void UpdateAStarGrid() {
+            aStar.Clear();
+            traversableTiles = new Array<Vector2>(GetUsedCellsById(traversableTilesId)).ToList();
+            AddTraversableTilesToAStar(traversableTiles);
+            ConnectTraversableTiles(traversableTiles);
+            GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.InvalidatePath));
         }
 
         private void AddTraversableTilesToAStar(IEnumerable<Vector2> tiles) {
