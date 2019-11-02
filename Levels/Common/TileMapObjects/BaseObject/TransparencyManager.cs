@@ -6,9 +6,12 @@ using Godot;
 namespace GameOff_2019.Levels.Common.TileMapObjects.BaseObject {
     public class TransparencyManager : Area2D {
         [Export] private readonly int transparencyPercentage = 50;
+        [Export] private readonly NodePath spriteNodePath = null;
+        private Sprite sprite;
         private readonly List<Node2D> objectsBehind = new List<Node2D>();
 
         public override void _Ready() {
+            sprite = GetNode<Sprite>(spriteNodePath);
             Connect("body_entered", this, nameof(OnAreaEntered));
             Connect("body_exited", this, nameof(OnAreaExited));
             Connect("area_entered", this, nameof(OnAreaEntered));
@@ -32,14 +35,14 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.BaseObject {
         private void MakeTransparent() {
             var color = GetOwner<Node2D>().Modulate;
             if (Math.Abs(color.a - 1) < 0.01) {
-                GetOwner<Node2D>().Modulate = new Color(color.r, color.g, color.b, color.a / 100 * transparencyPercentage);
+                sprite.Modulate = new Color(color.r, color.g, color.b, color.a / 100 * transparencyPercentage);
             }
         }
 
         private void MakeOpaque() {
-            if (objectsBehind.Count == 0 && GetOwner() != null) {
-                var color = GetOwner<Node2D>().Modulate;
-                GetOwner<Node2D>().Modulate = new Color(color.r, color.g, color.b);
+            if (objectsBehind.Count == 0 && sprite != null) {
+                var color = sprite.Modulate;
+                sprite.Modulate = new Color(color.r, color.g, color.b);
             }
         }
     }

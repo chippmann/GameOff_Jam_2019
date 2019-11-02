@@ -1,7 +1,7 @@
-using Godot;
+using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 
 namespace GameOff_2019.Levels.Common.TileMapObjects.BaseObject {
-    public class BaseTileMapObject : Node2D {
+    public class BaseTileMapObject : TileMapObject {
         public override void _Process(float delta) { }
     }
 }

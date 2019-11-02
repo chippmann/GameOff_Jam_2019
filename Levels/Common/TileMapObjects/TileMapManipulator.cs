@@ -1,4 +1,5 @@
 using GameOff_2019.Entities.Common.Navigation;
+using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
 using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using Godot;
 using Godot.Collections;
@@ -47,7 +48,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
 
             switch (cellId) {
                 case 0: //Tree
-                    var baseObject = new TreeTileMapObject();
+                    var baseObject = new BaseTileMapObject();
                     baseObject.Init(cell, worldPosition, packedScene);
                     if (tileMapObjects.TryGetValue(uniqueTileId, out var optionalBaseObjectNode)) {
                         ((ITileMapObject) optionalBaseObjectNode).Object().QueueFree();
