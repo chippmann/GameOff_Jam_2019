@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using GameOff_2019.EngineUtils;
 using Godot;
 
-namespace GameOff_2019.Levels.Common.TileMapObjects {
+namespace GameOff_2019.Levels.Common.TileMapObjects.BaseObject {
     public class TransparencyManager : Area2D {
         [Export] private readonly int transparencyPercentage = 50;
         private readonly List<Node2D> objectsBehind = new List<Node2D>();
@@ -37,7 +37,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
         }
 
         private void MakeOpaque() {
-            if (objectsBehind.Count == 0) {
+            if (objectsBehind.Count == 0 && GetOwner() != null) {
                 var color = GetOwner<Node2D>().Modulate;
                 GetOwner<Node2D>().Modulate = new Color(color.r, color.g, color.b);
             }

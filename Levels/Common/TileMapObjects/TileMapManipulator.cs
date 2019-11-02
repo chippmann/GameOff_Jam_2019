@@ -1,4 +1,5 @@
 using GameOff_2019.Entities.Common.Navigation;
+using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using Godot;
 using Godot.Collections;
 
@@ -41,14 +42,8 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
             var worldPosition = pathfindingTileMap.MapToWorld(cell) + pathfindingTileMap.CellSize / 2;
             var cellId = pathfindingTileMap.GetCell((int) cell.x, (int) cell.y);
 
-            if (!tileIdToPackedSceneMapping.TryGetValue(cellId, out var packedScene)) {
-                if (tileMapObjects.TryGetValue(uniqueTileId, out var optionalNode)) {
-                    ((ITileMapObject) optionalNode).Object().QueueFree();
-                }
+            tileIdToPackedSceneMapping.TryGetValue(cellId, out var packedScene);
 
-                tileMapObjects.Remove(uniqueTileId);
-                return;
-            }
 
             switch (cellId) {
                 case 1: //Tree
@@ -67,7 +62,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
                     }
 
                     tileMapObjects.Remove(uniqueTileId);
-                    return;
+                    break;
             }
 
             pathfindingTileMap.UpdateAStarGrid();

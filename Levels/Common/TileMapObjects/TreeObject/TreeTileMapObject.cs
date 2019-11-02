@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace GameOff_2019.Levels.Common.TileMapObjects {
+namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
     public class TreeTileMapObject : Node, ITileMapObject {
         private Vector2 tileMapPosition;
         private Vector2 worldPosition;
