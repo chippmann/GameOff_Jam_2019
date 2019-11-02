@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GameOff_2019.Engine {
+namespace GameOff_2019.EngineUtils {
     public class Eventing : Node2D {
         public static string EventingNodePath = "/root/Eventing";
 

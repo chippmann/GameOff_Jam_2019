@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using GameOff_2019.Engine;
+using GameOff_2019.EngineUtils;
 using Godot;
 using Godot.Collections;
 
@@ -41,6 +41,7 @@ namespace GameOff_2019.Entities.Common.Navigation {
                 pathfindingDebugCanvas.DrawDebugPathfindingLine(worldPath);
             }
 
+            worldPath.Insert(0, start);
             return worldPath;
         }
 
@@ -84,13 +85,37 @@ namespace GameOff_2019.Entities.Common.Navigation {
                         var targetTile = tile + new Vector2(x - 1, y - 1);
                         var targetTileId = GetIdForTile(targetTile);
 
-                        if (tile == targetTile || !aStar.HasPoint(targetTileId)) {
+                        if (tile == targetTile || !aStar.HasPoint(targetTileId) || !IsDiagonalAllowed(x, y, tile)) {
                             continue;
                         }
 
                         aStar.ConnectPoints(tileId, targetTileId);
                     }
                 }
+            }
+        }
+
+        private bool IsDiagonalAllowed(int x, int y, Vector2 tile) {
+            var leftTile = tile + new Vector2(-1, 0);
+            var leftTileId = GetCell((int) leftTile.x, (int) leftTile.y);
+            var topTile = tile + new Vector2(0, -1);
+            var topTileId = GetCell((int) topTile.x, (int) topTile.y);
+            var rightTile = tile + new Vector2(+1, 0);
+            var rightTileId = GetCell((int) rightTile.x, (int) rightTile.y);
+            var bottomTile = tile + new Vector2(0, +1);
+            var bottomTileId = GetCell((int) bottomTile.x, (int) bottomTile.y);
+
+            switch (x) {
+                case 0 when y == 0: //topLeft
+                    return topTileId != blockedTilesId && leftTileId != blockedTilesId;
+                case 2 when y == 0: //topRight
+                    return topTileId != blockedTilesId && rightTileId != blockedTilesId;
+                case 2 when y == 2: //bottomRight
+                    return bottomTileId != blockedTilesId && rightTileId != blockedTilesId;
+                case 0 when y == 2: //bottomLeft
+                    return bottomTileId != blockedTilesId && leftTileId != blockedTilesId;
+                default:
+                    return true;
             }
         }
     }

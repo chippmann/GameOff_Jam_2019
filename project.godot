@@ -21,7 +21,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Eventing="*res://Engine/Eventing.cs"
+Eventing="*res://EngineUtils/Eventing.cs"
 
 [input]
 
