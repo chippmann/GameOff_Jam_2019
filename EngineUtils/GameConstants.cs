@@ -4,5 +4,11 @@ namespace GameOff_2019.EngineUtils {
         public const string PlayerGroup = "player";
         public const string PathfindingTileMapGroup = "pathfindingTileMap";
         public const string ActionRadiusGroup = "actionRadius";
+
+
+        public const string ControlsMoveWindowLeft = "moveWindowLeft";
+        public const string ControlsMoveWindowRight = "moveWindowRight";
+        public const string ControlsMoveWindowUp = "moveWindowUp";
+        public const string ControlsMoveWindowDown = "moveWindowDown";
     }
 }
