@@ -2,7 +2,7 @@ using System;
 using Godot;
 
 namespace GameOff_2019.Levels.Common.TileMapObjects.BaseObject {
-    public class TileMapObject : Node2D, ITileMapObject {
+    public class TileMapObject : Node2D {
         private Vector2 tileMapPosition;
         private Vector2 worldPosition;
 
