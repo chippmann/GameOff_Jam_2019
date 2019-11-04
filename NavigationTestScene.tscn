@@ -13,7 +13,6 @@
 [node name="TileMap" type="TileMap" parent="." groups=[
 "pathfindingTileMap",
 ]]
-visible = false
 z_index = -1
 tile_set = ExtResource( 1 )
 format = 1
