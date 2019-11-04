@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameOff_2019.Entities.Common;
 using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
 using Godot;
 
@@ -18,8 +19,12 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
             return hoverIndicator.Visible;
         }
 
-        public HashSet<TileMapObject> GetTileMapObjectsInActionRadius() {
+        public List<TileMapObject> GetTileMapObjectsInActionRadius() {
             return treeActionRadius.GetOverlappingTileMapObjects();
+        }
+
+        public bool EntityInActionRadius(EntityBody entityBody) {
+            return treeActionRadius.IsEntityInActionRadius(entityBody);
         }
     }
 }

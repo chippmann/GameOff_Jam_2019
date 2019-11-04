@@ -2,7 +2,6 @@ using System;
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common.Movement;
 using GameOff_2019.Entities.Common.Navigation;
-using GameOff_2019.Levels.Common.TileMapObjects;
 using Godot;
 
 namespace GameOff_2019.Entities.Common {
@@ -11,7 +10,6 @@ namespace GameOff_2019.Entities.Common {
         protected EntityMovement entityMovement;
 
         protected PathfindingTileMap pathfindingTileMap;
-        protected TileMapManipulator tileMapManipulator;
 
         public override void _Ready() {
             entityMovement = GetNode<EntityMovement>(entityMovementNodePath);

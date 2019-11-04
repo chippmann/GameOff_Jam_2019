@@ -54,7 +54,6 @@
     <Compile Include="EngineUtils\Logger.cs" />
     <Compile Include="Entities\Common\EntityBody.cs" />
     <Compile Include="Entities\Common\Movement\EntityMovement.cs" />
-    <Compile Include="Entities\Common\Navigation\DebugPathfinding.cs" />
     <Compile Include="Entities\Common\Navigation\DebugPathfindingCanvas.cs" />
     <Compile Include="Entities\Common\Navigation\PathfindingTileMap.cs" />
     <Compile Include="Entities\Common\StateMachine\FiniteStateMachine.cs" />
@@ -62,6 +61,7 @@
     <Compile Include="Entities\Common\StateMachine\State.cs" />
     <Compile Include="Entities\PlayerEntity\Player.cs" />
     <Compile Include="Entities\PlayerEntity\PlayerStateMachine.cs" />
+    <Compile Include="Entities\PlayerEntity\RemoveTreeChecker.cs" />
     <Compile Include="Entities\PlayerEntity\States\Movement.cs" />
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\HoverIndicator.cs" />
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\BaseTileMapObject.cs" />

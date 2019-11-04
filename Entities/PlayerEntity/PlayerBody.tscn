@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Entities/PlayerEntity/Player.cs" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Entities/Common/Movement/EntityMovement.cs" type="Script" id=3]
+[ext_resource path="res://Entities/PlayerEntity/RemoveTreeChecker.cs" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id=2]
 radius = 32.0
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -13,6 +17,7 @@ radius = 32.0
 collision_layer = 2
 script = ExtResource( 1 )
 entityMovementNodePath = NodePath("Movement")
+removeTreeCheckerNodePath = NodePath("RemoveTreeChecker")
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -23,3 +28,11 @@ shape = SubResource( 1 )
 [node name="Movement" type="Node2D" parent="."]
 script = ExtResource( 3 )
 entityBodyNodePath = NodePath("..")
+
+[node name="RemoveTreeChecker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RemoveTreeChecker"]
+shape = SubResource( 2 )
