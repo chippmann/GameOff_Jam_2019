@@ -32,10 +32,6 @@ public class HoverIndicator : Sprite {
     }
 
     public override void _Process(float delta) {
-        if (pathfindingTileMap.WorldToMap(GetGlobalMousePosition()) == pathfindingTileMap.WorldToMap(GetGlobalPosition())) {
-            var blubb = collidingActionRadiusColliderList.Count;
-        }
-
         Visible = pathfindingTileMap.WorldToMap(GetGlobalMousePosition()) == pathfindingTileMap.WorldToMap(GetGlobalPosition()) && collidingActionRadiusColliderList.Count > 0;
     }
 

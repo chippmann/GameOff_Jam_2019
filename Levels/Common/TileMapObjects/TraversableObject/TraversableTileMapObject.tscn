@@ -5,3 +5,4 @@
 
 [node name="TraversableTileMapObject" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+hoverIndicatorNodePath = NodePath("Hover/HoverIndicator")
