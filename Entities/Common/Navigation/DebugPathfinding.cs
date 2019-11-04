@@ -19,8 +19,9 @@ namespace GameOff_2019.Entities.Common.Navigation {
             if (@event.IsActionPressed("debugPlantTree")) {
                 var mousePosition = GetGlobalMousePosition();
                 if (pathfindingTileMap.IsWorldPositionInTileMap(mousePosition)) {
-                    if (pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == pathfindingTileMap.traversableId &&
-                        tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(mousePosition)).CanInteract()) {
+                    if ((pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == pathfindingTileMap.traversableId
+                         || pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == pathfindingTileMap.playerTraversableId)
+                        && tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(mousePosition)).CanInteract()) {
                         tileMapManipulator.SetupOrReplaceTileMapObject(pathfindingTileMap.WorldToMap(mousePosition), pathfindingTileMap.treeId);
                     }
                     else if (pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == pathfindingTileMap.treeId &&

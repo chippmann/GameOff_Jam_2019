@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Levels/Common/TileMapObjects/BaseObject/BaseTileMapObject.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeTileMapObject.cs" type="Script" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://Levels/Common/TileMapObjects/BaseObject/TransparencyManager.cs" type="Script" id=4]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/drawing.svg" type="Texture" id=5]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeActionRadius.cs" type="Script" id=5]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/drawing.svg" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 30.4618, 62.0236 )
@@ -15,6 +16,7 @@ radius = 155.281
 [node name="TreeTileMapObject" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 hoverIndicatorNodePath = NodePath("Hover/HoverIndicator")
+actionRadiusNodePath = NodePath("TreeActionRadius")
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 self_modulate = Color( 0, 0.623529, 0.133333, 1 )
@@ -37,6 +39,7 @@ shape = SubResource( 2 )
 ]]
 collision_layer = 8
 collision_mask = 14
+script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TreeActionRadius" index="0"]
 shape = SubResource( 3 )
@@ -46,4 +49,4 @@ modulate = Color( 1, 1, 1, 0.188235 )
 position = Vector2( 1.90735e-06, -0.999992 )
 scale = Vector2( 1.55, 1.55 )
 z_as_relative = false
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )

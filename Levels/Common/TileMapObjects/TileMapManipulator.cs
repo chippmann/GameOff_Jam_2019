@@ -40,7 +40,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
             tileIdToPackedSceneMapping.TryGetValue(cellId, out var packedScene);
 
             if (packedScene?.Instance() is TileMapObject tileMapObject) {
-                if (cellId == pathfindingTileMap.traversableId) {
+                if (cellId == pathfindingTileMap.traversableId || cellId == pathfindingTileMap.playerTraversableId) {
                     tileMapObject.Init(cell, worldPosition);
                     if (tileMapObjects.TryGetValue(uniqueTileId, out var optionalBaseObjectNode)) {
                         optionalBaseObjectNode.QueueFree();
@@ -59,7 +59,6 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
                     tileMapObjects.Remove(uniqueTileId);
                     tileMapObjects.Add(uniqueTileId, tileMapObject);
                     AddTileMapObjectNode(tileMapObject);
-                    //TODO: change tiles in radius
                 }
                 else {
                     if (tileMapObjects.TryGetValue(uniqueTileId, out var optionalNode)) {
@@ -94,14 +93,11 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
         private void AddTileMapObjectNode(TileMapObject tileMapObject) {
             tileMapObject.ZIndex = (int) tileMapObject.TileMapPosition().y * 2;
             AddNodeOfTileMapObjectToScene(tileMapObject);
-
-
-//            Logger.Error("Node with packed Scene " + tileMapObject.PackedScene() + " was null after instantiation!");
         }
 
         private void AddNodeOfTileMapObjectToScene(TileMapObject tileMapObject) {
             if (tileMapObject != null) {
-                tileMapObjectContainer.AddChild(tileMapObject);
+                tileMapObjectContainer.CallDeferred("add_child", tileMapObject);
                 tileMapObject.SetPosition(tileMapObject.WorldPosition());
             }
         }

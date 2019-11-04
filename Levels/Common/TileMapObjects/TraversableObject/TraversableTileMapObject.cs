@@ -2,7 +2,7 @@ using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using Godot;
 
 namespace GameOff_2019.Levels.Common.TileMapObjects.TraversableObject {
-    public class TraversableObject : TileMapObject {
+    public class TraversableTileMapObject : TileMapObject {
         [Export] private readonly NodePath hoverIndicatorNodePath = null;
         private HoverIndicator hoverIndicator;
 

@@ -36,7 +36,8 @@ pathfindingTileMapNodePath = NodePath("..")
 tileMapObjectContainerNodePath = NodePath("../TileMapObjectsContainer")
 tileIdToPackedSceneMapping = {
 0: ExtResource( 6 ),
-1: ExtResource( 7 )
+1: ExtResource( 7 ),
+2: ExtResource( 6 )
 }
 
 [node name="TileMapObjectsContainer" type="Node2D" parent="TileMap"]
