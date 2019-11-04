@@ -10,5 +10,8 @@ namespace GameOff_2019.EngineUtils {
 
         [Signal]
         public delegate void InvalidatePlayerPath();
+
+        [Signal]
+        public delegate void PlayerTargetReached(object[] list);
     }
 }

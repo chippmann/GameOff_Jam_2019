@@ -10,8 +10,7 @@ namespace GameOff_2019.Entities.Common.Movement {
         [Export] private readonly int movementSpeed = 3;
         [Export] private readonly int maxMovementSpeed = 3;
         private int internalMaxMovementSpeed;
-
-        private Action reachedDestinationCallback = () => { };
+        private object[] callbackParams = null;
 
         private bool internalIsPlayer = false;
         private Vector2 velocity;
@@ -119,18 +118,22 @@ namespace GameOff_2019.Entities.Common.Movement {
             return Math.Abs(velocity.x) > 0.1 && Math.Abs(velocity.y) > 0.1;
         }
 
-        public void MoveToPosition(Action callback, Vector2 targetPosition, bool isPlayer = false) {
+        public void MoveToPosition(Vector2 targetPosition, object[] paramsToReturn = null, bool isPlayer = false, bool minusOne = false) {
             internalIsPlayer = isPlayer;
-            MoveToTileMapPosition(callback, targetPosition);
+            callbackParams = paramsToReturn;
+            MoveToTileMapPosition(targetPosition, minusOne);
         }
 
-        private void MoveToTileMapPosition(Action callback, Vector2 targetPosition) {
+        private void MoveToTileMapPosition(Vector2 targetPosition, bool minusOne = false) {
             StopMovement();
-            reachedDestinationCallback = callback;
             currentTargetNode = 1;
             stuckFrames = 0;
             var startTile = GetGlobalPosition();
             currentPathToFollow = internalIsPlayer ? entityBody.GetPathfinderTileMap().FindPathToTargetForPlayer(startTile, targetPosition) : entityBody.GetPathfinderTileMap().FindPathToTargetForDemon(startTile, targetPosition);
+            if (minusOne && currentPathToFollow.Count > 0) {
+                currentPathToFollow.RemoveAt(currentPathToFollow.Count - 1);
+            }
+
             ResumeMovement();
         }
 
@@ -151,7 +154,7 @@ namespace GameOff_2019.Entities.Common.Movement {
                 if (currentTargetNode >= currentPathToFollow.Count) {
                     currentTargetNode = -1;
                     StopMovement();
-                    reachedDestinationCallback.Invoke();
+                    GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.PlayerTargetReached), callbackParams);
                     return;
                 }
             }
@@ -176,7 +179,7 @@ namespace GameOff_2019.Entities.Common.Movement {
             if (GetGlobalPosition() == oldPosition) {
                 stuckFrames++;
                 if (stuckFrames > maxStuckFrames) {
-                    MoveToPosition(reachedDestinationCallback, currentPathToFollow[currentPathToFollow.Count - 1], internalIsPlayer);
+                    MoveToPosition(currentPathToFollow[currentPathToFollow.Count - 1], callbackParams, internalIsPlayer);
                 }
             }
             else {
