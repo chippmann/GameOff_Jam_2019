@@ -1,5 +1,5 @@
+using System;
 using GameOff_2019.Entities.Common.Navigation;
-using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
 using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using Godot;
 using Godot.Collections;
@@ -10,6 +10,10 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
         private PathfindingTileMap pathfindingTileMap;
         [Export] private readonly NodePath tileMapObjectContainerNodePath = null;
         private Node2D tileMapObjectContainer;
+
+        [Export] public int traversableId = 0;
+        [Export] public int treeId = 1;
+
 
         // ReSharper disable once CollectionNeverUpdated.Local
         [Export] private readonly Dictionary<int, PackedScene> tileIdToPackedSceneMapping = new Dictionary<int, PackedScene>();
@@ -27,13 +31,6 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
             pathfindingTileMap.SetCell((int) cellPosition.x, (int) cellPosition.y, newCellId);
         }
 
-        private void SetupTileMapObjects() {
-            var usedCells = new Array<Vector2>(pathfindingTileMap.GetUsedCells());
-            foreach (var usedCell in usedCells) {
-                SetupOrReplaceTileMapObject(usedCell);
-            }
-        }
-
         public void SetupOrReplaceTileMapObject(Vector2 cell, int newCellId = -1) {
             if (newCellId != -1) {
                 pathfindingTileMap.SetCell((int) cell.x, (int) cell.y, newCellId);
@@ -45,56 +42,69 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
 
             tileIdToPackedSceneMapping.TryGetValue(cellId, out var packedScene);
 
-
-            switch (cellId) {
-                case 0: //Tree
-                    var baseObject = new BaseTileMapObject();
-                    baseObject.Init(cell, worldPosition, packedScene);
+            if (packedScene?.Instance() is TileMapObject tileMapObject) {
+                if (cellId == traversableId) {
+                    tileMapObject.Init(cell, worldPosition);
                     if (tileMapObjects.TryGetValue(uniqueTileId, out var optionalBaseObjectNode)) {
-                        ((ITileMapObject) optionalBaseObjectNode).Object().QueueFree();
+                        optionalBaseObjectNode.QueueFree();
                     }
 
                     tileMapObjects.Remove(uniqueTileId);
-                    tileMapObjects.Add(uniqueTileId, baseObject);
-                    AddTileMapObjectNode(baseObject);
-                    break;
-                case 1: //Tree
-                    var tree = new TreeTileMapObject();
-                    tree.Init(cell, worldPosition, packedScene);
+                    tileMapObjects.Add(uniqueTileId, tileMapObject);
+                    AddTileMapObjectNode(tileMapObject);
+                }
+                else if (cellId == treeId) {
+                    tileMapObject.Init(cell, worldPosition);
                     if (tileMapObjects.TryGetValue(uniqueTileId, out var optionalTreeNode)) {
-                        ((ITileMapObject) optionalTreeNode).Object().QueueFree();
+                        optionalTreeNode.QueueFree();
                     }
 
                     tileMapObjects.Remove(uniqueTileId);
-                    tileMapObjects.Add(uniqueTileId, tree);
-                    AddTileMapObjectNode(tree);
-                    break;
-                default:
+                    tileMapObjects.Add(uniqueTileId, tileMapObject);
+                    AddTileMapObjectNode(tileMapObject);
+                }
+                else {
                     if (tileMapObjects.TryGetValue(uniqueTileId, out var optionalNode)) {
-                        ((ITileMapObject) optionalNode).Object().QueueFree();
+                        optionalNode.QueueFree();
                     }
 
                     tileMapObjects.Remove(uniqueTileId);
-                    break;
+                }
             }
 
             pathfindingTileMap.UpdateAStarGrid();
         }
 
-        private void AddTileMapObjectNode(ITileMapObject tileMapObject) {
-            if (tileMapObject.PackedScene().Instance() is Node2D treeNode) {
-                tileMapObject.SetObject(treeNode);
-                treeNode.ZIndex = (int) tileMapObject.TileMapPosition().y * 2;
-                AddNodeOfTileMapObjectToScene(tileMapObject);
+        public ITileMapObject GetTileMapObjectWithTileMapCoordinates(Vector2 position) {
+            var tileId = pathfindingTileMap.GetIdForTile(position);
+            tileMapObjects.TryGetValue(tileId, out var tileMapObject);
+            if (tileMapObject is ITileMapObject mapObject) {
+                return mapObject;
             }
+
+            throw new Exception(tileMapObject + " does not extend ITileMapObject! This should never happen!");
+        }
+
+
+        private void SetupTileMapObjects() {
+            var usedCells = new Array<Vector2>(pathfindingTileMap.GetUsedCells());
+            foreach (var usedCell in usedCells) {
+                SetupOrReplaceTileMapObject(usedCell);
+            }
+        }
+
+        private void AddTileMapObjectNode(TileMapObject tileMapObject) {
+            tileMapObject.ZIndex = (int) tileMapObject.TileMapPosition().y * 2;
+            AddNodeOfTileMapObjectToScene(tileMapObject);
+
 
 //            Logger.Error("Node with packed Scene " + tileMapObject.PackedScene() + " was null after instantiation!");
         }
 
-        private void AddNodeOfTileMapObjectToScene(ITileMapObject tileMapObject) {
-            if (tileMapObject.Object() != null) {
-                tileMapObjectContainer.AddChild(tileMapObject.Object());
-                tileMapObject.Object().SetPosition(tileMapObject.WorldPosition());
+        private void AddNodeOfTileMapObjectToScene(TileMapObject tileMapObject) {
+            if (tileMapObject != null) {
+                tileMapObjectContainer.AddChild(tileMapObject);
+                tileMapObject.SetPosition(tileMapObject.WorldPosition());
             }
         }
     }

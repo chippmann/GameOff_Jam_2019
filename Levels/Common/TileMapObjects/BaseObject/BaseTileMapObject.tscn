@@ -2,6 +2,9 @@
 
 [ext_resource path="res://Levels/Common/TileMapObjects/BaseObject/HoverIndicator.cs" type="Script" id=1]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32.1403, 0.500185 )
+
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0 )
 colors = PoolColorArray( 0.913725, 0.537255, 0, 0.513726 )
@@ -10,19 +13,21 @@ colors = PoolColorArray( 0.913725, 0.537255, 0, 0.513726 )
 gradient = SubResource( 2 )
 width = 64
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32.1403, 0.500185 )
-
 [node name="BaseTileMapObject" type="Node2D"]
 
-[node name="HoverIndicator" type="Sprite" parent="."]
+[node name="Hover" type="Node2D" parent="."]
+
+[node name="ActionRadiusCollider" type="Area2D" parent="Hover"]
+scale = Vector2( 1, 63.1312 )
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hover/ActionRadiusCollider"]
+shape = SubResource( 1 )
+
+[node name="HoverIndicator" type="Sprite" parent="Hover"]
 visible = false
 scale = Vector2( 1, 63.1312 )
 texture = SubResource( 3 )
 script = ExtResource( 1 )
-actionRadiusColliderNodePath = NodePath("ActionRadiusCollider")
-
-[node name="ActionRadiusCollider" type="Area2D" parent="HoverIndicator"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverIndicator/ActionRadiusCollider"]
-shape = SubResource( 1 )
+actionRadiusColliderNodePath = NodePath("../ActionRadiusCollider")

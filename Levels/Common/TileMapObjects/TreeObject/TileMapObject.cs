@@ -5,13 +5,10 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
     public class TileMapObject : Node2D, ITileMapObject {
         private Vector2 tileMapPosition;
         private Vector2 worldPosition;
-        private PackedScene packedScene;
-        private Node2D node2D;
 
-        public void Init(Vector2 tileMap, Vector2 world, PackedScene packedSceneForNode2D) {
+        public void Init(Vector2 tileMap, Vector2 world) {
             tileMapPosition = tileMap;
             worldPosition = world;
-            packedScene = packedSceneForNode2D;
         }
 
         public Vector2 TileMapPosition() {
@@ -30,20 +27,8 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
             return worldPosition;
         }
 
-        public PackedScene PackedScene() {
-            if (packedScene == null) {
-                throw new Exception("TileMapObject was not initialized! Initialize it first before accessing its values");
-            }
-
-            return packedScene;
-        }
-
-        public void SetObject(Node2D newObject) {
-            node2D = newObject;
-        }
-
-        public Node2D Object() {
-            return node2D;
+        public virtual bool CanInteract() {
+            return false;
         }
     }
 }

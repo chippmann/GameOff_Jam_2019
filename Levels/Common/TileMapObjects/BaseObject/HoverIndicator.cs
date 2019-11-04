@@ -15,6 +15,8 @@ public class HoverIndicator : Sprite {
         actionRadiusCollider = GetNode<Area2D>(actionRadiusColliderNodePath);
         actionRadiusCollider.Connect("area_entered", this, nameof(OnAreaEntered));
         actionRadiusCollider.Connect("area_exited", this, nameof(OnAreaExited));
+        actionRadiusCollider.Connect("body_entered", this, nameof(OnAreaEntered));
+        actionRadiusCollider.Connect("body_exited", this, nameof(OnAreaExited));
 
         var tileMaps = GetTree().GetNodesInGroup(GameConstants.PathfindingTileMapGroup);
         if (tileMaps.Count != 1) {
@@ -30,6 +32,10 @@ public class HoverIndicator : Sprite {
     }
 
     public override void _Process(float delta) {
+        if (pathfindingTileMap.WorldToMap(GetGlobalMousePosition()) == pathfindingTileMap.WorldToMap(GetGlobalPosition())) {
+            var blubb = collidingActionRadiusColliderList.Count;
+        }
+
         Visible = pathfindingTileMap.WorldToMap(GetGlobalMousePosition()) == pathfindingTileMap.WorldToMap(GetGlobalPosition()) && collidingActionRadiusColliderList.Count > 0;
     }
 

@@ -5,7 +5,7 @@
 [ext_resource path="res://Entities/Common/Navigation/PathfindingTileMap.cs" type="Script" id=3]
 [ext_resource path="res://Entities/Common/Navigation/DebugPathfindingCanvas.cs" type="Script" id=4]
 [ext_resource path="res://Levels/Common/TileMapObjects/TileMapManipulator.cs" type="Script" id=5]
-[ext_resource path="res://Levels/Common/TileMapObjects/BaseObject/BaseTileMapObject.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Levels/Common/TileMapObjects/TraversableObject/TraversableTileMapObject.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeTileMapObject.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Entities/PlayerEntity/PlayerBody.tscn" type="PackedScene" id=8]
 

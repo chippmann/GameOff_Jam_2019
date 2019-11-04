@@ -23,6 +23,8 @@ offset = Vector2( 0, -16 )
 
 [node name="TransparencyManager" type="Area2D" parent="." index="2"]
 position = Vector2( 0, -32 )
+collision_layer = 8
+collision_mask = 6
 script = ExtResource( 4 )
 spriteNodePath = NodePath("../Sprite")
 
@@ -32,6 +34,8 @@ shape = SubResource( 2 )
 [node name="TreeActionRadius" type="Area2D" parent="." index="3" groups=[
 "actionRadius",
 ]]
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TreeActionRadius" index="0"]
 shape = SubResource( 3 )

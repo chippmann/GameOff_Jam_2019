@@ -19,11 +19,11 @@ namespace GameOff_2019.Entities.Common.Navigation {
             if (@event.IsActionPressed("debugPlantTree")) {
                 var mousePosition = GetGlobalMousePosition();
                 if (pathfindingTileMap.IsWorldPositionInTileMap(mousePosition)) {
-                    if (pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == 0) {
-                        tileMapManipulator.SetupOrReplaceTileMapObject(pathfindingTileMap.WorldToMap(mousePosition), 1);
+                    if (pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == tileMapManipulator.traversableId) {
+                        tileMapManipulator.SetupOrReplaceTileMapObject(pathfindingTileMap.WorldToMap(mousePosition), tileMapManipulator.treeId);
                     }
-                    else if (pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == 1) {
-                        tileMapManipulator.SetupOrReplaceTileMapObject(pathfindingTileMap.WorldToMap(mousePosition), 0);
+                    else if (pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == tileMapManipulator.treeId) {
+                        tileMapManipulator.SetupOrReplaceTileMapObject(pathfindingTileMap.WorldToMap(mousePosition), tileMapManipulator.traversableId);
                     }
                 }
             }
