@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using GameOff_2019.EngineUtils;
+using GameOff_2019.Levels.Common.TileMapObjects;
 using Godot;
 using Godot.Collections;
 
@@ -8,6 +9,8 @@ namespace GameOff_2019.Entities.Common.Navigation {
     public class PathfindingTileMap : TileMap {
         [Export] public readonly int traversableTilesId = 0;
         [Export] private readonly NodePath pathfindingDebugCanvasNodePath = null;
+        [Export] private readonly NodePath tilemapManipulatorNodePath = null;
+        public TileMapManipulator tileMapManipulator;
         private DebugPathfindingCanvas pathfindingDebugCanvas;
         [Export] private readonly bool shouldDebugPathfinding = false;
 
@@ -17,6 +20,7 @@ namespace GameOff_2019.Entities.Common.Navigation {
 
 
         public override void _Ready() {
+            tileMapManipulator = GetNode<TileMapManipulator>(tilemapManipulatorNodePath);
             pathfindingDebugCanvas = GetNode<DebugPathfindingCanvas>(pathfindingDebugCanvasNodePath);
             halfCellSize = GetCellSize() / 2;
             UpdateAStarGrid();

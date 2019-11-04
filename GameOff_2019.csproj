@@ -60,6 +60,7 @@
     <Compile Include="Entities\Common\StateMachine\FiniteStateMachine.cs" />
     <Compile Include="Entities\Common\StateMachine\IStateMachineMessage.cs" />
     <Compile Include="Entities\Common\StateMachine\State.cs" />
+    <Compile Include="Entities\PlayerEntity\NavigationChecker.cs" />
     <Compile Include="Entities\PlayerEntity\Player.cs" />
     <Compile Include="Entities\PlayerEntity\PlayerStateMachine.cs" />
     <Compile Include="Entities\PlayerEntity\States\Movement.cs" />
@@ -69,7 +70,6 @@
     <Compile Include="Levels\Common\TileMapObjects\ITileMapObject.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TileMapManipulator.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TraversableObject\TraversableObject.cs" />
-    <Compile Include="Levels\Common\TileMapObjects\TreeObject\ActionCircle.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\TileMapObject.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\TreeTileMapObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

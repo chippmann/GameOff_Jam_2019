@@ -75,10 +75,10 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
             pathfindingTileMap.UpdateAStarGrid();
         }
 
-        public ITileMapObject GetTileMapObjectWithTileMapCoordinates(Vector2 position) {
+        public TileMapObject GetTileMapObjectWithTileMapCoordinates(Vector2 position) {
             var tileId = pathfindingTileMap.GetIdForTile(position);
             tileMapObjects.TryGetValue(tileId, out var tileMapObject);
-            if (tileMapObject is ITileMapObject mapObject) {
+            if (tileMapObject is TileMapObject mapObject) {
                 return mapObject;
             }
 

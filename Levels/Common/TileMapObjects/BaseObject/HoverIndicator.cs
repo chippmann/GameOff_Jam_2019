@@ -15,8 +15,6 @@ public class HoverIndicator : Sprite {
         actionRadiusCollider = GetNode<Area2D>(actionRadiusColliderNodePath);
         actionRadiusCollider.Connect("area_entered", this, nameof(OnAreaEntered));
         actionRadiusCollider.Connect("area_exited", this, nameof(OnAreaExited));
-        actionRadiusCollider.Connect("body_entered", this, nameof(OnAreaEntered));
-        actionRadiusCollider.Connect("body_exited", this, nameof(OnAreaExited));
 
         var tileMaps = GetTree().GetNodesInGroup(GameConstants.PathfindingTileMapGroup);
         if (tileMaps.Count != 1) {
