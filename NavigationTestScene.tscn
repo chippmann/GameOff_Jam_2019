@@ -49,32 +49,37 @@ position = Vector2( 151.987, 146.976 )
 entityMovementNodePath = NodePath("../../../MainGameWindow/NavigationTestScene/KinematicBody2D/Movement")
 removeTreeCheckerNodePath = NodePath("../../../MainGameWindow/NavigationTestScene/KinematicBody2D/RemoveTreeChecker")
 
-[node name="LevelMoveMouseControl" type="Control" parent="."]
+[node name="Camera2D" type="Camera2D" parent="NavigationTestScene"]
+current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="NavigationTestScene/Camera2D"]
+
+[node name="LevelMoveMouseControl" type="Control" parent="NavigationTestScene/Camera2D/CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 8 )
-levelNodePath = NodePath("../NavigationTestScene")
+cameraNodePath = NodePath("../..")
 mouseCaptureLeftNodePath = NodePath("MouseCaptureLeft")
 mouseCaptureRightNodePath = NodePath("MouseCaptureRight")
 mouseCaptureTopNodePath = NodePath("MouseCaptureTop")
 mouseCaptureBottomNodePath = NodePath("MouseCaptureBottom")
 
-[node name="MouseCaptureLeft" type="Control" parent="LevelMoveMouseControl"]
+[node name="MouseCaptureLeft" type="Control" parent="NavigationTestScene/Camera2D/CanvasLayer/LevelMoveMouseControl"]
 anchor_bottom = 1.0
 rect_min_size = Vector2( 50, 0 )
 
-[node name="MouseCaptureRight" type="Control" parent="LevelMoveMouseControl"]
+[node name="MouseCaptureRight" type="Control" parent="NavigationTestScene/Camera2D/CanvasLayer/LevelMoveMouseControl"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 50, 0 )
 rect_scale = Vector2( -1, 1 )
 
-[node name="MouseCaptureTop" type="Control" parent="LevelMoveMouseControl"]
+[node name="MouseCaptureTop" type="Control" parent="NavigationTestScene/Camera2D/CanvasLayer/LevelMoveMouseControl"]
 anchor_right = 1.0
 rect_min_size = Vector2( 0, 50 )
 
-[node name="MouseCaptureBottom" type="Control" parent="LevelMoveMouseControl"]
+[node name="MouseCaptureBottom" type="Control" parent="NavigationTestScene/Camera2D/CanvasLayer/LevelMoveMouseControl"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

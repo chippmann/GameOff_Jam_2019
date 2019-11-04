@@ -4,8 +4,8 @@ using Godot;
 
 namespace GameOff_2019.Ui {
     public class LevelMoveMouseControl : Control {
-        [Export] private readonly NodePath levelNodePath = null;
-        private Node2D level;
+        [Export] private readonly NodePath cameraNodePath = null;
+        private Camera2D camera;
         [Export] private readonly NodePath mouseCaptureLeftNodePath = null;
         private Control mouseCaptureLeft;
         [Export] private readonly NodePath mouseCaptureRightNodePath = null;
@@ -27,7 +27,7 @@ namespace GameOff_2019.Ui {
         }
 
         public override void _Ready() {
-            level = GetNode<Node2D>(levelNodePath);
+            camera = GetNode<Camera2D>(cameraNodePath);
             mouseCaptureLeft = GetNode<Control>(mouseCaptureLeftNodePath);
             mouseCaptureRight = GetNode<Control>(mouseCaptureRightNodePath);
             mouseCaptureTop = GetNode<Control>(mouseCaptureTopNodePath);
@@ -36,13 +36,13 @@ namespace GameOff_2019.Ui {
 
         public override void _PhysicsProcess(float delta) {
             var positionChange = AreMoveInputsPressed() ? MoveWindowWithKeyboard() : MoveWindowWithMouse();
-            level.SetPosition(level.GetPosition() + positionChange * mouseSensitivity);
+            camera.SetPosition(camera.GetPosition() + positionChange * mouseSensitivity);
         }
 
         private Vector2 MoveWindowWithKeyboard() {
             return new Vector2(
-                Input.GetActionStrength(GameConstants.ControlsMoveWindowLeft) - Input.GetActionStrength(GameConstants.ControlsMoveWindowRight),
-                Input.GetActionStrength(GameConstants.ControlsMoveWindowUp) - Input.GetActionStrength(GameConstants.ControlsMoveWindowDown)
+                Input.GetActionStrength(GameConstants.ControlsMoveWindowRight) - Input.GetActionStrength(GameConstants.ControlsMoveWindowLeft),
+                Input.GetActionStrength(GameConstants.ControlsMoveWindowDown) - Input.GetActionStrength(GameConstants.ControlsMoveWindowUp)
             );
         }
 
@@ -86,28 +86,28 @@ namespace GameOff_2019.Ui {
                 switch (i) {
                     case (int) MoveInput.Left: {
                         if (moveInput[i]) {
-                            velocity.x += 1;
+                            velocity.x -= 1;
                         }
 
                         break;
                     }
                     case (int) MoveInput.Right: {
                         if (moveInput[i]) {
-                            velocity.x -= 1;
+                            velocity.x += 1;
                         }
 
                         break;
                     }
                     case (int) MoveInput.Up: {
                         if (moveInput[i]) {
-                            velocity.y += 1;
+                            velocity.y -= 1;
                         }
 
                         break;
                     }
                     case (int) MoveInput.Down: {
                         if (moveInput[i]) {
-                            velocity.y -= 1;
+                            velocity.y += 1;
                         }
 
                         break;
