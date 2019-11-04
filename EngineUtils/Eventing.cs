@@ -6,6 +6,9 @@ namespace GameOff_2019.EngineUtils {
 
         //pathfinding
         [Signal]
-        public delegate void InvalidatePath();
+        public delegate void InvalidateDemonPath();
+
+        [Signal]
+        public delegate void InvalidatePlayerPath();
     }
 }

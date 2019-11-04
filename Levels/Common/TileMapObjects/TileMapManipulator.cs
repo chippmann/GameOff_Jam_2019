@@ -11,9 +11,6 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
         [Export] private readonly NodePath tileMapObjectContainerNodePath = null;
         private Node2D tileMapObjectContainer;
 
-        [Export] public int traversableId = 0;
-        [Export] public int treeId = 1;
-
 
         // ReSharper disable once CollectionNeverUpdated.Local
         [Export] private readonly Dictionary<int, PackedScene> tileIdToPackedSceneMapping = new Dictionary<int, PackedScene>();
@@ -43,7 +40,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
             tileIdToPackedSceneMapping.TryGetValue(cellId, out var packedScene);
 
             if (packedScene?.Instance() is TileMapObject tileMapObject) {
-                if (cellId == traversableId) {
+                if (cellId == pathfindingTileMap.traversableId) {
                     tileMapObject.Init(cell, worldPosition);
                     if (tileMapObjects.TryGetValue(uniqueTileId, out var optionalBaseObjectNode)) {
                         optionalBaseObjectNode.QueueFree();
@@ -53,7 +50,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
                     tileMapObjects.Add(uniqueTileId, tileMapObject);
                     AddTileMapObjectNode(tileMapObject);
                 }
-                else if (cellId == treeId) {
+                else if (cellId == pathfindingTileMap.treeId) {
                     tileMapObject.Init(cell, worldPosition);
                     if (tileMapObjects.TryGetValue(uniqueTileId, out var optionalTreeNode)) {
                         optionalTreeNode.QueueFree();
@@ -62,6 +59,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
                     tileMapObjects.Remove(uniqueTileId);
                     tileMapObjects.Add(uniqueTileId, tileMapObject);
                     AddTileMapObjectNode(tileMapObject);
+                    //TODO: change tiles in radius
                 }
                 else {
                     if (tileMapObjects.TryGetValue(uniqueTileId, out var optionalNode)) {

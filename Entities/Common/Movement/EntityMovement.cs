@@ -128,7 +128,7 @@ namespace GameOff_2019.Entities.Common.Movement {
             currentTargetNode = 1;
             stuckFrames = 0;
             var startTile = GetGlobalPosition();
-            currentPathToFollow = entityBody.GetPathfinderTileMap().FindPathToTarget(startTile, targetPosition);
+            currentPathToFollow = entityBody.GetPathfinderTileMap().FindPathToTargetForDemon(startTile, targetPosition);
             ResumeMovement();
         }
 
