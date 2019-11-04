@@ -1,4 +1,4 @@
-using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
+using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
 using Godot;
 
 namespace GameOff_2019.Levels.Common.TileMapObjects.TraversableObject {

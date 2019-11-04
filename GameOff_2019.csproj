@@ -63,13 +63,12 @@
     <Compile Include="Entities\PlayerEntity\Player.cs" />
     <Compile Include="Entities\PlayerEntity\PlayerStateMachine.cs" />
     <Compile Include="Entities\PlayerEntity\States\Movement.cs" />
-    <Compile Include="Levels\Common\TileMapObjects\BaseObject\BaseTileMapObject.cs" />
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\HoverIndicator.cs" />
+    <Compile Include="Levels\Common\TileMapObjects\BaseObject\BaseTileMapObject.cs" />
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\TransparencyManager.cs" />
     <Compile Include="Levels\Common\TileMapObjects\ITileMapObject.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TileMapManipulator.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TraversableObject\TraversableTileMapObject.cs" />
-    <Compile Include="Levels\Common\TileMapObjects\TreeObject\TileMapObject.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\TreeActionRadius.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\TreeTileMapObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

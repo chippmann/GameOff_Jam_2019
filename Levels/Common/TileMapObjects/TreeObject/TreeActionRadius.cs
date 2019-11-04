@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common.Navigation;
+using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
 using GameOff_2019.Levels.Common.TileMapObjects.TraversableObject;
 using Godot;
 

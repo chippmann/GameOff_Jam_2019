@@ -13,7 +13,6 @@ radius = 32.0
 collision_layer = 2
 script = ExtResource( 1 )
 entityMovementNodePath = NodePath("Movement")
-navigationCheckerNodePath = NodePath("")
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

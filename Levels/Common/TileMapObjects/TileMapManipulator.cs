@@ -1,6 +1,6 @@
 using System;
 using GameOff_2019.Entities.Common.Navigation;
-using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
+using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
 using Godot;
 using Godot.Collections;
 
