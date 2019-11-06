@@ -12,6 +12,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
         private PathfindingTileMap pathfindingTileMap;
         [Export] private readonly NodePath tileMapObjectContainerNodePath = null;
         private Node2D tileMapObjectContainer;
+        [Export] public readonly int actionRadiusInTiles = 2;
 
 
         // ReSharper disable once CollectionNeverUpdated.Local
@@ -90,12 +91,11 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
             }
         }
 
-        private List<Vector2> GetOverlappingTiles(Vector2 parentTilePosition) {
-            var radiusInTiles = 2; //TODO: export
+        public List<Vector2> GetOverlappingTiles(Vector2 parentTilePosition) {
             var squaredOverlap = new List<Vector2>();
-            for (var x = 0; x < radiusInTiles * 2 + 1; x++) {
-                for (var y = 0; y < radiusInTiles * 2 + 1; y++) {
-                    var tile = parentTilePosition + new Vector2(x - radiusInTiles, y - radiusInTiles);
+            for (var x = 0; x < actionRadiusInTiles * 2 + 1; x++) {
+                for (var y = 0; y < actionRadiusInTiles * 2 + 1; y++) {
+                    var tile = parentTilePosition + new Vector2(x - actionRadiusInTiles, y - actionRadiusInTiles);
                     if (tile.x >= 0 && tile.x < pathfindingTileMap.GetUsedRect().Size.x && tile.y >= 0 && tile.y < pathfindingTileMap.GetUsedRect().Size.x) {
                         squaredOverlap.Add(tile);
                     }
@@ -105,7 +105,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
             squaredOverlap.Remove(parentTilePosition);
 
             var notOverlappingTileMaps = squaredOverlap.Select((vector2, index) => pathfindingTileMap.MapToWorld(vector2) + (pathfindingTileMap.CellSize / 2)).Where(vector2 =>
-                vector2.DistanceTo(pathfindingTileMap.MapToWorld(parentTilePosition) + (pathfindingTileMap.CellSize / 2)) > radiusInTiles * pathfindingTileMap.CellSize.x).ToList();
+                vector2.DistanceTo(pathfindingTileMap.MapToWorld(parentTilePosition) + (pathfindingTileMap.CellSize / 2)) > actionRadiusInTiles * pathfindingTileMap.CellSize.x).ToList();
 
             foreach (var notOverlappingTileMap in notOverlappingTileMaps) {
                 squaredOverlap.Remove(notOverlappingTileMap);
