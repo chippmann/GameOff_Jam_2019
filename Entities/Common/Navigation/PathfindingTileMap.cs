@@ -27,7 +27,6 @@ namespace GameOff_2019.Entities.Common.Navigation {
             tileMapManipulator = GetNode<TileMapManipulator>(tileMapManipulatorNodePath);
             pathfindingDebugCanvas = GetNode<DebugPathfindingCanvas>(pathfindingDebugCanvasNodePath);
             halfCellSize = GetCellSize() / 2;
-            UpdateAStarGrid();
         }
 
         public List<Vector2> FindPathToTargetForDemon(Vector2 start, Vector2 end) {
