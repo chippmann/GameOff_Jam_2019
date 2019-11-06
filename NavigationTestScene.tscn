@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Levels/TileSets/PrototypeTileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Entities/Common/Navigation/PathfindingTileMap.cs" type="Script" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://Levels/Common/TileMapObjects/TraversableObject/TraversableTileMapObject.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeTileMapObject.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Entities/PlayerEntity/PlayerBody.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Ui/LevelMoveMouseControl.cs" type="Script" id=8]
+[ext_resource path="res://Ui/LevelMoveMouseControl.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Ui/GameUi.tscn" type="PackedScene" id=9]
 
 [node name="MainGameWindow" type="Control"]
 anchor_right = 1.0
@@ -58,34 +59,6 @@ drag_margin_bottom = 0.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="NavigationTestScene/Camera2D"]
 
-[node name="LevelMoveMouseControl" type="Control" parent="NavigationTestScene/Camera2D/CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 8 )
-cameraNodePath = NodePath("../..")
-mouseCaptureLeftNodePath = NodePath("MouseCaptureLeft")
-mouseCaptureRightNodePath = NodePath("MouseCaptureRight")
-mouseCaptureTopNodePath = NodePath("MouseCaptureTop")
-mouseCaptureBottomNodePath = NodePath("MouseCaptureBottom")
+[node name="LevelMoveMouseControl" parent="NavigationTestScene/Camera2D/CanvasLayer" instance=ExtResource( 8 )]
 
-[node name="MouseCaptureLeft" type="Control" parent="NavigationTestScene/Camera2D/CanvasLayer/LevelMoveMouseControl"]
-anchor_bottom = 1.0
-rect_min_size = Vector2( 50, 0 )
-
-[node name="MouseCaptureRight" type="Control" parent="NavigationTestScene/Camera2D/CanvasLayer/LevelMoveMouseControl"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_min_size = Vector2( 50, 0 )
-rect_scale = Vector2( -1, 1 )
-
-[node name="MouseCaptureTop" type="Control" parent="NavigationTestScene/Camera2D/CanvasLayer/LevelMoveMouseControl"]
-anchor_right = 1.0
-rect_min_size = Vector2( 0, 50 )
-
-[node name="MouseCaptureBottom" type="Control" parent="NavigationTestScene/Camera2D/CanvasLayer/LevelMoveMouseControl"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_min_size = Vector2( 0, 50 )
-rect_scale = Vector2( 1, -1 )
+[node name="GameUi" parent="NavigationTestScene/Camera2D/CanvasLayer" instance=ExtResource( 9 )]
