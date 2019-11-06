@@ -13,5 +13,8 @@ namespace GameOff_2019.EngineUtils {
 
         [Signal]
         public delegate void PlayerTargetReached(object[] list);
+
+        [Signal]
+        public delegate void TileMapSetupFinished();
     }
 }

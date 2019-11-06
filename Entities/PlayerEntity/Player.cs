@@ -34,14 +34,15 @@ namespace GameOff_2019.Entities.PlayerEntity {
                         && pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(mousePosition)).CanInteract()
                         && removeTreeChecker.CanRemoveTree(pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(mousePosition)))
                     ) {
-                        pathfindingTileMap.tileMapManipulator.SetupOrReplaceTileMapObject(pathfindingTileMap.WorldToMap(mousePosition), pathfindingTileMap.traversableId);
+                        pathfindingTileMap.tileMapManipulator.DeleteTree(mousePosition);
                     }
                 }
             }
         }
 
         private void PlantTree(Vector2 callbackParams) {
-            pathfindingTileMap.tileMapManipulator.SetupOrReplaceTileMapObject(pathfindingTileMap.WorldToMap(callbackParams), pathfindingTileMap.treeId);
+            pathfindingTileMap.tileMapManipulator.SetTree(callbackParams);
+//            pathfindingTileMap.tileMapManipulator.SetupOrReplaceTileMapObject(pathfindingTileMap.WorldToMap(callbackParams), pathfindingTileMap.treeId);
         }
     }
 }
