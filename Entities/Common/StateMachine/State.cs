@@ -7,7 +7,9 @@ namespace GameOff_2019.Entities.Common.StateMachine {
 
         public override void _Ready() {
             stateMachine = AssignStateMachine(this);
-            parentState = GetParent<State>();
+            if (GetParent() is State) {
+                parentState = GetParent<State>();
+            }
         }
 
         private static FiniteStateMachine AssignStateMachine(Node node) {

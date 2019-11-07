@@ -42,7 +42,7 @@ namespace GameOff_2019.Entities.Common.StateMachine {
         }
 
         [Puppet]
-        public void TransitionTo(NodePath targetStatePath, IStateMachineMessage message) {
+        public void TransitionTo(NodePath targetStatePath, IStateMachineMessage message = null) {
             if (!HasNode(targetStatePath)) {
                 Logger.Error($"This StateMachine has no state with path {targetStatePath}!");
                 return;
