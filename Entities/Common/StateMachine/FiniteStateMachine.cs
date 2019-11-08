@@ -63,6 +63,10 @@ namespace GameOff_2019.Entities.Common.StateMachine {
             currentState = state;
         }
 
+        public State GetCurrentState() {
+            return currentState;
+        }
+
         public override string _GetConfigurationWarning() {
             foreach (Dictionary property in GetPropertyList()) {
                 property.TryGetValue("name", out var name);
