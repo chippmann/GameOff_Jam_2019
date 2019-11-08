@@ -80,6 +80,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
                 if (tileMapObjects.TryGetValue(tileUniqueId, out var tileMapObjectNodeReference)) {
                     tileMapObjectNodeReference.node = tileMapObject;
                     tileMapObjectContainer.AddChild(tileMapObjectNodeReference.node);
+                    tileMapObjectNodeReference.node.ZIndex = (int) tile.y * 2;
                     tileMapObjectNodeReference.node.SetGlobalPosition(worldPosition);
                 }
                 else {
@@ -127,7 +128,10 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
                 if (tileIdToPackedSceneMapping.TryGetValue(pathfindingTileMap.treeId, out var treePackedScene)) {
                     objectNodeReference.node = treePackedScene.Instance() as Node2D;
                     tileMapObjectContainer.AddChild(objectNodeReference.node);
-                    objectNodeReference.node?.SetGlobalPosition(pathfindingTileMap.MapToWorld(tileMapPosition) + pathfindingTileMap.CellSize / 2);
+                    if (objectNodeReference.node != null) {
+                        objectNodeReference.node.ZIndex = (int) tileMapPosition.y * 2;
+                        objectNodeReference.node?.SetGlobalPosition(pathfindingTileMap.MapToWorld(tileMapPosition) + pathfindingTileMap.CellSize / 2);
+                    }
                 }
                 else {
                     throw new Exception("PackedScene cannot be null!");
@@ -146,7 +150,10 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
                             if (tileIdToPackedSceneMapping.TryGetValue(pathfindingTileMap.playerTraversableId, out var packedScene)) {
                                 tileMapObjectNodeReference.node = packedScene.Instance() as Node2D;
                                 tileMapObjectContainer.AddChild(tileMapObjectNodeReference.node);
-                                tileMapObjectNodeReference.node?.SetGlobalPosition(pathfindingTileMap.MapToWorld(overlappingTile) + pathfindingTileMap.CellSize / 2);
+                                if (objectNodeReference.node != null) {
+                                    objectNodeReference.node.ZIndex = (int) tileMapPosition.y * 2;
+                                    tileMapObjectNodeReference.node?.SetGlobalPosition(pathfindingTileMap.MapToWorld(overlappingTile) + pathfindingTileMap.CellSize / 2);
+                                }
                             }
                             else {
                                 throw new Exception("PackedScene cannot be null!");
@@ -188,6 +195,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
                                 pathfindingTileMap.SetCell((int) overlappingTile.x, (int) overlappingTile.y, pathfindingTileMap.traversableId);
                                 childObjectNodeReference.node = traversablePackedScene.Instance() as Node2D;
                                 tileMapObjectContainer.AddChild(childObjectNodeReference.node);
+                                objectNodeReference.node.ZIndex = (int) tileMapPosition.y * 2;
                                 childObjectNodeReference.node?.SetGlobalPosition(pathfindingTileMap.MapToWorld(overlappingTile) + pathfindingTileMap.CellSize / 2);
                             }
                             else {
@@ -205,7 +213,10 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
                     if (tileIdToPackedSceneMapping.TryGetValue(pathfindingTileMap.playerTraversableId, out var traversablePackedScene)) {
                         objectNodeReference.node = traversablePackedScene.Instance() as Node2D;
                         tileMapObjectContainer.AddChild(objectNodeReference.node);
-                        objectNodeReference.node?.SetGlobalPosition(pathfindingTileMap.MapToWorld(tileMapPosition) + pathfindingTileMap.CellSize / 2);
+                        if (objectNodeReference.node != null) {
+                            objectNodeReference.node.ZIndex = (int) tileMapPosition.y * 2;
+                            objectNodeReference.node?.SetGlobalPosition(pathfindingTileMap.MapToWorld(tileMapPosition) + pathfindingTileMap.CellSize / 2);
+                        }
                     }
                     else {
                         throw new Exception("PackedScene cannot be null!");
@@ -216,7 +227,10 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
                     if (tileIdToPackedSceneMapping.TryGetValue(pathfindingTileMap.traversableId, out var traversablePackedScene)) {
                         objectNodeReference.node = traversablePackedScene.Instance() as Node2D;
                         tileMapObjectContainer.AddChild(objectNodeReference.node);
-                        objectNodeReference.node?.SetGlobalPosition(pathfindingTileMap.MapToWorld(tileMapPosition) + pathfindingTileMap.CellSize / 2);
+                        if (objectNodeReference.node != null) {
+                            objectNodeReference.node.ZIndex = (int) tileMapPosition.y * 2;
+                            objectNodeReference.node?.SetGlobalPosition(pathfindingTileMap.MapToWorld(tileMapPosition) + pathfindingTileMap.CellSize / 2);
+                        }
                     }
                     else {
                         throw new Exception("PackedScene cannot be null!");
