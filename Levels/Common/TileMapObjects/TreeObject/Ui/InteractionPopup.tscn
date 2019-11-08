@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/Ui/InteractionPopup.cs" type="Script" id=1]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/Ui/InteractionOption.tscn" type="PackedScene" id=2]
+
+[node name="PopupPanel" type="PopupPanel"]
+margin_right = 8.0
+margin_bottom = 8.0
+script = ExtResource( 1 )
+killTreeInteractionObjectNodePath = NodePath("MarginContainer/GridContainer/KillTreeOption")
+healTreeInteractionObjectNodePath = NodePath("MarginContainer/GridContainer/HealTreeOption")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 14.0
+margin_bottom = 14.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 5.0
+margin_bottom = 5.0
+columns = 3
+
+[node name="KillTreeOption" parent="MarginContainer/GridContainer" instance=ExtResource( 2 )]
+margin_right = 64.0
+margin_bottom = 82.0
+textureRectNodePath = NodePath("../KillTreeOption/TextureRect")
+labelNodePath = NodePath("../KillTreeOption/Label")
+
+[node name="HealTreeOption" parent="MarginContainer/GridContainer" instance=ExtResource( 2 )]
+margin_right = 64.0
+margin_bottom = 82.0
+textureRectNodePath = NodePath("../HealTreeOption/TextureRect")
+labelNodePath = NodePath("../HealTreeOption/Label")

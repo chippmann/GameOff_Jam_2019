@@ -11,5 +11,8 @@ namespace GameOff_2019.EngineUtils {
         public const string ControlsMoveWindowRight = "moveWindowRight";
         public const string ControlsMoveWindowUp = "moveWindowUp";
         public const string ControlsMoveWindowDown = "moveWindowDown";
+        public const string ControlsActionCancel = "actionCancel";
+
+        public const string ControlsActionClick = "actionClick";
     }
 }

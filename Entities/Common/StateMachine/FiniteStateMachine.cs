@@ -28,9 +28,11 @@ namespace GameOff_2019.Entities.Common.StateMachine {
                 return;
             }
 
-            if (IsNetworkMaster()) {
+            if (GetTree().GetNetworkPeer() != null && IsNetworkMaster()) {
                 currentState.UnhandledInput(@event);
             }
+
+            base._UnhandledInput(@event);
         }
 
         public override void _PhysicsProcess(float delta) {

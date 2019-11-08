@@ -1,5 +1,6 @@
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common;
+using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using Godot;
 
 namespace GameOff_2019.Entities.PlayerEntity {
@@ -13,7 +14,7 @@ namespace GameOff_2019.Entities.PlayerEntity {
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.PlayerTargetReached), this, nameof(PlantTree));
         }
 
-        public override void _Input(InputEvent @event) {
+        public override void _UnhandledInput(InputEvent @event) {
             if (@event.IsActionPressed("debugPathfinding")) {
                 var mousePosition = GetGlobalMousePosition();
                 entityMovement.MoveToPosition(mousePosition, new object[] { }, true);
@@ -32,12 +33,14 @@ namespace GameOff_2019.Entities.PlayerEntity {
                     else if (
                         pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == pathfindingTileMap.treeId
                         && pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(mousePosition)).CanInteract()
-                        && removeTreeChecker.CanRemoveTree(pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(mousePosition)))
+                        //&& removeTreeChecker.CanRemoveTree(pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(mousePosition)))
                     ) {
-                        pathfindingTileMap.tileMapManipulator.DeleteTree(mousePosition);
+                        (pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(mousePosition)) as TreeTileMapObject)?.Interact();
                     }
                 }
             }
+
+            base._UnhandledInput(@event);
         }
 
         private void PlantTree(Vector2 callbackParams) {

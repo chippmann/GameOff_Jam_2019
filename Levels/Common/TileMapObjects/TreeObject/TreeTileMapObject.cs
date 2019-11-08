@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using GameOff_2019.Entities.Common;
 using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
 using GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates;
+using GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui;
 using Godot;
 
 namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
@@ -14,16 +15,26 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
         private TreeStateMachine stateMachine;
         [Export] private readonly NodePath treeStateNodePath = null;
         private TreeState treeState;
+        [Export] private readonly NodePath interactionPopupNodePath = null;
+        private InteractionPopup interactionPopup;
 
         public override void _Ready() {
             hoverIndicator = GetNode<HoverIndicator>(hoverIndicatorNodePath);
             treeActionRadius = GetNode<TreeActionRadius>(actionRadiusNodePath);
             stateMachine = GetNode<TreeStateMachine>(stateMachineNodePath);
             treeState = GetNode<TreeState>(treeStateNodePath);
+            interactionPopup = GetNode<InteractionPopup>(interactionPopupNodePath);
         }
 
         public override bool CanInteract() {
             return hoverIndicator.Visible;
+        }
+
+        public override void Interact() {
+            if (!interactionPopup.Visible) {
+                interactionPopup.Popup_();
+                interactionPopup.SetGlobalPosition(GetGlobalPosition());
+            }
         }
 
         public List<TileMapObject> GetTileMapObjectsInActionRadius() {

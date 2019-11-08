@@ -30,5 +30,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.BaseObject {
         public virtual bool CanInteract() {
             return false;
         }
+
+        public virtual void Interact() { }
     }
 }

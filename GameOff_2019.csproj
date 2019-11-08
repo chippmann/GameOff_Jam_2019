@@ -67,7 +67,7 @@
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\BaseTileMapObject.cs" />
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\TransparencyManager.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TileMapManipulator.cs" />
-      <Compile Include="Levels\Common\TileMapObjects\TileMapObjectNodeReference.cs" />
+    <Compile Include="Levels\Common\TileMapObjects\TileMapObjectNodeReference.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TraversableObject\TraversableTileMapObject.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\TreeStates\DeadState.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\TreeStates\FullyGrownState.cs" />
@@ -77,6 +77,8 @@
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\TreeStateMachine.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\TreeStates\InfestedState.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\TreeTileMapObject.cs" />
+    <Compile Include="Levels\Common\TileMapObjects\TreeObject\Ui\InteractionOption.cs" />
+    <Compile Include="Levels\Common\TileMapObjects\TreeObject\Ui\InteractionPopup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoundLogic\GameState.cs" />
     <Compile Include="TestScript.cs" />
