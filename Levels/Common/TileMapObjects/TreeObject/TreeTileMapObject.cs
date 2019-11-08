@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common;
+using GameOff_2019.Entities.Common.Navigation;
 using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
 using GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates;
 using GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui;
@@ -21,6 +22,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
         private InteractionPopup interactionPopup;
 
         private CanvasLayer uiContainer;
+        private PathfindingTileMap pathfindingTileMap;
 
         public override void _Ready() {
             hoverIndicator = GetNode<HoverIndicator>(hoverIndicatorNodePath);
@@ -39,6 +41,18 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
             }
             else {
                 throw new Exception("Nodes in group \"uiContainer\" should always be of type \"CanvasLayer\"!");
+            }
+
+            var tileMaps = GetTree().GetNodesInGroup(GameConstants.PathfindingTileMapGroup);
+            if (tileMaps.Count != 1) {
+                throw new Exception("There should be exactly one pathfindingTileMap in the sceneTree!");
+            }
+
+            if (tileMaps[0] is PathfindingTileMap) {
+                pathfindingTileMap = tileMaps[0] as PathfindingTileMap;
+            }
+            else {
+                throw new Exception("Nodes in group \"pathfindingTileMap\" should always be of type \"PathfindingTileMap\"!");
             }
 
             uiContainer?.AddChild(interactionPopup);
@@ -87,6 +101,25 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
             if (CanBeHealedFurther()) {
                 treeState.treeHealth += amount;
             }
+        }
+
+        public Vector2 GetTilePositionNextToTree() {
+            var traversableTiles = new List<KeyValuePair<Vector2, TileMapObject>>();
+            var tilesToCheck = new List<Vector2>();
+            var treeTileMapPosition = pathfindingTileMap.WorldToMap(GetGlobalPosition());
+            tilesToCheck.Add(treeTileMapPosition + new Vector2(-1, 0));
+            tilesToCheck.Add(treeTileMapPosition + new Vector2(1, 0));
+            tilesToCheck.Add(treeTileMapPosition + new Vector2(0, 1));
+            tilesToCheck.Add(treeTileMapPosition + new Vector2(0, -1));
+
+            foreach (var tileMapInActionRadius in tilesToCheck) {
+                if (pathfindingTileMap.GetCell((int) tileMapInActionRadius.x, (int) tileMapInActionRadius.y) == pathfindingTileMap.playerTraversableId) {
+                    traversableTiles.Add(new KeyValuePair<Vector2, TileMapObject>(tileMapInActionRadius, pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(tileMapInActionRadius)));
+                }
+            }
+
+            traversableTiles.Sort((pair1, pair2) => pair1.Key.DistanceTo(pathfindingTileMap.WorldToMap(GetGlobalPosition())).CompareTo(pair2.Key.DistanceTo(pathfindingTileMap.WorldToMap(GetGlobalPosition()))));
+            return traversableTiles.Count > 0 ? traversableTiles[0].Key : new Vector2(-1, -1);
         }
 
         private void OnTreeExiting() {

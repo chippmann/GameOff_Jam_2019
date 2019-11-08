@@ -62,7 +62,11 @@
     <Compile Include="Entities\PlayerEntity\Player.cs" />
     <Compile Include="Entities\PlayerEntity\PlayerStateMachine.cs" />
     <Compile Include="Entities\PlayerEntity\RemoveTreeChecker.cs" />
-    <Compile Include="Entities\PlayerEntity\States\Movement.cs" />
+      <Compile Include="Entities\PlayerEntity\States\Message\MoveToPositionMessage.cs" />
+      <Compile Include="Entities\PlayerEntity\States\PlayerHealTreeState.cs" />
+      <Compile Include="Entities\PlayerEntity\States\PlayerIdleState.cs" />
+      <Compile Include="Entities\PlayerEntity\States\PlayerMoveToPositionState.cs" />
+      <Compile Include="Entities\PlayerEntity\States\PlayerPlantTreeState.cs" />
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\HoverIndicator.cs" />
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\BaseTileMapObject.cs" />
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\TransparencyManager.cs" />

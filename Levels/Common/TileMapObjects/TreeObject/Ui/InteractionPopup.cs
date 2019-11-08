@@ -49,6 +49,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
         private void KillTreeSelected(InputEvent inputEvent) {
             if (inputEvent.IsActionPressed(GameConstants.ControlsActionClick) && player.CanRemoveTree(treeTileMapObject.GetGlobalPosition())) {
                 treeTileMapObject.Kill();
+                Visible = false;
                 AcceptEvent();
             }
         }
@@ -56,6 +57,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
         private void HealTreeSelected(InputEvent inputEvent) {
             if (inputEvent.IsActionPressed(GameConstants.ControlsActionClick)) {
                 player.HealTree(treeTileMapObject);
+                Visible = false;
                 AcceptEvent();
             }
         }

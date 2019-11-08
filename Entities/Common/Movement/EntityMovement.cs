@@ -134,6 +134,10 @@ namespace GameOff_2019.Entities.Common.Movement {
                 currentPathToFollow.RemoveAt(currentPathToFollow.Count - 1);
             }
 
+            if (currentPathToFollow.Count == 0) {
+                GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.PlayerTargetCannotBeReached), callbackParams);
+            }
+
             ResumeMovement();
         }
 

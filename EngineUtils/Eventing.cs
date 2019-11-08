@@ -15,6 +15,9 @@ namespace GameOff_2019.EngineUtils {
         public delegate void PlayerTargetReached(object[] list);
 
         [Signal]
+        public delegate void PlayerTargetCannotBeReached(object[] list);
+
+        [Signal]
         public delegate void TileMapSetupFinished();
     }
 }
