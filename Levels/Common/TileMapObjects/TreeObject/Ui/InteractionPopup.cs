@@ -15,7 +15,6 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
             healTreeInteractionObject = GetNode<InteractionOption>(healTreeInteractionObjectNodePath);
             killTreeInteractionObject.Connect("gui_input", this, nameof(KillTreeSelected));
             healTreeInteractionObject.Connect("gui_input", this, nameof(HealTreeSelected));
-            SetAsToplevel(true);
         }
 
 

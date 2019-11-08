@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common;
 using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
 using GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates;
@@ -15,15 +17,32 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
         private TreeStateMachine stateMachine;
         [Export] private readonly NodePath treeStateNodePath = null;
         private TreeState treeState;
-        [Export] private readonly NodePath interactionPopupNodePath = null;
+        [Export] private readonly PackedScene interactionPopupPackedScene = null;
         private InteractionPopup interactionPopup;
+
+        private CanvasLayer uiContainer;
 
         public override void _Ready() {
             hoverIndicator = GetNode<HoverIndicator>(hoverIndicatorNodePath);
             treeActionRadius = GetNode<TreeActionRadius>(actionRadiusNodePath);
             stateMachine = GetNode<TreeStateMachine>(stateMachineNodePath);
             treeState = GetNode<TreeState>(treeStateNodePath);
-            interactionPopup = GetNode<InteractionPopup>(interactionPopupNodePath);
+            interactionPopup = interactionPopupPackedScene.Instance() as InteractionPopup;
+
+            var uiContainers = GetTree().GetNodesInGroup(GameConstants.UiContainerGroup);
+            if (uiContainers.Count != 1) {
+                throw new Exception("There should be exactly one uiContainer in the sceneTree!");
+            }
+
+            if (uiContainers[0] is CanvasLayer) {
+                uiContainer = uiContainers[0] as CanvasLayer;
+            }
+            else {
+                throw new Exception("Nodes in group \"uiContainer\" should always be of type \"Control\"!");
+            }
+
+            uiContainer?.AddChild(interactionPopup);
+            Connect("tree_exiting", this, nameof(OnTreeExiting));
         }
 
         public override bool CanInteract() {
@@ -63,6 +82,10 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
             if (CanBeHealedFurther()) {
                 treeState.treeHealth += amount;
             }
+        }
+
+        private void OnTreeExiting() {
+            interactionPopup.QueueFree();
         }
     }
 }

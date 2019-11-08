@@ -5,6 +5,7 @@ namespace GameOff_2019.EngineUtils {
         public const string PathfindingTileMapGroup = "pathfindingTileMap";
         public const string ActionRadiusGroup = "actionRadius";
         public const string GameStateGroup = "gameState";
+        public const string UiContainerGroup = "uiContainer";
 
 
         public const string ControlsMoveWindowLeft = "moveWindowLeft";

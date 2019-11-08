@@ -21,8 +21,10 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+layer = 2
 
 [node name="LevelMoveMouseControl" parent="Camera2D/CanvasLayer" instance=ExtResource( 1 )]
+uiContainerCanvasLayerNodePath = NodePath("../../../UiContainer")
 
 [node name="GameUi" parent="Camera2D/CanvasLayer" instance=ExtResource( 2 )]
 
@@ -57,8 +59,15 @@ tileIdToPackedSceneMapping = {
 2: ExtResource( 8 )
 }
 
+[node name="KinematicBody2D" parent="." instance=ExtResource( 10 )]
+position = Vector2( 151.987, 146.976 )
+
 [node name="TileMapObjectsContainer" type="Node2D" parent="."]
 z_as_relative = false
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 10 )]
-position = Vector2( 151.987, 146.976 )
+[node name="UiContainer" type="CanvasLayer" parent="." groups=[
+"uiContainer",
+]]
+layer = 2
+offset = Vector2( 640, 360 )
+transform = Transform2D( 1, 0, 0, 1, 640, 360 )
