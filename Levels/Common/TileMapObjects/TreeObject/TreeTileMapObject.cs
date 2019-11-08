@@ -38,10 +38,11 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
                 uiContainer = uiContainers[0] as CanvasLayer;
             }
             else {
-                throw new Exception("Nodes in group \"uiContainer\" should always be of type \"Control\"!");
+                throw new Exception("Nodes in group \"uiContainer\" should always be of type \"CanvasLayer\"!");
             }
 
             uiContainer?.AddChild(interactionPopup);
+            interactionPopup.Init(this);
             Connect("tree_exiting", this, nameof(OnTreeExiting));
         }
 
@@ -72,6 +73,10 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
 
         public void Heal() {
             stateMachine.TransitionTo(stateMachine.growing);
+        }
+
+        public void Kill() {
+            stateMachine.TransitionTo(stateMachine.dead);
         }
 
         public bool CanBeHealedFurther() {

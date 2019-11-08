@@ -76,7 +76,6 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
             tileIdToPackedSceneMapping.TryGetValue(tileId, out var packedScene);
 
             if (packedScene?.Instance() is TileMapObject tileMapObject) {
-                tileMapObject.Init(tile, worldPosition);
                 if (tileMapObjects.TryGetValue(tileUniqueId, out var tileMapObjectNodeReference)) {
                     tileMapObjectNodeReference.node = tileMapObject;
                     tileMapObjectContainer.AddChild(tileMapObjectNodeReference.node);
