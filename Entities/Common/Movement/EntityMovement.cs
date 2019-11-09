@@ -10,7 +10,8 @@ namespace GameOff_2019.Entities.Common.Movement {
         [Export] private readonly int movementSpeed = 3;
         [Export] private readonly int maxMovementSpeed = 3;
         private int internalMaxMovementSpeed;
-        private object[] callbackParams = null;
+        private object[] callbackParams;
+        private object[] targetCannotBeReachedParams;
 
         private bool internalIsPlayer = false;
         private Vector2 velocity;
@@ -118,9 +119,10 @@ namespace GameOff_2019.Entities.Common.Movement {
             return Math.Abs(velocity.x) > 0.1 && Math.Abs(velocity.y) > 0.1;
         }
 
-        public void MoveToPosition(Vector2 targetPosition, object[] paramsToReturn = null, bool isPlayer = false, bool minusOne = false) {
+        public void MoveToPosition(Vector2 targetPosition, object[] paramsToReturn = null, object[] targetCannotBeReachedParamsToReturn = null, bool isPlayer = false, bool minusOne = false) {
             internalIsPlayer = isPlayer;
             callbackParams = paramsToReturn;
+            targetCannotBeReachedParams = targetCannotBeReachedParamsToReturn;
             MoveToTileMapPosition(targetPosition, minusOne);
         }
 
@@ -135,7 +137,7 @@ namespace GameOff_2019.Entities.Common.Movement {
             }
 
             if (currentPathToFollow.Count == 0) {
-                GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.PlayerTargetCannotBeReached), callbackParams);
+                GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.TargetCannotBeReached), targetCannotBeReachedParams);
             }
 
             ResumeMovement();
@@ -183,7 +185,7 @@ namespace GameOff_2019.Entities.Common.Movement {
             if (GetGlobalPosition() == oldPosition) {
                 stuckFrames++;
                 if (stuckFrames > maxStuckFrames) {
-                    MoveToPosition(currentPathToFollow[currentPathToFollow.Count - 1], callbackParams, internalIsPlayer);
+                    MoveToPosition(currentPathToFollow[currentPathToFollow.Count - 1], callbackParams, targetCannotBeReachedParams, internalIsPlayer);
                 }
             }
             else {

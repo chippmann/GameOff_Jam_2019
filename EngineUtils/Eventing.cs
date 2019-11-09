@@ -4,7 +4,8 @@ namespace GameOff_2019.EngineUtils {
     public class Eventing : Node2D {
         public static string EventingNodePath = "/root/Eventing";
 
-        //pathfinding
+        #region Pathfinding
+
         [Signal]
         public delegate void InvalidateDemonPath();
 
@@ -15,9 +16,11 @@ namespace GameOff_2019.EngineUtils {
         public delegate void PlayerTargetReached(object[] list);
 
         [Signal]
-        public delegate void PlayerTargetCannotBeReached(object[] list);
+        public delegate void DemonTargetReached(object[] list);
 
         [Signal]
-        public delegate void TileMapSetupFinished();
+        public delegate void TargetCannotBeReached(object[] list);
+
+        #endregion
     }
 }

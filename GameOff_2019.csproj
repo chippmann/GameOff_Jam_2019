@@ -61,6 +61,9 @@
     <Compile Include="Entities\Common\StateMachine\IStateMachineMessage.cs" />
     <Compile Include="Entities\Common\StateMachine\State.cs" />
     <Compile Include="Entities\DemonEntity\Demon.cs" />
+    <Compile Include="Entities\DemonEntity\DemonStateMachine.cs" />
+    <Compile Include="Entities\DemonEntity\States\DemonIdleState.cs" />
+    <Compile Include="Entities\DemonEntity\States\DemonMoveToPositionState.cs" />
     <Compile Include="Entities\DemonEntity\TreeFinder.cs" />
     <Compile Include="Entities\PlayerEntity\Player.cs" />
     <Compile Include="Entities\PlayerEntity\PlayerStateMachine.cs" />
