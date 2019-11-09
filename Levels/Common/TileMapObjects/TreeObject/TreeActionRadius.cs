@@ -36,7 +36,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
 
         private void OnEntered(Node2D node) {
             nodesInActionRadius.Add(node);
-            if (node.Owner is TileMapObject || node.Owner is EntityBody) {
+            if (node.Owner is TileMapObject || node.Owner is Entity) {
                 nodesInActionRadius.Add(node.Owner as Node2D);
             }
         }
@@ -50,8 +50,8 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
             return tileMapManipulator.GetOverlappingTiles(pathfindingTileMap.WorldToMap(GetGlobalPosition())).Select(vector2 => pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(vector2)).ToList();
         }
 
-        public bool IsEntityInActionRadius(EntityBody entityBody) {
-            return nodesInActionRadius.Contains(entityBody);
+        public bool IsEntityInActionRadius(Entity entity) {
+            return nodesInActionRadius.Contains(entity);
         }
     }
 }

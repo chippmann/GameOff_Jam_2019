@@ -16,7 +16,7 @@ namespace GameOff_2019.Entities.PlayerEntity {
 
         public bool CanRemoveTree(TileMapObject tileMapObject) {
             if (tileMapObject is TreeTileMapObject mapObject) {
-                if (!mapObject.EntityInActionRadius(Owner as EntityBody)) {
+                if (!mapObject.EntityInActionRadius(Owner as Entity)) {
                     return true;
                 }
 

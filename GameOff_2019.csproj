@@ -52,13 +52,14 @@
     <Compile Include="EngineUtils\Eventing.cs" />
     <Compile Include="EngineUtils\GameConstants.cs" />
     <Compile Include="EngineUtils\Logger.cs" />
-    <Compile Include="Entities\Common\EntityBody.cs" />
+    <Compile Include="Entities\Common\Entity.cs" />
     <Compile Include="Entities\Common\Movement\EntityMovement.cs" />
     <Compile Include="Entities\Common\Navigation\DebugPathfindingCanvas.cs" />
     <Compile Include="Entities\Common\Navigation\PathfindingTileMap.cs" />
     <Compile Include="Entities\Common\StateMachine\FiniteStateMachine.cs" />
     <Compile Include="Entities\Common\StateMachine\IStateMachineMessage.cs" />
     <Compile Include="Entities\Common\StateMachine\State.cs" />
+    <Compile Include="Entities\DemonEntity\Demon.cs" />
     <Compile Include="Entities\PlayerEntity\Player.cs" />
     <Compile Include="Entities\PlayerEntity\PlayerStateMachine.cs" />
     <Compile Include="Entities\PlayerEntity\RemoveTreeChecker.cs" />

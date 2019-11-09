@@ -75,8 +75,8 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
             return treeActionRadius.GetOverlappingTileMapObjects();
         }
 
-        public bool EntityInActionRadius(EntityBody entityBody) {
-            return treeActionRadius.IsEntityInActionRadius(entityBody);
+        public bool EntityInActionRadius(Entity entity) {
+            return treeActionRadius.IsEntityInActionRadius(entity);
         }
 
         public void Infest() {

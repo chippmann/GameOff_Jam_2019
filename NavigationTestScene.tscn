@@ -9,8 +9,8 @@
 [ext_resource path="res://Levels/Common/TileMapObjects/TileMapManipulator.cs" type="Script" id=7]
 [ext_resource path="res://Levels/Common/TileMapObjects/TraversableObject/TraversableTileMapObject.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeTileMapObject.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Entities/PlayerEntity/Player.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Entities/DemonEntity/Demon.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Entities/DemonEntity/Demon.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Entities/PlayerEntity/Player.tscn" type="PackedScene" id=11]
 
 [node name="NavigationTestScene" type="Node2D"]
 
@@ -60,7 +60,10 @@ tileIdToPackedSceneMapping = {
 2: ExtResource( 8 )
 }
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 10 )]
+[node name="Demon" parent="." instance=ExtResource( 10 )]
+position = Vector2( 794.695, 542.411 )
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 11 )]
 position = Vector2( 151.987, 146.976 )
 
 [node name="TileMapObjectsContainer" type="Node2D" parent="."]
@@ -72,6 +75,3 @@ z_as_relative = false
 layer = 2
 offset = Vector2( 640, 360 )
 transform = Transform2D( 1, 0, 0, 1, 640, 360 )
-
-[node name="Demon" parent="." instance=ExtResource( 11 )]
-position = Vector2( 794.695, 542.411 )

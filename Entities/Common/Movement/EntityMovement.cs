@@ -6,7 +6,7 @@ using Godot;
 namespace GameOff_2019.Entities.Common.Movement {
     public class EntityMovement : Node2D {
         [Export] private readonly NodePath entityBodyNodePath = null;
-        private EntityBody entityBody;
+        private Entity entity;
         [Export] private readonly int movementSpeed = 3;
         [Export] private readonly int maxMovementSpeed = 3;
         private int internalMaxMovementSpeed;
@@ -37,7 +37,7 @@ namespace GameOff_2019.Entities.Common.Movement {
         }
 
         public override void _Ready() {
-            entityBody = GetNode<EntityBody>(entityBodyNodePath);
+            entity = GetNode<Entity>(entityBodyNodePath);
             internalMaxMovementSpeed = maxMovementSpeed * GameConstants.GameUnitSize;
         }
 
@@ -111,7 +111,7 @@ namespace GameOff_2019.Entities.Common.Movement {
                 movementInputs[i] = false;
             }
 
-            velocity = entityBody.MoveAndSlide(velocity);
+            velocity = entity.MoveAndSlide(velocity);
         }
 
         private bool IsMovingDiagonally() {
@@ -129,7 +129,7 @@ namespace GameOff_2019.Entities.Common.Movement {
             currentTargetNode = 1;
             stuckFrames = 0;
             var startTile = GetGlobalPosition();
-            currentPathToFollow = internalIsPlayer ? entityBody.GetPathfinderTileMap().FindPathToTargetForPlayer(startTile, targetPosition) : entityBody.GetPathfinderTileMap().FindPathToTargetForDemon(startTile, targetPosition);
+            currentPathToFollow = internalIsPlayer ? entity.GetPathfinderTileMap().FindPathToTargetForPlayer(startTile, targetPosition) : entity.GetPathfinderTileMap().FindPathToTargetForDemon(startTile, targetPosition);
             if (minusOne && currentPathToFollow.Count > 0) {
                 currentPathToFollow.RemoveAt(currentPathToFollow.Count - 1);
             }

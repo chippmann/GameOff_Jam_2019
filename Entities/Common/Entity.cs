@@ -5,7 +5,7 @@ using GameOff_2019.Entities.Common.Navigation;
 using Godot;
 
 namespace GameOff_2019.Entities.Common {
-    public class EntityBody : KinematicBody2D {
+    public class Entity : KinematicBody2D {
         [Export] private readonly NodePath entityMovementNodePath = null;
         protected EntityMovement entityMovement;
 

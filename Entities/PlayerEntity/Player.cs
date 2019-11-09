@@ -5,7 +5,7 @@ using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using Godot;
 
 namespace GameOff_2019.Entities.PlayerEntity {
-    public class Player : EntityBody {
+    public class Player : Entity {
         [Export] private readonly NodePath removeTreeCheckerNodePath = null;
         private RemoveTreeChecker removeTreeChecker;
         [Export] private readonly NodePath playerStateMachineNodePath = null;
