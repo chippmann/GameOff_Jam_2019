@@ -55,8 +55,8 @@ namespace GameOff_2019.Entities.PlayerEntity {
             playerStateMachine.TransitionTo(playerStateMachine.healTree, new MoveToPositionMessage(pathfindingTileMap.WorldToMap(tree.GetGlobalPosition())));
         }
 
-        public bool CanRemoveTree(Vector2 treePosition) {
-            return removeTreeChecker.CanRemoveTree(pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(treePosition)));
+        public bool CanRemoveTree(Vector2 treeWorldPosition) {
+            return removeTreeChecker.CanRemoveTree(pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(treeWorldPosition)));
         }
     }
 }

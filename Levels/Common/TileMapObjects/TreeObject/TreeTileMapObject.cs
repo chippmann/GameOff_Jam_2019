@@ -85,6 +85,10 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
             }
         }
 
+        public bool IsInfested() {
+            return stateMachine.GetCurrentState() is InfestedState;
+        }
+
         public void Heal() {
             stateMachine.TransitionTo(stateMachine.growing);
         }

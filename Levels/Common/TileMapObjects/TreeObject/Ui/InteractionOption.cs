@@ -2,7 +2,8 @@ using Godot;
 
 namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
     public class InteractionOption : VBoxContainer {
-        [Export] private readonly Color highlightColor = new Color(255, 255, 255, 0.5f);
+        [Export] private readonly Color highlightColor = new Color(255, 255, 255, 0.2f);
+        [Export] private readonly Color inactiveColor = new Color(10, 10, 10, 0.2f);
         [Export] private readonly string labelKey = "NoLabelKeySet!";
         [Export] private readonly Texture icon = null;
         [Export] private readonly Vector2 iconSizeInPixels = new Vector2(32, 32);
@@ -11,6 +12,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
         [Export] private readonly NodePath labelNodePath = null;
         private Label label;
 
+        private bool isActive = true;
         private Color initialModulate;
 
         public override void _Ready() {
@@ -35,11 +37,24 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
         }
 
         private void OnMouseEntered() {
-            SetModulate(highlightColor);
+            if (isActive) {
+                SetModulate(highlightColor);
+            }
         }
 
         private void OnMouseExited() {
-            SetModulate(initialModulate);
+            if (isActive) {
+                SetModulate(initialModulate);
+            }
+        }
+
+        public void SetActive(bool shouldBeActive) {
+            isActive = shouldBeActive;
+            SetModulate(isActive ? initialModulate : inactiveColor);
+        }
+
+        public bool IsActive() {
+            return isActive;
         }
     }
 }
