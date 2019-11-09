@@ -53,6 +53,12 @@
     <Compile Include="EngineUtils\GameConstants.cs" />
     <Compile Include="EngineUtils\Logger.cs" />
     <Compile Include="EngineUtils\NodeGetter.cs" />
+    <Compile Include="Entities\Common\BehaviourTree\BTAction.cs" />
+    <Compile Include="Entities\Common\BehaviourTree\BTItem.cs" />
+    <Compile Include="Entities\Common\BehaviourTree\BTResult.cs" />
+    <Compile Include="Entities\Common\BehaviourTree\BTSelector.cs" />
+    <Compile Include="Entities\Common\BehaviourTree\BTSequence.cs" />
+    <Compile Include="Entities\Common\BehaviourTree\SimpleBehaviourTree.cs" />
     <Compile Include="Entities\Common\Entity.cs" />
     <Compile Include="Entities\Common\Movement\EntityMovement.cs" />
     <Compile Include="Entities\Common\Navigation\DebugPathfindingCanvas.cs" />
@@ -63,8 +69,9 @@
     <Compile Include="Entities\DemonEntity\Demon.cs" />
     <Compile Include="Entities\DemonEntity\DemonStateMachine.cs" />
     <Compile Include="Entities\DemonEntity\States\DemonIdleState.cs" />
+    <Compile Include="Entities\DemonEntity\States\DemonInfestTreeState.cs" />
     <Compile Include="Entities\DemonEntity\States\DemonMoveToPositionState.cs" />
-    <Compile Include="Entities\DemonEntity\TreeFinder.cs" />
+    <Compile Include="Entities\DemonEntity\MovePositionFinder.cs" />
     <Compile Include="Entities\PlayerEntity\Player.cs" />
     <Compile Include="Entities\PlayerEntity\PlayerStateMachine.cs" />
     <Compile Include="Entities\PlayerEntity\RemoveTreeChecker.cs" />
