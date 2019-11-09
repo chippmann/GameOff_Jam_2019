@@ -50,7 +50,7 @@ namespace GameOff_2019.Entities.Common.StateMachine {
                 return;
             }
 
-            if (IsNetworkMaster()) {
+            if (GetTree().GetNetworkPeer() != null && IsNetworkMaster()) {
                 Rpc(nameof(TransitionTo), targetStatePath, message);
             }
 
