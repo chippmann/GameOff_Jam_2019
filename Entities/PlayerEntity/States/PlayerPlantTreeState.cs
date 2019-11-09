@@ -45,6 +45,7 @@ namespace GameOff_2019.Entities.PlayerEntity.States {
         public override void PhysicsProcess(float delta) { }
 
         public override void Exit() {
+            entityMovement.StopMovement();
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.PlayerTargetReached), this, nameof(TargetReached));
         }
 

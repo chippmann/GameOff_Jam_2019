@@ -2,7 +2,7 @@ using Godot;
 
 namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
     public class InteractionOption : VBoxContainer {
-        [Export] private readonly Color highlightColor = new Color(255, 255, 255, 0.2f);
+        [Export] private readonly Color highlightColor = new Color(255, 255, 255, 0.5f);
         [Export] private readonly Color inactiveColor = new Color(10, 10, 10, 0.2f);
         [Export] private readonly string labelKey = "NoLabelKeySet!";
         [Export] private readonly Texture icon = null;
