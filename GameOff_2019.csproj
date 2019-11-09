@@ -91,5 +91,8 @@
   <ItemGroup>
     <Content Include="executeGame.sh" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\DemonEntity\Particles\Textures" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
