@@ -13,17 +13,7 @@ namespace GameOff_2019.Entities.Common {
 
         public override void _Ready() {
             entityMovement = GetNode<EntityMovement>(entityMovementNodePath);
-            var tileMaps = GetTree().GetNodesInGroup(GameConstants.PathfindingTileMapGroup);
-            if (tileMaps.Count != 1) {
-                throw new Exception("There should be exactly one pathfindingTileMap in the sceneTree!");
-            }
-
-            if (tileMaps[0] is PathfindingTileMap) {
-                pathfindingTileMap = tileMaps[0] as PathfindingTileMap;
-            }
-            else {
-                throw new Exception("Nodes in group \"pathfindingTileMap\" should always be of type \"PathfindingTileMap\"!");
-            }
+            pathfindingTileMap = NodeGetter.GetFirstNodeInGroup<PathfindingTileMap>(GetTree(), GameConstants.PathfindingTileMapGroup, true);
         }
 
         public override void _Process(float delta) {

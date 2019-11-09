@@ -1,4 +1,3 @@
-using System;
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common.StateMachine;
 using GameOff_2019.RoundLogic;
@@ -26,17 +25,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
 
         public override void _Ready() {
             base._Ready();
-            var gameStates = GetTree().GetNodesInGroup(GameConstants.GameStateGroup);
-            if (gameStates.Count != 1) {
-                throw new Exception("There should be exactly one gameState in the sceneTree!");
-            }
-
-            if (gameStates[0] is GameState) {
-                gameState = gameStates[0] as GameState;
-            }
-            else {
-                throw new Exception("Nodes in group \"" + GameConstants.GameStateGroup + "\" should always be of type \"GameState\"!");
-            }
+            gameState = NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true);
 
             treeState = GetNode<TreeState>(treeStateNodePath);
             treeSprite = GetNode<Sprite>(treeSpriteNodePath);

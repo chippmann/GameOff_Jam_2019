@@ -1,4 +1,3 @@
-using System;
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common.Navigation;
 using GameOff_2019.Entities.Common.StateMachine;
@@ -10,17 +9,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
 
         public override void _Ready() {
             base._Ready();
-            var tileMaps = GetTree().GetNodesInGroup(GameConstants.PathfindingTileMapGroup);
-            if (tileMaps.Count != 1) {
-                throw new Exception("There should be exactly one pathfindingTileMap in the sceneTree!");
-            }
-
-            if (tileMaps[0] is PathfindingTileMap) {
-                pathfindingTileMap = tileMaps[0] as PathfindingTileMap;
-            }
-            else {
-                throw new Exception("Nodes in group \"pathfindingTileMap\" should always be of type \"PathfindingTileMap\"!");
-            }
+            pathfindingTileMap = NodeGetter.GetFirstNodeInGroup<PathfindingTileMap>(GetTree(), GameConstants.PathfindingTileMapGroup, true);
         }
 
         public override void Enter(IStateMachineMessage message = null) {

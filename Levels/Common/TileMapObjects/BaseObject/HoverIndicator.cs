@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common.Navigation;
@@ -16,17 +15,7 @@ public class HoverIndicator : Sprite {
         actionRadiusCollider.Connect("area_entered", this, nameof(OnAreaEntered));
         actionRadiusCollider.Connect("area_exited", this, nameof(OnAreaExited));
 
-        var tileMaps = GetTree().GetNodesInGroup(GameConstants.PathfindingTileMapGroup);
-        if (tileMaps.Count != 1) {
-            throw new Exception("There should be exactly one pathfindingTileMap in the sceneTree!");
-        }
-
-        if (tileMaps[0] is PathfindingTileMap) {
-            pathfindingTileMap = tileMaps[0] as PathfindingTileMap;
-        }
-        else {
-            throw new Exception("Nodes in group \"pathfindingTileMap\" should always be of type \"PathfindingTileMap\"!");
-        }
+        pathfindingTileMap = NodeGetter.GetFirstNodeInGroup<PathfindingTileMap>(GetTree(), GameConstants.PathfindingTileMapGroup, true);
     }
 
     public override void _Process(float delta) {

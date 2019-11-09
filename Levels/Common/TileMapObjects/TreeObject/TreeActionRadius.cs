@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameOff_2019.EngineUtils;
@@ -14,19 +13,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
         private readonly List<Node2D> nodesInActionRadius = new List<Node2D>();
 
         public override void _Ready() {
-            var tileMaps = GetTree().GetNodesInGroup(GameConstants.PathfindingTileMapGroup);
-            if (tileMaps.Count != 1) {
-                throw new Exception("There should be exactly one pathfindingTileMap in the sceneTree!");
-            }
-
-            if (tileMaps[0] is PathfindingTileMap) {
-                pathfindingTileMap = tileMaps[0] as PathfindingTileMap;
-                tileMapManipulator = pathfindingTileMap?.tileMapManipulator;
-            }
-            else {
-                throw new Exception("Nodes in group \"pathfindingTileMap\" should always be of type \"PathfindingTileMap\"!");
-            }
-
+            pathfindingTileMap = NodeGetter.GetFirstNodeInGroup<PathfindingTileMap>(GetTree(), GameConstants.PathfindingTileMapGroup, true);
 
             Connect("area_entered", this, nameof(OnEntered));
             Connect("area_exited", this, nameof(OnExited));

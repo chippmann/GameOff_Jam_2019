@@ -252,5 +252,9 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
 
             throw new Exception(tileMapObjectReference?.node + " does not extend ITileMapObject! This should never happen!");
         }
+
+        public List<T> GetTileMapObjectsOfType<T>() where T : TileMapObject {
+            return tileMapObjects.Select((pair, index) => pair.Value.node).OfType<T>().ToList();
+        }
     }
 }

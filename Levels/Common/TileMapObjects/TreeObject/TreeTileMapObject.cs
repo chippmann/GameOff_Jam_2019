@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common;
-using GameOff_2019.Entities.Common.Navigation;
 using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
 using GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates;
 using GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui;
@@ -22,38 +20,16 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
         private InteractionPopup interactionPopup;
 
         private CanvasLayer uiContainer;
-        private PathfindingTileMap pathfindingTileMap;
 
         public override void _Ready() {
+            base._Ready();
             hoverIndicator = GetNode<HoverIndicator>(hoverIndicatorNodePath);
             treeActionRadius = GetNode<TreeActionRadius>(actionRadiusNodePath);
             stateMachine = GetNode<TreeStateMachine>(stateMachineNodePath);
             treeState = GetNode<TreeState>(treeStateNodePath);
             interactionPopup = interactionPopupPackedScene.Instance() as InteractionPopup;
 
-            var uiContainers = GetTree().GetNodesInGroup(GameConstants.UiContainerGroup);
-            if (uiContainers.Count != 1) {
-                throw new Exception("There should be exactly one uiContainer in the sceneTree!");
-            }
-
-            if (uiContainers[0] is CanvasLayer) {
-                uiContainer = uiContainers[0] as CanvasLayer;
-            }
-            else {
-                throw new Exception("Nodes in group \"uiContainer\" should always be of type \"CanvasLayer\"!");
-            }
-
-            var tileMaps = GetTree().GetNodesInGroup(GameConstants.PathfindingTileMapGroup);
-            if (tileMaps.Count != 1) {
-                throw new Exception("There should be exactly one pathfindingTileMap in the sceneTree!");
-            }
-
-            if (tileMaps[0] is PathfindingTileMap) {
-                pathfindingTileMap = tileMaps[0] as PathfindingTileMap;
-            }
-            else {
-                throw new Exception("Nodes in group \"pathfindingTileMap\" should always be of type \"PathfindingTileMap\"!");
-            }
+            uiContainer = NodeGetter.GetFirstNodeInGroup<CanvasLayer>(GetTree(), GameConstants.UiContainerGroup, true);
 
             uiContainer?.AddChild(interactionPopup);
             interactionPopup.Init(this);

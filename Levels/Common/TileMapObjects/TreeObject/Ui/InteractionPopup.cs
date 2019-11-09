@@ -1,4 +1,3 @@
-using System;
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.PlayerEntity;
 using Godot;
@@ -20,17 +19,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
             killTreeInteractionObject.Connect("gui_input", this, nameof(KillTreeSelected));
             healTreeInteractionObject.Connect("gui_input", this, nameof(HealTreeSelected));
 
-            var players = GetTree().GetNodesInGroup(GameConstants.PlayerGroup);
-            if (players.Count != 1) {
-                throw new Exception("There should be exactly one uiContainer in the sceneTree!");
-            }
-
-            if (players[0] is Player) {
-                player = players[0] as Player;
-            }
-            else {
-                throw new Exception("Nodes in group \"player\" should always be of type \"Control\"!");
-            }
+            player = NodeGetter.GetFirstNodeInGroup<Player>(GetTree(), GameConstants.PlayerGroup, true);
         }
 
         public override void _Process(float delta) {
