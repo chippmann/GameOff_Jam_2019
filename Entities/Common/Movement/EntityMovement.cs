@@ -160,7 +160,13 @@ namespace GameOff_2019.Entities.Common.Movement {
                 if (currentTargetNode >= currentPathToFollow.Count) {
                     currentTargetNode = -1;
                     StopMovement();
-                    GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.PlayerTargetReached), callbackParams);
+                    if (internalIsPlayer) {
+                        GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.PlayerTargetReached), callbackParams);
+                    }
+                    else {
+                        GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.DemonTargetReached), callbackParams);
+                    }
+
                     return;
                 }
             }

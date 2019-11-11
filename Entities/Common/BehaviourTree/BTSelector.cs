@@ -7,9 +7,18 @@ namespace GameOff_2019.Entities.Common.BehaviourTree {
         private BTItem falseItem;
 
         private Func<bool> evaluateFunc;
+        private bool shouldFailOnFalseItem = false;
+        private bool shouldReturnSelfOnFailItem = false;
 
         public KeyValuePair<BTResult, BTItem> Execute() {
-            return Evaluate() ? trueItem.Execute() : falseItem.Execute();
+            var evaluationResult = Evaluate();
+            var result = Evaluate() ? trueItem.Execute() : falseItem.Execute();
+
+            if (!evaluationResult && shouldFailOnFalseItem) {
+                return shouldReturnSelfOnFailItem ? new KeyValuePair<BTResult, BTItem>(BTResult.Failure, this) : new KeyValuePair<BTResult, BTItem>(BTResult.Failure, null);
+            }
+
+            return result;
         }
 
         protected virtual bool Evaluate() {
@@ -25,6 +34,16 @@ namespace GameOff_2019.Entities.Common.BehaviourTree {
 
             public Builder SetEvaluateFunc(Func<bool> func) {
                 btSelector.evaluateFunc = func;
+                return this;
+            }
+
+            public Builder ShouldFailOnFalseItem(bool shouldFail) {
+                btSelector.shouldFailOnFalseItem = shouldFail;
+                return this;
+            }
+
+            public Builder ShouldReturnSelfOnFalseItem(bool shouldReturnSelf) {
+                btSelector.shouldReturnSelfOnFailItem = shouldReturnSelf;
                 return this;
             }
 

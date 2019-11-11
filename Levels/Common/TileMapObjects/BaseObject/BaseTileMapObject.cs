@@ -18,6 +18,10 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.BaseObject {
         public virtual void Interact() { }
 
         public Vector2 GetTileMapPosition() {
+            if (pathfindingTileMap == null) {
+                pathfindingTileMap = NodeGetter.GetFirstNodeInGroup<PathfindingTileMap>(GetTree(), GameConstants.PathfindingTileMapGroup, true);
+            }
+
             return pathfindingTileMap.WorldToMap(GetGlobalPosition());
         }
     }

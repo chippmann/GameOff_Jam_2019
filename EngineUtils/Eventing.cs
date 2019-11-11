@@ -1,3 +1,4 @@
+using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using Godot;
 
 namespace GameOff_2019.EngineUtils {
@@ -5,6 +6,9 @@ namespace GameOff_2019.EngineUtils {
         public static string EventingNodePath = "/root/Eventing";
 
         #region Pathfinding
+
+        [Signal]
+        public delegate void LevelSetupFinished();
 
         [Signal]
         public delegate void InvalidateDemonPath();
@@ -22,5 +26,8 @@ namespace GameOff_2019.EngineUtils {
         public delegate void TargetCannotBeReached(object[] list);
 
         #endregion
+
+        [Signal]
+        public delegate void TreeInfested(TreeTileMapObject infestedTree);
     }
 }

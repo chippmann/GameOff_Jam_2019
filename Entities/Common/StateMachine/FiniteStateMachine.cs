@@ -55,7 +55,7 @@ namespace GameOff_2019.Entities.Common.StateMachine {
             }
 
             var targetState = GetNode<State>(targetStatePath);
-            Logger.Debug($"Transitioning from state {currentState.GetName()} to {targetState.GetName()}");
+//            Logger.Debug($"Transitioning from state {currentState.GetName()} to {targetState.GetName()}");
             currentState.Exit();
             currentState = targetState;
             targetState.Enter(message);

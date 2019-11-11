@@ -60,6 +60,7 @@ namespace GameOff_2019.Entities.DemonEntity.States {
             if (tileMapObject is TreeTileMapObject treeTileMapObject) {
                 //TODO: show animation
                 treeTileMapObject.Infest();
+                GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.TreeInfested), treeTileMapObject);
             }
 
             GetStateMachine<DemonStateMachine>().TransitionTo(GetStateMachine<DemonStateMachine>().idle);
