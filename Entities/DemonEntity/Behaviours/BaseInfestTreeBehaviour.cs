@@ -1,3 +1,4 @@
+using System;
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common.BehaviourTree;
 using GameOff_2019.Entities.PlayerEntity.States.Message;
@@ -9,6 +10,10 @@ namespace GameOff_2019.Entities.DemonEntity.Behaviours {
         private DemonStateMachine stateMachine;
         [Export] private readonly NodePath movePositionFinderNodePath = null;
         protected MovePositionFinder movePositionFinder;
+        [Export] public readonly int energyConsumption = 20;
+        [Export] private readonly Vector2 randomTimeRangeBetweenTreeInfestions = new Vector2(10, 30);
+        [Export] private readonly NodePath timerNodePath = null;
+        public Timer timer;
 
         private bool running = false;
         private BTResult btResult = BTResult.Failure;
@@ -17,6 +22,8 @@ namespace GameOff_2019.Entities.DemonEntity.Behaviours {
             base._Ready();
             stateMachine = GetNode<DemonStateMachine>(stateMachineNodePath);
             movePositionFinder = GetNode<MovePositionFinder>(movePositionFinderNodePath);
+            timer = GetNode<Timer>(timerNodePath);
+            timer.SetOneShot(true);
         }
 
         protected override BTResult ExecuteInternal() {
@@ -37,6 +44,9 @@ namespace GameOff_2019.Entities.DemonEntity.Behaviours {
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.TreeInfested), this, nameof(TreeInfested));
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.TargetCannotBeReached), this, nameof(TargetCannotBeReached));
             btResult = BTResult.Success;
+            var random = new Random();
+            var randomTime = random.Next((int) randomTimeRangeBetweenTreeInfestions.x, (int) randomTimeRangeBetweenTreeInfestions.y);
+            timer.Start(randomTime);
         }
 
         private void TargetCannotBeReached() {

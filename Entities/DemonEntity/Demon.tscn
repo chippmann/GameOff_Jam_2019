@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Entities/DemonEntity/Demon.cs" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -13,10 +13,12 @@
 [ext_resource path="res://Entities/DemonEntity/Behaviours/DemonWanderInsideBehaviour.cs" type="Script" id=11]
 [ext_resource path="res://Entities/DemonEntity/Behaviours/DemonWanderOutsideBehaviour.cs" type="Script" id=12]
 [ext_resource path="res://Entities/DemonEntity/Behaviours/DemonInfestRandomTreeBehaviour.cs" type="Script" id=13]
-[ext_resource path="res://Entities/DemonEntity/DemonStateMachine.cs" type="Script" id=14]
-[ext_resource path="res://Entities/DemonEntity/States/DemonIdleState.cs" type="Script" id=15]
-[ext_resource path="res://Entities/DemonEntity/States/DemonMoveToPositionState.cs" type="Script" id=16]
-[ext_resource path="res://Entities/DemonEntity/States/DemonInfestTreeState.cs" type="Script" id=17]
+[ext_resource path="res://Entities/DemonEntity/Behaviours/DemonInfestTreeThatPlayerCantReachBehaviour.cs" type="Script" id=14]
+[ext_resource path="res://Entities/DemonEntity/Behaviours/DemonInfestTreeWithBestDistanceToHealthRationBehaviour.cs" type="Script" id=15]
+[ext_resource path="res://Entities/DemonEntity/DemonStateMachine.cs" type="Script" id=16]
+[ext_resource path="res://Entities/DemonEntity/States/DemonIdleState.cs" type="Script" id=17]
+[ext_resource path="res://Entities/DemonEntity/States/DemonMoveToPositionState.cs" type="Script" id=18]
+[ext_resource path="res://Entities/DemonEntity/States/DemonInfestTreeState.cs" type="Script" id=19]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.8273
@@ -35,6 +37,7 @@ modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 2 )
 
 [node name="Movement" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 3 )
 entityBodyNodePath = NodePath("..")
 
@@ -59,6 +62,8 @@ wanderOutsideBehaviourNodePath = NodePath("WanderOutsideBehaviour")
 wanderInsideBehaviourNodePath = NodePath("WanderInsideBehaviour")
 wanderRandomBehaviourNodePath = NodePath("WanderRandomBehaviour")
 infestRandomTreeBehaviourNodePath = NodePath("InfestRandomBehaviour")
+infestTreeThatPlayerCantReachBehaviourNodePath = NodePath("InfestPlayerCantReachBehaviour")
+infestTreeWithBestDistanceToHealthBehaviourNodePath = NodePath("InfestBestRatioBehaviour")
 
 [node name="IdleBehaviour" type="Node2D" parent="BehaviourTree"]
 script = ExtResource( 9 )
@@ -83,23 +88,40 @@ movePositionFinderNodePath = NodePath("../../Movement/MoveToPositionFinder")
 script = ExtResource( 13 )
 stateMachineNodePath = NodePath("../../StateMachine")
 movePositionFinderNodePath = NodePath("../../Movement/MoveToPositionFinder")
+timerNodePath = NodePath("../../InfestTimer")
+
+[node name="InfestPlayerCantReachBehaviour" type="Node2D" parent="BehaviourTree"]
+script = ExtResource( 14 )
+stateMachineNodePath = NodePath("../../StateMachine")
+movePositionFinderNodePath = NodePath("../../Movement/MoveToPositionFinder")
+timerNodePath = NodePath("../../InfestTimer")
+
+[node name="InfestBestRatioBehaviour" type="Node2D" parent="BehaviourTree"]
+script = ExtResource( 15 )
+stateMachineNodePath = NodePath("../../StateMachine")
+movePositionFinderNodePath = NodePath("../../Movement/MoveToPositionFinder")
+timerNodePath = NodePath("../../InfestTimer")
 
 [node name="StateMachine" type="Node2D" parent="." groups=[
 "state_machine",
 ]]
-script = ExtResource( 14 )
+editor/display_folded = true
+script = ExtResource( 16 )
 initialStateNodePath = NodePath("IdleState")
 idle = NodePath("IdleState")
 moveToPosition = NodePath("MoveToPositionState")
 infestTree = NodePath("InfestTreeState")
 
 [node name="IdleState" type="Node2D" parent="StateMachine"]
-script = ExtResource( 15 )
+script = ExtResource( 17 )
 
 [node name="MoveToPositionState" type="Node2D" parent="StateMachine"]
-script = ExtResource( 16 )
+script = ExtResource( 18 )
 entityMovementNodePath = NodePath("../../Movement")
 
 [node name="InfestTreeState" type="Node2D" parent="StateMachine"]
-script = ExtResource( 17 )
+script = ExtResource( 19 )
 entityMovementNodePath = NodePath("../../Movement")
+
+[node name="InfestTimer" type="Timer" parent="."]
+one_shot = true

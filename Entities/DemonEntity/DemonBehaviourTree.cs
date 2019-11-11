@@ -1,6 +1,7 @@
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common.BehaviourTree;
 using GameOff_2019.Entities.DemonEntity.Behaviours;
+using GameOff_2019.RoundLogic;
 using Godot;
 
 namespace GameOff_2019.Entities.DemonEntity {
@@ -15,8 +16,13 @@ namespace GameOff_2019.Entities.DemonEntity {
         private DemonWanderRandomPositionBehaviour wanderRandomBehaviour;
         [Export] private readonly NodePath infestRandomTreeBehaviourNodePath = null;
         private DemonInfestRandomTreeBehaviour infestRandomTreeBehaviour;
+        [Export] private readonly NodePath infestTreeThatPlayerCantReachBehaviourNodePath = null;
+        private DemonInfestTreeThatPlayerCantReachBehaviour infestTreeThatPlayerCantReachBehaviour;
+        [Export] private readonly NodePath infestTreeWithBestDistanceToHealthBehaviourNodePath = null;
+        private DemonInfestTreeWithBestDistanceToHealthRationBehaviour infestTreeWithBestDistanceToHealthBehaviour;
 
         private SimpleBehaviourTree behaviourTree;
+        private GameState gameState;
 
 
         public override async void _Ready() {
@@ -26,6 +32,9 @@ namespace GameOff_2019.Entities.DemonEntity {
             wanderInsideBehaviour = GetNode<DemonWanderInsideBehaviour>(wanderInsideBehaviourNodePath);
             wanderRandomBehaviour = GetNode<DemonWanderRandomPositionBehaviour>(wanderRandomBehaviourNodePath);
             infestRandomTreeBehaviour = GetNode<DemonInfestRandomTreeBehaviour>(infestRandomTreeBehaviourNodePath);
+            infestTreeThatPlayerCantReachBehaviour = GetNode<DemonInfestTreeThatPlayerCantReachBehaviour>(infestTreeThatPlayerCantReachBehaviourNodePath);
+            infestTreeWithBestDistanceToHealthBehaviour = GetNode<DemonInfestTreeWithBestDistanceToHealthRationBehaviour>(infestTreeWithBestDistanceToHealthBehaviourNodePath);
+            gameState = NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true);
 
             await ToSignal(GetNode<Eventing>(Eventing.EventingNodePath), nameof(Eventing.LevelSetupFinished));
             SetupBehaviourTree();
@@ -55,17 +64,22 @@ namespace GameOff_2019.Entities.DemonEntity {
                         .SetEvaluateFunc(HasEnergy)
                         .Build(
                             new BTSelector.Builder()
-                                .SetEvaluateFunc(HasPlayerLessPointsThanDemon)
+                                .SetEvaluateFunc(HasLessPointsThanPlayer)
                                 .Build(
                                     new BTSequence.Builder().Build(
-                                        wanderInsideBehaviour
-                                        ////TODO: add selector
+                                        wanderInsideBehaviour,
+                                        new BTSelector.Builder()
+                                            .SetEvaluateFunc(RandomTimeSinceLastTreeInfestElapsed)
+                                            .Build(
+                                                infestRandomTreeBehaviour,
+                                                new BTFailer()
+                                            )
                                     ),
                                     new BTSelector.Builder()
-                                        .SetEvaluateFunc(HasTreeToKillWothoutPlayerIntervention)
+                                        .SetEvaluateFunc(HasTreeToKillWithoutPlayerIntervention)
                                         .Build(
-                                            idleBehaviour, //TODO: replace
-                                            idleBehaviour //TODO: replace
+                                            infestTreeThatPlayerCantReachBehaviour,
+                                            infestTreeWithBestDistanceToHealthBehaviour
                                         )
                                 )
                             ,
@@ -75,18 +89,22 @@ namespace GameOff_2019.Entities.DemonEntity {
         }
 
         private bool TwoTeetsReceived() {
-            return false;
+            return gameState.twoNegativeTweetsReceived;
         }
 
         private bool HasEnergy() {
-            return false;
+            return gameState.demonEnergy >= infestRandomTreeBehaviour.energyConsumption;
         }
 
-        private bool HasPlayerLessPointsThanDemon() {
-            return false;
+        private bool HasLessPointsThanPlayer() {
+            return gameState.playerPoints > gameState.demonPoints;
         }
 
-        private bool HasTreeToKillWothoutPlayerIntervention() {
+        private bool RandomTimeSinceLastTreeInfestElapsed() {
+            return infestRandomTreeBehaviour.timer.IsStopped();
+        }
+
+        private bool HasTreeToKillWithoutPlayerIntervention() {
             return false;
         }
     }

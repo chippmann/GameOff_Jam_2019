@@ -43,6 +43,10 @@ namespace GameOff_2019.Entities.DemonEntity {
             return treeTileMapObjectWithoutPlayerInActionRadius[randomIndex];
         }
 
+        public TreeTileMapObject FindTreeThatPlayerCantReachOrNearestTree() {
+            return FindNearestTree(); //TODO: implement formula
+        }
+
         public TraversableTileMapObject FindRandomPosition() {
             var traversableTileMapObjects = tileMapManipulator.GetTileMapObjectsOfType<TraversableTileMapObject>()
                 .Where(traversableTileMapObject => pathfindingTileMap.GetCell((int) traversableTileMapObject.GetTileMapPosition().x, (int) traversableTileMapObject.GetTileMapPosition().y) == pathfindingTileMap.traversableId).ToList();
