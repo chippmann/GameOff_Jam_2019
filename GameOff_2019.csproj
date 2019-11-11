@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\DemonEntity\Particles\Textures" />
+    <Folder Include="Ui\TwitterUi\Static" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
