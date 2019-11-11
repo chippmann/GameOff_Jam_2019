@@ -13,9 +13,9 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
         [Export] private readonly NodePath actionRadiusNodePath = null;
         private TreeActionRadius treeActionRadius;
         [Export] private readonly NodePath stateMachineNodePath = null;
-        private TreeStateMachine stateMachine;
+        public TreeStateMachine stateMachine;
         [Export] private readonly NodePath treeStateNodePath = null;
-        private TreeState treeState;
+        public TreeState treeState;
         [Export] private readonly PackedScene interactionPopupPackedScene = null;
         private InteractionPopup interactionPopup;
 

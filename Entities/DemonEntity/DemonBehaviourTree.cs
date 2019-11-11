@@ -93,11 +93,11 @@ namespace GameOff_2019.Entities.DemonEntity {
         }
 
         private bool HasEnergy() {
-            return gameState.demonEnergy >= infestRandomTreeBehaviour.energyConsumption;
+            return gameState.GetDemonEnergy() >= infestRandomTreeBehaviour.energyConsumption;
         }
 
         private bool HasLessPointsThanPlayer() {
-            return gameState.playerPoints > gameState.demonPoints;
+            return gameState.GetPlayerPoints() > gameState.GetDemonPoints();
         }
 
         private bool RandomTimeSinceLastTreeInfestElapsed() {

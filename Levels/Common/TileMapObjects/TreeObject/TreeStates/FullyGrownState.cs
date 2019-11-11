@@ -38,7 +38,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
         }
 
         private void OnPointTimerTimeout() {
-            gameState.playerPoints += treeState.treeGrowth;
+            gameState.AddPlayerPoints(treeState.treeGrowth);
         }
     }
 }

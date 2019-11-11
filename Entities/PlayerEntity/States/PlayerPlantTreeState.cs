@@ -5,6 +5,7 @@ using GameOff_2019.Entities.Common.Movement;
 using GameOff_2019.Entities.Common.Navigation;
 using GameOff_2019.Entities.Common.StateMachine;
 using GameOff_2019.Entities.PlayerEntity.States.Message;
+using GameOff_2019.RoundLogic;
 using Godot;
 
 namespace GameOff_2019.Entities.PlayerEntity.States {
@@ -14,9 +15,12 @@ namespace GameOff_2019.Entities.PlayerEntity.States {
         private PathfindingTileMap pathfindingTileMap;
         private Vector2 targetPosition;
 
+        private GameState gameState;
+
         public override void _Ready() {
             base._Ready();
             entityMovement = GetNode<EntityMovement>(entityMovementNodePath);
+            gameState = NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true);
 
             pathfindingTileMap = NodeGetter.GetFirstNodeInGroup<PathfindingTileMap>(GetTree(), GameConstants.PathfindingTileMapGroup, true);
         }
@@ -57,6 +61,7 @@ namespace GameOff_2019.Entities.PlayerEntity.States {
             }
 
             pathfindingTileMap.tileMapManipulator.SetTree(targetPosition);
+            gameState.AddPlayerPoints(GameValues.plantTreePoints);
             GetStateMachine<PlayerStateMachine>().TransitionTo(GetStateMachine<PlayerStateMachine>().idle);
         }
 

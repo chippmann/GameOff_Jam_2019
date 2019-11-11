@@ -92,6 +92,7 @@
       <Compile Include="Entities\PlayerEntity\States\PlayerIdleState.cs" />
       <Compile Include="Entities\PlayerEntity\States\PlayerMoveToPositionState.cs" />
       <Compile Include="Entities\PlayerEntity\States\PlayerPlantTreeState.cs" />
+      <Compile Include="GameValues.cs" />
     <Compile Include="Levels\Common\BaseLevel.cs" />
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\HoverIndicator.cs" />
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\BaseTileMapObject.cs" />

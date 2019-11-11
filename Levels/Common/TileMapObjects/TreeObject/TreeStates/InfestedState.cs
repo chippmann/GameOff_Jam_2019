@@ -5,7 +5,6 @@ using Godot;
 
 namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
     public class InfestedState : State {
-        [Export] private readonly int damage = 5;
         [Export] private readonly int applyDamageIntervalInSeconds = 10;
         [Export] private readonly int addPointsTimeIntervalInSeconds = 10;
         [Export] private readonly NodePath pointTimerNodePath = null;
@@ -43,6 +42,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
         public override void Exit() {
             pointTimer.Stop();
             damageTimer.Stop();
+            damageDealtSinceInfestion = 0;
         }
 
         public override string GetName() {
@@ -50,13 +50,15 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
         }
 
         private void OnPointTimerTimeout() {
-            gameState.demonPoints += damageDealtSinceInfestion;
+            gameState.AddDemonPoints(damageDealtSinceInfestion);
         }
 
         private void OnDamageTimerTimeout() {
-            treeState.treeHealth -= damage;
-            damageDealtSinceInfestion += damage;
+            treeState.treeHealth -= GameValues.treeInfestionDamage;
+            damageDealtSinceInfestion += GameValues.treeInfestionDamage;
+
             if (treeState.treeHealth <= 0) {
+                gameState.AddDemonPoints(GameValues.killTreePoints);
                 GetStateMachine<TreeStateMachine>().TransitionTo(GetStateMachine<TreeStateMachine>().dead);
             }
         }
