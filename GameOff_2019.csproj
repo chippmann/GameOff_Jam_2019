@@ -112,16 +112,20 @@
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\Ui\InteractionPopup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoundLogic\GameState.cs" />
+    <Compile Include="Serialization\Serializer.cs" />
     <Compile Include="TestScript.cs" />
       <Compile Include="Ui\EnergyUi.cs" />
     <Compile Include="Ui\LevelMoveMouseControl.cs" />
       <Compile Include="Ui\PointsUi.cs" />
+    <Compile Include="Ui\TwitterUi\TwitterFeed.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="executeGame.sh" />
+    <Content Include="Ui\TwitterUi\DebugTwitterJsonResponse.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\DemonEntity\Particles\Textures" />
+    <Folder Include="Ui\TwitterUi\Dynamic" />
     <Folder Include="Ui\TwitterUi\Static" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

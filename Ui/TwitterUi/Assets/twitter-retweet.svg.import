@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TweetBackground.png-db13283516590997d5f959c213977269.stex"
+path="res://.import/twitter-retweet.svg-083adde6d6c57ae7f826f859e2372318.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ui/TwitterUi/Static/Assets/TweetBackground.png"
-dest_files=[ "res://.import/TweetBackground.png-db13283516590997d5f959c213977269.stex" ]
+source_file="res://Ui/TwitterUi/Assets/twitter-retweet.svg"
+dest_files=[ "res://.import/twitter-retweet.svg-083adde6d6c57ae7f826f859e2372318.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TwitterFeedStaticTop.png-52840623aafde4f18cf573a09ee2bb9e.stex"
+path="res://.import/twitter-share.svg-1284a9793a0c4e2f3dcf57fa332a935b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ui/TwitterUi/Static/Assets/TwitterFeedStaticTop.png"
-dest_files=[ "res://.import/TwitterFeedStaticTop.png-52840623aafde4f18cf573a09ee2bb9e.stex" ]
+source_file="res://Ui/TwitterUi/Assets/twitter-share.svg"
+dest_files=[ "res://.import/twitter-share.svg-1284a9793a0c4e2f3dcf57fa332a935b.stex" ]
 
 [params]
 

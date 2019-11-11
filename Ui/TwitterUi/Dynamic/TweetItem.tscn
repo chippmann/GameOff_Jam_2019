@@ -2,13 +2,13 @@
 
 [ext_resource path="res://Ui/MainTheme.tres" type="Theme" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://Ui/TwitterUi/Static/Assets/twitter_font.tres" type="DynamicFont" id=3]
-[ext_resource path="res://Ui/TwitterUi/Static/Assets/twitter_font_small.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Ui/TwitterUi/Static/Assets/twitter-expand.svg" type="Texture" id=5]
-[ext_resource path="res://Ui/TwitterUi/Static/Assets/twitter-reply.svg" type="Texture" id=6]
-[ext_resource path="res://Ui/TwitterUi/Static/Assets/twitter-retweet.svg" type="Texture" id=7]
-[ext_resource path="res://Ui/TwitterUi/Static/Assets/twitter-like.svg" type="Texture" id=8]
-[ext_resource path="res://Ui/TwitterUi/Static/Assets/twitter-share.svg" type="Texture" id=9]
+[ext_resource path="res://Ui/TwitterUi/Assets/twitter_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Ui/TwitterUi/Assets/twitter_font_small.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Ui/TwitterUi/Assets/twitter-expand.svg" type="Texture" id=5]
+[ext_resource path="res://Ui/TwitterUi/Assets/twitter-reply.svg" type="Texture" id=6]
+[ext_resource path="res://Ui/TwitterUi/Assets/twitter-retweet.svg" type="Texture" id=7]
+[ext_resource path="res://Ui/TwitterUi/Assets/twitter-like.svg" type="Texture" id=8]
+[ext_resource path="res://Ui/TwitterUi/Assets/twitter-share.svg" type="Texture" id=9]
 
 [node name="TwitterItem" type="PanelContainer"]
 margin_right = 250.0

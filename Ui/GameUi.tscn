@@ -5,8 +5,8 @@
 [ext_resource path="res://Ui/PointsUi.cs" type="Script" id=3]
 [ext_resource path="res://Ui/EnergyUi.cs" type="Script" id=4]
 [ext_resource path="res://Ui/TwitterUi/Static/TwitterFeedStaticTop.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Ui/TwitterUi/Static/TweetItem.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Ui/TwitterUi/Static/TweetItemWithImage.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Ui/TwitterUi/Dynamic/TweetItem.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Ui/TwitterUi/Dynamic/TweetItemWithImage.tscn" type="PackedScene" id=7]
 
 [node name="GameUi" type="Control"]
 anchor_right = 1.0
@@ -186,9 +186,8 @@ rect_min_size = Vector2( 250, 70 )
 mouse_filter = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/TwitterFeedMarginContainer/VBoxContainer"]
-margin_left = 1.0
 margin_top = 74.0
-margin_right = 251.0
+margin_right = 250.0
 margin_bottom = 720.0
 rect_min_size = Vector2( 250, 0 )
 focus_mode = 2
