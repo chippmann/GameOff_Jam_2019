@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Ui/MainTheme.tres" type="Theme" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Ui/PointsUi.cs" type="Script" id=3]
+[ext_resource path="res://Ui/EnergyUi.cs" type="Script" id=4]
 
 [node name="GameUi" type="Control"]
 anchor_right = 1.0
@@ -27,7 +29,7 @@ mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer"]
 margin_right = 1026.0
-margin_bottom = 84.0
+margin_bottom = 85.0
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
@@ -36,13 +38,13 @@ custom_constants/margin_bottom = 5
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1026.0
-margin_bottom = 79.0
+margin_bottom = 80.0
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1026.0
-margin_bottom = 79.0
+margin_bottom = 80.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -52,45 +54,75 @@ custom_constants/margin_bottom = 5
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1016.0
-margin_bottom = 69.0
+margin_bottom = 70.0
 
 [node name="PlayerAvatarMarginContainer" type="MarginContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer"]
 editor/display_folded = true
 margin_right = 74.0
-margin_bottom = 64.0
+margin_bottom = 65.0
 custom_constants/margin_right = 10
 
 [node name="PlayerAvatarTextureRect" type="TextureRect" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/PlayerAvatarMarginContainer"]
 margin_right = 64.0
-margin_bottom = 64.0
+margin_bottom = 65.0
 texture = ExtResource( 2 )
 
 [node name="ProgressBarsVBoxContainer" type="VBoxContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer"]
-editor/display_folded = true
 margin_left = 78.0
 margin_right = 933.0
-margin_bottom = 64.0
+margin_bottom = 65.0
 size_flags_horizontal = 3
 
 [node name="PointsMarginContainer" type="MarginContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer"]
-editor/display_folded = true
 margin_right = 855.0
-margin_bottom = 39.0
+margin_bottom = 41.0
 custom_constants/margin_top = 2
-custom_constants/margin_bottom = 7
 
-[node name="PointsProgressBar" type="ProgressBar" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/PointsMarginContainer"]
+[node name="PointsHBoxContainer" type="HBoxContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/PointsMarginContainer"]
 margin_top = 2.0
 margin_right = 855.0
-margin_bottom = 32.0
+margin_bottom = 41.0
+script = ExtResource( 3 )
+playerPointsLabelNodePath = NodePath("PlayerPointsLabel")
+demonPointsLabelNodePath = NodePath("DemonPointsLabel")
+progressNodePath = NodePath("PointsProgressBar")
+progressTweenNodePath = NodePath("PointsProgressBar/Tween")
+
+[node name="PlayerPointsLabel" type="Label" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/PointsMarginContainer/PointsHBoxContainer"]
+margin_right = 51.0
+margin_bottom = 39.0
+text = "Player:
+0"
+
+[node name="PointsProgressBar" type="ProgressBar" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/PointsMarginContainer/PointsHBoxContainer"]
+margin_left = 55.0
+margin_right = 792.0
+margin_bottom = 39.0
 rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
 value = 50.0
 percent_visible = false
 
-[node name="EnergyHBoxContainer" type="HBoxContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer"]
-margin_top = 43.0
+[node name="Tween" type="Tween" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/PointsMarginContainer/PointsHBoxContainer/PointsProgressBar"]
+
+[node name="DemonPointsLabel" type="Label" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/PointsMarginContainer/PointsHBoxContainer"]
+margin_left = 796.0
 margin_right = 855.0
-margin_bottom = 63.0
+margin_bottom = 39.0
+text = "Demon:
+0"
+align = 2
+
+[node name="EnergyHBoxContainer" type="HBoxContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer"]
+margin_top = 45.0
+margin_right = 855.0
+margin_bottom = 65.0
+script = ExtResource( 4 )
+playerEnergyProgressNodePath = NodePath("PlayerEnergyMarginContainer/PlayerEnergyProgressBar")
+demonEnergyProgressNodePath = NodePath("DemonMarginContainer/DemonEnergyProgressBar")
+playerEnergyTweenNodePath = NodePath("PlayerEnergyMarginContainer/PlayerEnergyProgressBar/PlayerEnergyTween")
+demonEnergyTweenNodePath = NodePath("DemonMarginContainer/DemonEnergyProgressBar/DemonEnergyTween")
 
 [node name="PlayerEnergyMarginContainer" type="MarginContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/EnergyHBoxContainer"]
 margin_right = 250.0
@@ -101,6 +133,8 @@ size_flags_horizontal = 0
 margin_right = 250.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 250, 20 )
+
+[node name="PlayerEnergyTween" type="Tween" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/EnergyHBoxContainer/PlayerEnergyMarginContainer/PlayerEnergyProgressBar"]
 
 [node name="DemonMarginContainer" type="MarginContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/EnergyHBoxContainer"]
 margin_left = 605.0
@@ -113,17 +147,19 @@ margin_right = 250.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 250, 20 )
 
+[node name="DemonEnergyTween" type="Tween" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/EnergyHBoxContainer/DemonMarginContainer/DemonEnergyProgressBar"]
+
 [node name="DemonAvatarMarginContainer" type="MarginContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer"]
 editor/display_folded = true
 margin_left = 937.0
 margin_right = 1011.0
-margin_bottom = 64.0
+margin_bottom = 65.0
 custom_constants/margin_left = 10
 
 [node name="DemonAvatarTextureRect" type="TextureRect" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/DemonAvatarMarginContainer"]
 margin_left = 10.0
 margin_right = 74.0
-margin_bottom = 64.0
+margin_bottom = 65.0
 texture = ExtResource( 2 )
 
 [node name="TwitterFeedMarginContainer" type="MarginContainer" parent="HBoxContainer"]

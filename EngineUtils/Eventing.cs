@@ -29,5 +29,18 @@ namespace GameOff_2019.EngineUtils {
 
         [Signal]
         public delegate void TreeInfested(TreeTileMapObject infestedTree);
+
+        #region Ui
+
+        [Signal]
+        public delegate void PointsChanged();
+
+        [Signal]
+        public delegate void PlayerEnergyChanged();
+
+        [Signal]
+        public delegate void DemonEnergyChanged();
+
+        #endregion
     }
 }

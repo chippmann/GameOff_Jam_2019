@@ -113,7 +113,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoundLogic\GameState.cs" />
     <Compile Include="TestScript.cs" />
+      <Compile Include="Ui\EnergyUi.cs" />
     <Compile Include="Ui\LevelMoveMouseControl.cs" />
+      <Compile Include="Ui\PointsUi.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="executeGame.sh" />
