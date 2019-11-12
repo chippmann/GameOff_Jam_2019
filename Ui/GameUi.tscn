@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Ui/MainTheme.tres" type="Theme" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Ui/PointsUi.cs" type="Script" id=3]
 [ext_resource path="res://Ui/EnergyUi.cs" type="Script" id=4]
 [ext_resource path="res://Ui/TwitterUi/Static/TwitterFeedStaticTop.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Ui/TwitterUi/Dynamic/TweetItem.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Ui/TwitterUi/Dynamic/TweetItemWithImage.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Ui/TwitterUi/TwitterFeed.cs" type="Script" id=6]
+[ext_resource path="res://Ui/TwitterUi/Dynamic/TweetItem.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Ui/TwitterUi/Dynamic/TweetItemWithImage.tscn" type="PackedScene" id=8]
 
 [node name="GameUi" type="Control"]
 anchor_right = 1.0
@@ -203,10 +204,19 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
+script = ExtResource( 6 )
+tweetPackedScene = ExtResource( 7 )
+tweetWithImagePackedScene = ExtResource( 8 )
+slideDownAnimationTweenNodePath = NodePath("SlideDownTween")
+slideUpAnimationTweenNodePath = NodePath("SlideInTween")
 
-[node name="TwitterItem" parent="HBoxContainer/TwitterFeedMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 6 )]
+[node name="TwitterItem" parent="HBoxContainer/TwitterFeedMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 7 )]
 margin_bottom = 177.0
 
-[node name="TwitterItem2" parent="HBoxContainer/TwitterFeedMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 7 )]
+[node name="TwitterItem2" parent="HBoxContainer/TwitterFeedMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 8 )]
 margin_top = 177.0
 margin_bottom = 478.0
+
+[node name="SlideDownTween" type="Tween" parent="HBoxContainer/TwitterFeedMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+
+[node name="SlideInTween" type="Tween" parent="HBoxContainer/TwitterFeedMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]

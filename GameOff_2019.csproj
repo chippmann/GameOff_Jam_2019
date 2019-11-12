@@ -46,9 +46,17 @@
       <HintPath>$(ProjectDir)/.mono/assemblies/GodotSharpEditor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+      <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+          <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+          <Private>True</Private>
+      </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+      <Compile Include="Data\Entities.cs" />
+      <Compile Include="Data\Hashtag.cs" />
+      <Compile Include="Data\Tweet.cs" />
+      <Compile Include="Data\User.cs" />
     <Compile Include="EngineUtils\Eventing.cs" />
     <Compile Include="EngineUtils\GameConstants.cs" />
     <Compile Include="EngineUtils\Logger.cs" />
@@ -117,6 +125,7 @@
       <Compile Include="Ui\EnergyUi.cs" />
     <Compile Include="Ui\LevelMoveMouseControl.cs" />
       <Compile Include="Ui\PointsUi.cs" />
+      <Compile Include="Ui\TwitterUi\Dynamic\TweetUi.cs" />
     <Compile Include="Ui\TwitterUi\TwitterFeed.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -125,8 +134,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\DemonEntity\Particles\Textures" />
-    <Folder Include="Ui\TwitterUi\Dynamic" />
     <Folder Include="Ui\TwitterUi\Static" />
   </ItemGroup>
+    <ItemGroup>
+        <None Include="packages.config" />
+    </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
