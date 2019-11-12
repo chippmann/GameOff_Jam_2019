@@ -22,6 +22,7 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
         private Label likes;
 
         private Tweet tweet;
+        private float lifeTime = 0;
 
         public override void _Ready() {
             base._Ready();
@@ -37,8 +38,15 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
 
         public override void _Process(float delta) {
             base._Process(delta);
+            lifeTime += delta;
             if (tweet != null) {
                 SetTimeSincePosting();
+            }
+
+            var displayHeight = GetViewportRect().Size.y;
+
+            if (lifeTime >= 60 || GetGlobalPosition().y > displayHeight) {
+                GetParent().RemoveChild(this);
             }
         }
 
