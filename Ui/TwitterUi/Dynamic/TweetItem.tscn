@@ -21,7 +21,6 @@ nameNodePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/MarginConta
 displayNameNodePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/HBoxContainer/TwitterName")
 timeSincePostingNodePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/HBoxContainer/TimeSincePosting")
 textNodePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Text")
-hashTagsNodePath = NodePath("")
 repliesNodePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer2/HBoxContainer/ReplyLabel")
 retweetsNodePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer2/HBoxContainer2/RetweetLabel")
 likesNodePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer2/HBoxContainer3/LikeLabel")
@@ -124,6 +123,14 @@ margin_right = 213.0
 margin_bottom = 102.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+bbcode_enabled = true
+bbcode_text = "asdfsadf
+asdfasfd
+asdfsafsad
+asdfsfd
+asdfasdfas
+sdf
+asdf"
 text = "asdfsadf
 asdfasfd
 asdfsafsad

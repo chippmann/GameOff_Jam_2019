@@ -6,7 +6,7 @@
     "entities": {
       "hashtags": [
         {
-          "text": "Pycon2019",
+          "text": "#Pycon2019",
           "indices": [
             13,
             23
@@ -14,7 +14,16 @@
         }
       ],
       "symbols": [],
-      "user_mentions": []
+      "user_mentions": [],
+      "urls": [
+        {
+          "url": "https://t.co/mVLIzEr9Gx",
+          "indices": [
+            117,
+            140
+          ]
+        }
+      ]
     },
     "user": {
       "id": 2244994945,

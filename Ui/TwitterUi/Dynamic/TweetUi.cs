@@ -48,12 +48,27 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
             name.SetText(tweet.user.name);
             displayName.SetText(tweet.user.screen_name);
             SetTimeSincePosting();
-            text.SetText(tweet.text);
             var randomReplyCount = new Random().Next(1, tweet.user.followers_count / 30);
             replies.SetText(randomReplyCount > 0 ? randomReplyCount.ToString() : "");
             retweets.SetText(tweet.retweet_count.ToString());
             likes.SetText(tweetToSet.favorite_count.ToString());
 
+            var bbCode = tweet.text;
+            foreach (var hashTag in tweet.entities.hashtags) {
+                bbCode = bbCode.Insert(bbCode.IndexOf(hashTag.text, StringComparison.Ordinal), "[color=#1a95e0]");
+                bbCode = bbCode.Insert(bbCode.IndexOf(hashTag.text, StringComparison.Ordinal) + hashTag.text.Length, "[/color]");
+            }
+
+            foreach (var url in tweet.entities.urls) {
+                bbCode = bbCode.Insert(bbCode.IndexOf(url.url, StringComparison.Ordinal), "[color=#1a95e0][url]");
+                bbCode = bbCode.Insert(bbCode.IndexOf(url.url, StringComparison.Ordinal) + url.url.Length, "[/url][/color]");
+            }
+//            foreach (var mention in tweet.entities.user_mentions) {
+//                bbCode = bbCode.Insert(mention.indices[0], "[color=#1a95e0]");
+//                bbCode = bbCode.Insert(mention.indices[0] + mention.indices[1] + mention.indices.Count, "[/color]");
+//            }
+
+            text.SetBbcode(bbCode);
             text.SetCustomMinimumSize(new Vector2(text.GetRect().Size.x, text.GetVScroll().GetMax())); //workaround as rich text label doesn't scale to content -.-
         }
 
