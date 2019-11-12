@@ -43,16 +43,32 @@ namespace GameOff_2019.Ui.TwitterUi {
             tweets = Serializer.Deserialize<List<Tweet>>(json);
         }
 
+        /// <summary>
+        /// Don't look at me i'm ugly....<br/>
+        /// No seriously because of some weird behaviour regarding the rich text label (also mentioned in some issues) we have to wait with a timer. Uughh :-(
+        /// </summary>
         private async void AddTweetToFeed(Tweet tweet) {
             if (!(tweetPackedScene.Instance() is TweetUi tweetUi)) return;
             if (!(fillerTweetPackedScene.Instance() is FillerTweet fillerTweet)) return;
             var animationTween = new Tween();
+            var timer = new Timer();
             AddChild(animationTween);
+            AddChild(timer);
 
             shownTweets.Add(tweet.id);
 
             tmpTweetContainer.AddChild(tweetUi);
             tweetUi.Init(tweet);
+
+            timer.SetOneShot(true);
+            timer.Start(0.2f);
+            await ToSignal(timer, "timeout");
+
+            tweetUi.SetCustomMinimumSize();
+
+            timer.SetOneShot(true);
+            timer.Start(0.2f);
+            await ToSignal(timer, "timeout");
 
             AddChild(fillerTweet);
             MoveChild(fillerTweet, 0);
@@ -75,6 +91,7 @@ namespace GameOff_2019.Ui.TwitterUi {
             AddChild(tweetUi);
             MoveChild(tweetUi, 0);
             RemoveChild(animationTween);
+            RemoveChild(timer);
         }
     }
 }

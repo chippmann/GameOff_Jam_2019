@@ -46,9 +46,9 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
             tweet = tweetToSet;
             //TODO: handle image
             name.SetText(tweet.user.name);
-            displayName.SetText(tweet.user.screen_name);
+            displayName.SetText($"@{tweet.user.screen_name}");
             SetTimeSincePosting();
-            var randomReplyCount = new Random().Next(1, tweet.user.followers_count / 30);
+            var randomReplyCount = new Random().Next(1, tweet.user.followers_count / 50);
             replies.SetText(randomReplyCount > 0 ? randomReplyCount.ToString() : "");
             retweets.SetText(tweet.retweet_count.ToString());
             likes.SetText(tweetToSet.favorite_count.ToString());
@@ -69,6 +69,9 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
 //            }
 
             text.SetBbcode(bbCode);
+        }
+
+        public void SetCustomMinimumSize() {
             text.SetCustomMinimumSize(new Vector2(text.GetRect().Size.x, text.GetVScroll().GetMax())); //workaround as rich text label doesn't scale to content -.-
         }
 
@@ -91,7 +94,7 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
                 timeString = $"{(int) difference.TotalDays}d";
             }
 
-            timeSincePosting.SetText(timeString);
+            timeSincePosting.SetText($"·{timeString}");
         }
     }
 }

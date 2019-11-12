@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Ui/MainTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Ui/TwitterUi/Dynamic/TweetUi.cs" type="Script" id=2]
@@ -6,14 +6,15 @@
 [ext_resource path="res://Ui/TwitterUi/Assets/twitter_font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Ui/TwitterUi/Assets/twitter_font_small.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Ui/TwitterUi/Assets/twitter-expand.svg" type="Texture" id=6]
-[ext_resource path="res://Ui/TwitterUi/Assets/twitter-reply.svg" type="Texture" id=7]
-[ext_resource path="res://Ui/TwitterUi/Assets/twitter-retweet.svg" type="Texture" id=8]
-[ext_resource path="res://Ui/TwitterUi/Assets/twitter-like.svg" type="Texture" id=9]
-[ext_resource path="res://Ui/TwitterUi/Assets/twitter-share.svg" type="Texture" id=10]
+[ext_resource path="res://Ui/TwitterUi/Assets/twitter_font_text.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Ui/TwitterUi/Assets/twitter-reply.svg" type="Texture" id=8]
+[ext_resource path="res://Ui/TwitterUi/Assets/twitter-retweet.svg" type="Texture" id=9]
+[ext_resource path="res://Ui/TwitterUi/Assets/twitter-like.svg" type="Texture" id=10]
+[ext_resource path="res://Ui/TwitterUi/Assets/twitter-share.svg" type="Texture" id=11]
 
 [node name="TwitterItem" type="PanelContainer"]
 margin_right = 250.0
-margin_bottom = 141.0
+margin_bottom = 55.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 avatarNodePath = NodePath("MarginContainer/HBoxContainer/MarginContainer/TextureRect")
@@ -29,15 +30,15 @@ likesNodePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/MarginCont
 margin_left = 6.0
 margin_top = 4.0
 margin_right = 244.0
-margin_bottom = 137.0
+margin_bottom = 51.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 margin_right = 238.0
-margin_bottom = 133.0
+margin_bottom = 47.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 margin_right = 21.0
-margin_bottom = 133.0
+margin_bottom = 47.0
 custom_constants/margin_top = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer"]
@@ -52,7 +53,7 @@ expand = true
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 margin_left = 25.0
 margin_right = 238.0
-margin_bottom = 133.0
+margin_bottom = 47.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -113,37 +114,24 @@ expand = true
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 19.0
 margin_right = 213.0
-margin_bottom = 121.0
+margin_bottom = 35.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Text" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 margin_right = 213.0
-margin_bottom = 102.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 7 )
 bbcode_enabled = true
-bbcode_text = "asdfsadf
-asdfasfd
-asdfsafsad
-asdfsfd
-asdfasdfas
-sdf
-asdf"
-text = "asdfsadf
-asdfasfd
-asdfsafsad
-asdfsfd
-asdfasdfas
-sdf
-asdf"
 scroll_active = false
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 125.0
+margin_top = 39.0
 margin_right = 213.0
-margin_bottom = 133.0
+margin_bottom = 47.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 8
@@ -167,7 +155,7 @@ margin_right = 8.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 8, 8 )
 size_flags_vertical = 0
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 expand = true
 
 [node name="ReplyLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer2/HBoxContainer"]
@@ -190,7 +178,7 @@ margin_right = 8.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 8, 8 )
 size_flags_vertical = 0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 
 [node name="RetweetLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer2/HBoxContainer2"]
@@ -213,7 +201,7 @@ margin_right = 8.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 8, 8 )
 size_flags_vertical = 0
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 expand = true
 
 [node name="LikeLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer2/HBoxContainer3"]
@@ -236,5 +224,5 @@ margin_right = 8.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 8, 8 )
 size_flags_vertical = 0
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 expand = true
