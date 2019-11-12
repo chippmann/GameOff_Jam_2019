@@ -127,6 +127,7 @@
       <Compile Include="Ui\EnergyUi.cs" />
     <Compile Include="Ui\LevelMoveMouseControl.cs" />
       <Compile Include="Ui\PointsUi.cs" />
+    <Compile Include="Ui\TwitterUi\Dynamic\FillerTweet.cs" />
       <Compile Include="Ui\TwitterUi\Dynamic\TweetUi.cs" />
     <Compile Include="Ui\TwitterUi\TwitterFeed.cs" />
   </ItemGroup>
@@ -136,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\DemonEntity\Particles\Textures" />
+    <Folder Include="Networking" />
     <Folder Include="Ui\TwitterUi\Static" />
   </ItemGroup>
     <ItemGroup>
