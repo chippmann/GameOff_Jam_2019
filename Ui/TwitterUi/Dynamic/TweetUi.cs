@@ -13,7 +13,7 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
         [Export] private readonly NodePath timeSincePostingNodePath = null;
         private Label timeSincePosting;
         [Export] private readonly NodePath textNodePath = null;
-        private Label text;
+        private RichTextLabel text;
         [Export] private readonly NodePath hashTagsNodePath = null;
         private Label hashTags;
         [Export] private readonly NodePath repliesNodePath = null;
@@ -31,7 +31,7 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
             name = GetNode<Label>(nameNodePath);
             displayName = GetNode<Label>(displayNameNodePath);
             timeSincePosting = GetNode<Label>(timeSincePostingNodePath);
-            text = GetNode<Label>(textNodePath);
+            text = GetNode<RichTextLabel>(textNodePath);
             hashTags = GetNode<Label>(hashTagsNodePath);
             replies = GetNode<Label>(repliesNodePath);
             retweets = GetNode<Label>(retweetsNodePath);
@@ -58,7 +58,7 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
             retweets.SetText(tweet.retweet_count.ToString());
             likes.SetText(tweetToSet.favorite_count.ToString());
 
-//            text.SetSize(new Vector2(text.GetRect().Size.x, text.GetVScroll().GetMax()));
+            text.SetCustomMinimumSize(new Vector2(text.GetRect().Size.x, text.GetVScroll().GetMax())); //workaround as rich text label doesn't scale to content -.-
         }
 
         private void SetTimeSincePosting() {

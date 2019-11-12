@@ -119,7 +119,7 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Text" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Text" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 margin_right = 213.0
 margin_bottom = 124.0
 size_flags_horizontal = 3
@@ -131,7 +131,6 @@ asdfsfd
 asdfasdfas
 sdf
 asdf"
-autowrap = true
 
 [node name="HashTags" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 margin_top = 128.0
