@@ -14,8 +14,6 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
         private Label timeSincePosting;
         [Export] private readonly NodePath textNodePath = null;
         private RichTextLabel text;
-        [Export] private readonly NodePath hashTagsNodePath = null;
-        private Label hashTags;
         [Export] private readonly NodePath repliesNodePath = null;
         private Label replies;
         [Export] private readonly NodePath retweetsNodePath = null;
@@ -32,7 +30,6 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
             displayName = GetNode<Label>(displayNameNodePath);
             timeSincePosting = GetNode<Label>(timeSincePostingNodePath);
             text = GetNode<RichTextLabel>(textNodePath);
-            hashTags = GetNode<Label>(hashTagsNodePath);
             replies = GetNode<Label>(repliesNodePath);
             retweets = GetNode<Label>(retweetsNodePath);
             likes = GetNode<Label>(likesNodePath);
@@ -52,7 +49,6 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
             displayName.SetText(tweet.user.screen_name);
             SetTimeSincePosting();
             text.SetText(tweet.text);
-            hashTags.SetText(""); //TODO: do something better here
             var randomReplyCount = new Random().Next(1, tweet.user.followers_count / 30);
             replies.SetText(randomReplyCount > 0 ? randomReplyCount.ToString() : "");
             retweets.SetText(tweet.retweet_count.ToString());
