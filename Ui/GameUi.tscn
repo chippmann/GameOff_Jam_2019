@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Ui/MainTheme.tres" type="Theme" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Ui/TwitterUi/Dynamic/TweetItem.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Ui/TwitterUi/Dynamic/TweetItemWithImage.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Ui/TwitterUi/Dynamic/FillerTweet.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Ui/TwitterUi/Effects/PlayerBuffParticleEffect.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Ui/TwitterUi/Effects/DemonBuffParticleEffect.tscn" type="PackedScene" id=11]
 
 [node name="GameUi" type="Control"]
 anchor_right = 1.0
@@ -213,7 +215,11 @@ script = ExtResource( 6 )
 tweetPackedScene = ExtResource( 7 )
 tweetWithImagePackedScene = ExtResource( 8 )
 fillerTweetPackedScene = ExtResource( 9 )
+playerBuffParticlesPackedScene = ExtResource( 10 )
+demonBuffParticlesPackedScene = ExtResource( 11 )
 tmpTweetContainerNodePath = NodePath("../../../../../TmpTweetContainer")
+playerEnergyNodePath = NodePath("../../../../GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/EnergyHBoxContainer/PlayerEnergyMarginContainer/PlayerEnergyProgressBar")
+demonEnergyNodePath = NodePath("../../../../GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/EnergyHBoxContainer/DemonMarginContainer/DemonEnergyProgressBar")
 
 [node name="TmpTweetContainer" type="Control" parent="."]
 anchor_left = 1.0

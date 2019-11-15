@@ -1,5 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using GameOff_2019.Data;
+using GameOff_2019.EngineUtils;
+using GameOff_2019.RoundLogic;
 using GameOff_2019.Serialization;
 using GameOff_2019.Ui.TwitterUi.Dynamic;
 using Godot;
@@ -9,17 +14,29 @@ namespace GameOff_2019.Ui.TwitterUi {
         [Export] private readonly PackedScene tweetPackedScene;
         [Export] private readonly PackedScene tweetWithImagePackedScene;
         [Export] private readonly PackedScene fillerTweetPackedScene;
+        [Export] private readonly PackedScene playerBuffParticlesPackedScene;
+        [Export] private readonly PackedScene demonBuffParticlesPackedScene;
         [Export] private readonly string pathToTweetsJson = "res://Ui/TwitterUi/DebugTwitterJsonResponse.json";
         [Export] private readonly NodePath tmpTweetContainerNodePath = null;
         private Control tmpTweetContainer;
+        [Export] private readonly NodePath playerEnergyNodePath = null;
+        private ProgressBar playerEnergy;
+        [Export] private readonly NodePath demonEnergyNodePath = null;
+        private ProgressBar demonEnergy;
+
 
         private List<Tweet> tweets;
-
-        private List<long> shownTweets = new List<long>();
+        private readonly List<long> shownTweets = new List<long>();
+        private readonly Tween buffAnimationTween = new Tween();
+        private GameState gameState;
 
         public override void _Ready() {
             base._Ready();
+            gameState = NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true);
             tmpTweetContainer = GetNode<Control>(tmpTweetContainerNodePath);
+            playerEnergy = GetNode<ProgressBar>(playerEnergyNodePath);
+            demonEnergy = GetNode<ProgressBar>(demonEnergyNodePath);
+            AddChild(buffAnimationTween);
             ReadTweetsFromDebugJson();
         }
 
@@ -29,9 +46,9 @@ namespace GameOff_2019.Ui.TwitterUi {
         public override void _Process(float delta) {
             base._Process(delta);
             timeElapsed += delta;
-            if (timeElapsed >= 2 /* && count < tweets.Count*/) {
+            if (timeElapsed >= 4 /* && count < tweets.Count*/) {
                 timeElapsed = 0;
-                AddTweetToFeed(tweets[count]);
+                AddTweetToFeed(tweets[new Random().Next(0, tweets.Count)]);
 //                count++;
             }
         }
@@ -86,12 +103,49 @@ namespace GameOff_2019.Ui.TwitterUi {
 
             await ToSignal(animationTween, "tween_completed");
 
-            RemoveChild(fillerTweet);
+            fillerTweet.QueueFree();
             tmpTweetContainer.RemoveChild(tweetUi);
             AddChild(tweetUi);
             MoveChild(tweetUi, 0);
-            RemoveChild(animationTween);
-            RemoveChild(timer);
+            animationTween.QueueFree();
+            timer.Start(0.2f);
+            await ToSignal(timer, "timeout");
+            timer.QueueFree();
+            AddBuff(tweet, tweetUi);
+        }
+
+        private async void AddBuff(Tweet tweet, TweetUi tweetUi) {
+            var isPositive = tweet.entities.hashtags.Any(hashTag => hashTag.text == "#climateChange");
+            var isNegative = tweet.entities.hashtags.Any(hashTag => hashTag.text == "#ClimateHoax");
+            if (isPositive && !isNegative) {
+                await AddEnergyAndParticles(tweetUi, playerBuffParticlesPackedScene, playerEnergy.GetGlobalPosition() + playerEnergy.GetSize() / 2, gameState.AddPlayerEnergy);
+            }
+            else if (!isPositive && isNegative) {
+                await AddEnergyAndParticles(tweetUi, demonBuffParticlesPackedScene, demonEnergy.GetGlobalPosition() + demonEnergy.GetSize() / 2, gameState.AddDemonEnergy);
+            }
+            else if (isPositive && isNegative) {
+                await AddEnergyAndParticles(tweetUi, playerBuffParticlesPackedScene, playerEnergy.GetGlobalPosition() + playerEnergy.GetSize() / 2, gameState.AddPlayerEnergy);
+                await AddEnergyAndParticles(tweetUi, demonBuffParticlesPackedScene, demonEnergy.GetGlobalPosition() + demonEnergy.GetSize() / 2, gameState.AddDemonEnergy);
+            }
+        }
+
+        private async Task AddEnergyAndParticles(TweetUi tweetUi, PackedScene particlesPackedScene, Vector2 particlesEndPosition, Action<int> addEnergy) {
+            if (!(particlesPackedScene.Instance() is Node2D buffParticles)) return;
+            GetOwner<Control>().AddChild(buffParticles);
+            buffParticles.SetGlobalPosition(tweetUi.GetGlobalPosition() + tweetUi.GetSize() / 2);
+            buffAnimationTween.InterpolateMethod(buffParticles, "set_global_position", buffParticles.GetGlobalPosition(), particlesEndPosition, 1f, Tween.TransitionType.Sine, Tween.EaseType.InOut);
+            buffAnimationTween.Start();
+            await ToSignal(buffAnimationTween, "tween_completed");
+            addEnergy.Invoke(GameValues.tweetEnergy);
+            var timer = new Timer {OneShot = true};
+            AddChild(timer);
+            timer.Start(1);
+            await ToSignal(timer, "timeout");
+            buffParticles.GetNode<Particles2D>("Particles2D").Emitting = false;
+            timer.Start(1);
+            await ToSignal(timer, "timeout");
+            buffParticles.QueueFree();
+            timer.QueueFree();
         }
     }
 }

@@ -138,6 +138,7 @@
   <ItemGroup>
     <Folder Include="Entities\DemonEntity\Particles\Textures" />
     <Folder Include="Networking" />
+      <Folder Include="Ui\TwitterUi\Effects" />
     <Folder Include="Ui\TwitterUi\Static" />
   </ItemGroup>
     <ItemGroup>

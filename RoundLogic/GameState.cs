@@ -21,18 +21,8 @@ namespace GameOff_2019.RoundLogic {
         }
 
         public void UsePlayerEnergy(int energyToUse) {
-            playerEnergy -= energyToUse;
-            GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.PlayerEnergyChanged));
-        }
-
-        public void UseDemonEnergy(int energyToUse) {
-            demonEnergy -= energyToUse;
-            GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.DemonEnergyChanged));
-        }
-
-        public void AddPlayerEnergy(int energyToUse) {
-            if (playerEnergy + energyToUse > 100) {
-                playerEnergy = 100;
+            if (playerEnergy - energyToUse > 0) {
+                playerEnergy = 0;
             }
             else {
                 playerEnergy -= energyToUse;
@@ -41,12 +31,34 @@ namespace GameOff_2019.RoundLogic {
             GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.PlayerEnergyChanged));
         }
 
-        public void AddDemonEnergy(int energyToUse) {
-            if (demonEnergy + energyToUse > 100) {
-                demonEnergy = 100;
+        public void UseDemonEnergy(int energyToUse) {
+            if (demonEnergy - energyToUse > 0) {
+                demonEnergy = 0;
             }
             else {
                 demonEnergy -= energyToUse;
+            }
+
+            GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.DemonEnergyChanged));
+        }
+
+        public void AddPlayerEnergy(int energyToAdd) {
+            if (playerEnergy + energyToAdd > 100) {
+                playerEnergy = 100;
+            }
+            else {
+                playerEnergy += energyToAdd;
+            }
+
+            GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.PlayerEnergyChanged));
+        }
+
+        public void AddDemonEnergy(int energyToAdd) {
+            if (demonEnergy + energyToAdd > 100) {
+                demonEnergy = 100;
+            }
+            else {
+                demonEnergy += energyToAdd;
             }
 
             GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.DemonEnergyChanged));

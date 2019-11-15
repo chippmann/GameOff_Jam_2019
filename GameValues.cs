@@ -16,6 +16,8 @@ namespace GameOff_2019 {
 
         #endregion
 
+        public static int tweetEnergy = 10;
+
         #region Tree
 
         public static int treeHeal = 5;
