@@ -47,49 +47,42 @@ namespace GameOff_2019.Entities.DemonEntity {
 
         private void SetupBehaviourTree() {
             behaviourTree = new SimpleBehaviourTree.Builder()
-                .SetCurrentItem(
-                    new BTSequence.Builder().Build(
-                        new BTSelector.Builder()
-                            .SetEvaluateFunc(TwoTeetsReceived)
-                            .ShouldFailOnFalseItem(true)
-                            .ShouldReturnSelfOnFalseItem(true)
-                            .Build(
-                                infestRandomTreeBehaviour,
-                                wanderOutsideBehaviour
-                            )
-                    )
-                )
                 .Build(
                     new BTSelector.Builder()
-                        .SetEvaluateFunc(HasEnergy)
+                        .SetEvaluateFunc(TwoTeetsReceived)
                         .Build(
                             new BTSelector.Builder()
-                                .SetEvaluateFunc(HasLessPointsThanPlayer)
+                                .SetEvaluateFunc(HasEnergy)
                                 .Build(
-                                    new BTSequence.Builder().Build(
-                                        wanderInsideBehaviour,
-                                        new BTSelector.Builder()
-                                            .SetEvaluateFunc(RandomTimeSinceLastTreeInfestElapsed)
-                                            .Build(
-                                                infestRandomTreeBehaviour,
-                                                new BTFailer()
-                                            )
-                                    ),
                                     new BTSelector.Builder()
-                                        .SetEvaluateFunc(HasTreeToKillWithoutPlayerIntervention)
+                                        .SetEvaluateFunc(HasLessPointsThanPlayer)
                                         .Build(
-                                            infestTreeThatPlayerCantReachBehaviour,
-                                            infestTreeWithBestDistanceToHealthBehaviour
+                                            new BTSequence.Builder().Build(
+                                                wanderInsideBehaviour,
+                                                new BTSelector.Builder()
+                                                    .SetEvaluateFunc(RandomTimeSinceLastTreeInfestElapsed)
+                                                    .Build(
+                                                        infestRandomTreeBehaviour,
+                                                        new BTFailer()
+                                                    )
+                                            ),
+                                            new BTSelector.Builder()
+                                                .SetEvaluateFunc(HasTreeToKillWithoutPlayerIntervention)
+                                                .Build(
+                                                    infestTreeThatPlayerCantReachBehaviour,
+                                                    infestTreeWithBestDistanceToHealthBehaviour
+                                                )
                                         )
-                                )
-                            ,
+                                    ,
+                                    wanderOutsideBehaviour
+                                ),
                             wanderOutsideBehaviour
                         )
                 );
         }
 
         private bool TwoTeetsReceived() {
-            return gameState.twoNegativeTweetsReceived;
+            return gameState.negativeTweetCount >= 2;
         }
 
         private bool HasEnergy() {

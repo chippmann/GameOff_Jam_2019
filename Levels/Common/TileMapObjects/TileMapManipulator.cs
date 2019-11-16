@@ -96,7 +96,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
             for (var x = 0; x < actionRadiusInTiles * 2 + 1; x++) {
                 for (var y = 0; y < actionRadiusInTiles * 2 + 1; y++) {
                     var tile = parentTilePosition + new Vector2(x - actionRadiusInTiles, y - actionRadiusInTiles);
-                    if (tile.x >= 0 && tile.x < pathfindingTileMap.GetUsedRect().Size.x && tile.y >= 0 && tile.y < pathfindingTileMap.GetUsedRect().Size.x) {
+                    if (tile.x >= 0 && tile.x < pathfindingTileMap.GetUsedRect().Size.x && tile.y >= 0 && tile.y < pathfindingTileMap.GetUsedRect().Size.y) {
                         squaredOverlap.Add(tile);
                     }
                 }

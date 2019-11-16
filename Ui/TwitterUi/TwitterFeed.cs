@@ -127,9 +127,11 @@ namespace GameOff_2019.Ui.TwitterUi {
                 await AddEnergyAndParticles(tweetUi, playerBuffParticlesPackedScene, playerEnergy.GetGlobalPosition() + playerEnergy.GetSize() / 2, gameState.AddPlayerEnergy);
             }
             else if (!isPositive && isNegative) {
+                gameState.negativeTweetCount++;
                 await AddEnergyAndParticles(tweetUi, demonBuffParticlesPackedScene, demonEnergy.GetGlobalPosition() + demonEnergy.GetSize() / 2, gameState.AddDemonEnergy);
             }
             else if (isPositive && isNegative) {
+                gameState.negativeTweetCount++;
                 await AddEnergyAndParticles(tweetUi, playerBuffParticlesPackedScene, playerEnergy.GetGlobalPosition() + playerEnergy.GetSize() / 2, gameState.AddPlayerEnergy);
                 await AddEnergyAndParticles(tweetUi, demonBuffParticlesPackedScene, demonEnergy.GetGlobalPosition() + demonEnergy.GetSize() / 2, gameState.AddDemonEnergy);
             }

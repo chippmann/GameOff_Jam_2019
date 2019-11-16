@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Levels/Common/TileMapObjects/BaseObject/BaseTileMapObject.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeTileMapObject.cs" type="Script" id=2]
@@ -7,12 +7,13 @@
 [ext_resource path="res://icon.png" type="Texture" id=5]
 [ext_resource path="res://Levels/Common/TileMapObjects/BaseObject/TransparencyManager.cs" type="Script" id=6]
 [ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeActionRadius.cs" type="Script" id=7]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/drawing.svg" type="Texture" id=8]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStateMachine.cs" type="Script" id=9]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/GrowingState.cs" type="Script" id=10]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/FullyGrownState.cs" type="Script" id=11]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/InfestedState.cs" type="Script" id=12]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/DeadState.cs" type="Script" id=13]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/treeCircle_green.svg" type="Texture" id=8]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/treeCircle_red.svg" type="Texture" id=9]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStateMachine.cs" type="Script" id=10]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/GrowingState.cs" type="Script" id=11]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/FullyGrownState.cs" type="Script" id=12]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/InfestedState.cs" type="Script" id=13]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/DeadState.cs" type="Script" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30.4618, 62.0236 )
@@ -55,10 +56,12 @@ shape = SubResource( 1 )
 [node name="TreeActionRadius" type="Area2D" parent="." index="4" groups=[
 "actionRadius",
 ]]
-editor/display_folded = true
 collision_layer = 8
 collision_mask = 14
 script = ExtResource( 7 )
+textureNodePath = NodePath("Sprite")
+healthyTexture = ExtResource( 8 )
+infestedTexture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TreeActionRadius" index="0"]
 shape = SubResource( 2 )
@@ -74,7 +77,7 @@ texture = ExtResource( 8 )
 "state_machine",
 ]]
 editor/display_folded = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 initialStateNodePath = NodePath("GrowingState")
 growing = NodePath("GrowingState")
 fullGrown = NodePath("FullyGrownState")
@@ -82,7 +85,7 @@ infested = NodePath("InfestedState")
 dead = NodePath("DeadState")
 
 [node name="GrowingState" type="Node2D" parent="TreeStateMachine" index="0"]
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 treeStateNodePath = NodePath("../../TreeState")
 treeSpriteNodePath = NodePath("../../Sprite")
 treeGrowthTimerNodePath = NodePath("TreeGrowthTimer")
@@ -93,14 +96,14 @@ pointTimerNodePath = NodePath("PointTimer")
 [node name="PointTimer" type="Timer" parent="TreeStateMachine/GrowingState" index="1"]
 
 [node name="FullyGrownState" type="Node2D" parent="TreeStateMachine" index="1"]
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 pointTimerNodePath = NodePath("PointTimer")
 treeStateNodePath = NodePath("../../TreeState")
 
 [node name="PointTimer" type="Timer" parent="TreeStateMachine/FullyGrownState" index="0"]
 
 [node name="InfestedState" type="Node2D" parent="TreeStateMachine" index="2"]
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 pointTimerNodePath = NodePath("PointTimer")
 damageTimerNodePath = NodePath("DamageTimer")
 treeStateNodePath = NodePath("../../TreeState")
@@ -110,7 +113,7 @@ treeStateNodePath = NodePath("../../TreeState")
 [node name="DamageTimer" type="Timer" parent="TreeStateMachine/InfestedState" index="1"]
 
 [node name="DeadState" type="Node2D" parent="TreeStateMachine" index="3"]
-script = ExtResource( 13 )
+script = ExtResource( 14 )
 
 [node name="Control" type="Control" parent="." index="6"]
 margin_right = 40.0

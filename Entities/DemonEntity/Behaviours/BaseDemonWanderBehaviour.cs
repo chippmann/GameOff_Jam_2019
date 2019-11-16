@@ -10,6 +10,7 @@ namespace GameOff_2019.Entities.DemonEntity.Behaviours {
         [Export] private readonly NodePath movePositionFinderNodePath = null;
         protected MovePositionFinder movePositionFinder;
 
+        private bool finished = false;
         private bool running = false;
         private BTResult btResult = BTResult.Failure;
 
@@ -20,12 +21,18 @@ namespace GameOff_2019.Entities.DemonEntity.Behaviours {
         }
 
         protected override BTResult ExecuteInternal() {
-            if (!running && btResult != BTResult.Running) {
+            if (!running) {
+                finished = false;
                 running = true;
                 btResult = BTResult.Running;
                 GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.DemonTargetReached), this, nameof(TargetReached));
                 GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.TargetCannotBeReached), this, nameof(TargetCannotBeReached));
                 stateMachine.TransitionTo(stateMachine.moveToPosition, new MoveToPositionMessage(GetWanderWorldPosition()));
+            }
+
+            if (finished && running) {
+                running = false;
+                return btResult;
             }
 
             return btResult;
@@ -37,14 +44,14 @@ namespace GameOff_2019.Entities.DemonEntity.Behaviours {
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.DemonTargetReached), this, nameof(TargetReached));
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.TargetCannotBeReached), this, nameof(TargetCannotBeReached));
             btResult = BTResult.Success;
-            running = false;
+            finished = true;
         }
 
         private void TargetCannotBeReached() {
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.DemonTargetReached), this, nameof(TargetReached));
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.TargetCannotBeReached), this, nameof(TargetCannotBeReached));
             btResult = BTResult.Failure;
-            running = false;
+            finished = true;
         }
     }
 }

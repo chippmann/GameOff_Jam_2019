@@ -3,7 +3,7 @@
 <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="52.916668mm" height="52.916668mm"
-    viewBox="0 0 52.916668 52.916668" version="1.1" id="svg8" sodipodi:docname="drawing.svg"
+    viewBox="0 0 52.916668 52.916668" version="1.1" id="svg8" sodipodi:docname="treeCircle_green.svg"
     inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
     <defs id="defs2" />
     <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0"
@@ -16,12 +16,12 @@
             <cc:Work rdf:about="">
                 <dc:format>image/svg+xml</dc:format>
                 <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-                <dc:title />
+                <dc:title></dc:title>
             </cc:Work>
         </rdf:RDF>
     </metadata>
     <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(-18.520834,-19.943453)">
-        <circle style="fill:#ff0000;stroke-width:0.22588061;fill-opacity:1" id="path10" cx="44.979168" cy="46.401787"
+        <circle style="fill:#00ff00;stroke-width:0.22588061;fill-opacity:1" id="path10" cx="44.979168" cy="46.401787"
             r="26.458334" />
     </g>
 </svg>

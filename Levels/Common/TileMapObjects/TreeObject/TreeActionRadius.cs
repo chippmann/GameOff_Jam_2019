@@ -8,13 +8,17 @@ using Godot;
 
 namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
     public class TreeActionRadius : Area2D {
+        [Export] private NodePath textureNodePath = null;
+        private Sprite treeActionRadiusTexture;
+        [Export] private Texture healthyTexture = null;
+        [Export] private Texture infestedTexture = null;
         private PathfindingTileMap pathfindingTileMap;
         private TileMapManipulator tileMapManipulator;
         private readonly List<Node2D> nodesInActionRadius = new List<Node2D>();
 
         public override void _Ready() {
             pathfindingTileMap = NodeGetter.GetFirstNodeInGroup<PathfindingTileMap>(GetTree(), GameConstants.PathfindingTileMapGroup, true);
-
+            treeActionRadiusTexture = GetNode<Sprite>(textureNodePath);
             Connect("area_entered", this, nameof(OnEntered));
             Connect("area_exited", this, nameof(OnExited));
             Connect("body_entered", this, nameof(OnEntered));
@@ -39,6 +43,14 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
 
         public bool IsEntityInActionRadius(Entity entity) {
             return nodesInActionRadius.Contains(entity);
+        }
+
+        public void Infested() {
+            treeActionRadiusTexture.SetTexture(infestedTexture);
+        }
+
+        public void Healed() {
+            treeActionRadiusTexture.SetTexture(infestedTexture);
         }
     }
 }

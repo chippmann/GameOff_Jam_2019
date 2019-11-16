@@ -63,6 +63,7 @@ namespace GameOff_2019.Entities.DemonEntity.States {
             var tileMapObject = pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(targetPosition));
             if (tileMapObject is TreeTileMapObject treeTileMapObject) {
                 //TODO: show animation
+                gameState.UseDemonEnergy(GameValues.infestTreeEnergyUsage);
                 treeTileMapObject.Infest();
                 gameState.AddDemonPoints(GameValues.infestTreePoints);
                 GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.TreeInfested), treeTileMapObject);
@@ -78,7 +79,7 @@ namespace GameOff_2019.Entities.DemonEntity.States {
         }
 
         private void OnPathInvalidated() {
-            var tilePositionNextToTree = ((TreeTileMapObject) pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(targetPosition)).GetTilePositionNextToTree();
+            var tilePositionNextToTree = ((TreeTileMapObject) pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(targetPosition))).GetTilePositionNextToTree();
             if (tilePositionNextToTree != new Vector2(-1, -1)) {
                 entityMovement.MoveToPosition(pathfindingTileMap.MapToWorld(tilePositionNextToTree), isPlayer: false, paramsToReturn: new object[] { }, targetCannotBeReachedParamsToReturn: new object[] {GetOwner<Demon>()});
             }

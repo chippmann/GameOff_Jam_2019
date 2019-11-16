@@ -6,9 +6,9 @@ namespace GameOff_2019.RoundLogic {
         private int playerPoints = 0;
         private int playerEnergy = 100;
         private int demonPoints = 0;
-        private int demonEnergy = 0;
+        private int demonEnergy = 50;
 
-        public bool twoNegativeTweetsReceived = false;
+        public int negativeTweetCount;
 
         public void AddPlayerPoints(int points) {
             playerPoints += points;
@@ -21,7 +21,7 @@ namespace GameOff_2019.RoundLogic {
         }
 
         public void UsePlayerEnergy(int energyToUse) {
-            if (playerEnergy - energyToUse > 0) {
+            if (playerEnergy - energyToUse < 0) {
                 playerEnergy = 0;
             }
             else {
@@ -32,7 +32,7 @@ namespace GameOff_2019.RoundLogic {
         }
 
         public void UseDemonEnergy(int energyToUse) {
-            if (demonEnergy - energyToUse > 0) {
+            if (demonEnergy - energyToUse < 0) {
                 demonEnergy = 0;
             }
             else {

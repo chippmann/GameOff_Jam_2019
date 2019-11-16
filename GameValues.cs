@@ -3,6 +3,7 @@ namespace GameOff_2019 {
         #region Player
 
         public static int plantTreePoints = 10;
+        public static int plantTreeEnergyUsage = 20;
         public static int healTreePoints = 10;
         public static int pointsPerSecondForHealthyTree = 1; //multiplied with three growth
 
@@ -12,6 +13,7 @@ namespace GameOff_2019 {
 
         public static int killTreePoints = 10;
         public static int infestTreePoints = 10;
+        public static int infestTreeEnergyUsage = 20;
         public static int pointsPerSecondForInfestedTree = 1; //multiplied with three growth
 
         #endregion

@@ -58,6 +58,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
         public void Infest() {
             if (!(stateMachine.GetCurrentState() is DeadState)) {
                 stateMachine.TransitionTo(stateMachine.infested);
+                treeActionRadius.Infested();
             }
         }
 
@@ -67,6 +68,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
 
         public void Heal() {
             stateMachine.TransitionTo(stateMachine.growing);
+            treeActionRadius.Healed();
         }
 
         public void Kill() {

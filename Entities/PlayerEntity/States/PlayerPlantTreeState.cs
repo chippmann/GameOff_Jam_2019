@@ -60,6 +60,7 @@ namespace GameOff_2019.Entities.PlayerEntity.States {
                 GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.InvalidatePlayerPath), this, nameof(OnPathInvalidated));
             }
 
+            gameState.UsePlayerEnergy(GameValues.plantTreeEnergyUsage);
             pathfindingTileMap.tileMapManipulator.SetTree(targetPosition);
             gameState.AddPlayerPoints(GameValues.plantTreePoints);
             GetStateMachine<PlayerStateMachine>().TransitionTo(GetStateMachine<PlayerStateMachine>().idle);
