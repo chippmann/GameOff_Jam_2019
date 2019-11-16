@@ -45,8 +45,8 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
 
             var displayHeight = GetViewportRect().Size.y;
 
-            if (lifeTime >= 60 || GetGlobalPosition().y > displayHeight) {
-                GetParent().RemoveChild(this);
+            if (lifeTime >= 240 || GetGlobalPosition().y > displayHeight) {
+                QueueFree();
             }
         }
 

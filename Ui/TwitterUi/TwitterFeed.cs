@@ -29,6 +29,7 @@ namespace GameOff_2019.Ui.TwitterUi {
         private readonly List<long> shownTweets = new List<long>();
         private readonly Tween buffAnimationTween = new Tween();
         private GameState gameState;
+        private Timer tweetTimer;
 
         public override void _Ready() {
             base._Ready();
@@ -36,21 +37,24 @@ namespace GameOff_2019.Ui.TwitterUi {
             tmpTweetContainer = GetNode<Control>(tmpTweetContainerNodePath);
             playerEnergy = GetNode<ProgressBar>(playerEnergyNodePath);
             demonEnergy = GetNode<ProgressBar>(demonEnergyNodePath);
+            tweetTimer = new Timer {OneShot = true};
+            AddChild(tweetTimer);
             AddChild(buffAnimationTween);
             ReadTweetsFromDebugJson();
         }
 
         private int count = 0;
-        private float timeElapsed;
 
         public override void _Process(float delta) {
             base._Process(delta);
-            timeElapsed += delta;
-            if (timeElapsed >= 4 /* && count < tweets.Count*/) {
-                timeElapsed = 0;
-                AddTweetToFeed(tweets[new Random().Next(0, tweets.Count)]);
-//                count++;
+            if (!tweetTimer.IsStopped()) return;
+            if (count >= tweets.Count) {
+                count = 0;
             }
+
+            AddTweetToFeed(tweets[count]);
+            count++;
+            tweetTimer.Start(new Random().Next(10, 40));
         }
 
         private void ReadTweetsFromDebugJson() {
@@ -58,6 +62,8 @@ namespace GameOff_2019.Ui.TwitterUi {
             file.Open(pathToTweetsJson, (int) File.ModeFlags.Read);
             var json = file.GetAsText();
             tweets = Serializer.Deserialize<Statuses>(json).statuses;
+            tweets.Sort((tweet1, tweet2) => DateTime.ParseExact(tweet1.created_at, "ddd MMM dd HH:mm:ss zzzz yyyy", null).CompareTo(DateTime.ParseExact(tweet2.created_at, "ddd MMM dd HH:mm:ss zzzz yyyy", null)));
+            tweets.Reverse();
         }
 
         /// <summary>
