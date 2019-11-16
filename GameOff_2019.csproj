@@ -111,6 +111,7 @@
     <Compile Include="Levels\Common\TileMapObjects\TileMapManipulator.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TileMapObjectNodeReference.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TraversableObject\TraversableTileMapObject.cs" />
+    <Compile Include="Levels\Common\TileMapObjects\TreeObject\Effects\TreeAddEnergyParticleEffect.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\TreeStates\DeadState.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\TreeStates\FullyGrownState.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\TreeStates\GrowingState.cs" />
@@ -139,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\DemonEntity\Particles\Textures" />
+    <Folder Include="Levels\Common\TileMapObjects\TreeObject\Assets" />
     <Folder Include="Networking" />
       <Folder Include="Ui\TwitterUi\Effects" />
     <Folder Include="Ui\TwitterUi\Static" />

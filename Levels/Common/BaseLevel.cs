@@ -11,8 +11,12 @@ namespace GameOff_2019.Levels.Common {
 
         public override void _UnhandledInput(InputEvent @event) {
             base._UnhandledInput(@event);
-            if (@event.IsAction("debugAddEvilTweet")) {
+            if (@event.IsActionPressed("debugAddEvilTweet")) {
                 NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true).negativeTweetCount++;
+            }
+
+            if (@event.IsActionPressed("debugAddDemonEnergy")) {
+                NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true).AddDemonEnergy(20);
             }
         }
     }

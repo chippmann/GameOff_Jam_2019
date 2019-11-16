@@ -1,7 +1,8 @@
 namespace GameOff_2019.EngineUtils {
     public class GameConstants {
-        public const int GameUnitSize = 128;
+        public const int GameUnitSize = 128 / 2; //TODO: DEBUG!!! Change to 128 only!!!
         public const string PlayerGroup = "player";
+        public const string DemonGroup = "demon";
         public const string PathfindingTileMapGroup = "pathfindingTileMap";
         public const string ActionRadiusGroup = "actionRadius";
         public const string GameStateGroup = "gameState";

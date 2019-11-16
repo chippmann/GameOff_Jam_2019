@@ -16,6 +16,7 @@ namespace GameOff_2019.Entities.DemonEntity.Behaviours {
         [Export] private readonly NodePath timerNodePath = null;
         public Timer timer;
 
+        private bool finished = false;
         private bool running = false;
         private BTResult btResult = BTResult.Failure;
 
@@ -28,12 +29,18 @@ namespace GameOff_2019.Entities.DemonEntity.Behaviours {
         }
 
         protected override BTResult ExecuteInternal() {
-            if (!running && btResult != BTResult.Running) {
+            if (!running) {
+                finished = false;
                 running = true;
                 btResult = BTResult.Running;
                 GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.TreeInfested), this, nameof(TreeInfested));
                 GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.TargetCannotBeReached), this, nameof(TargetCannotBeReached));
                 stateMachine.TransitionTo(stateMachine.infestTree, new MoveToPositionMessage(GetTreeToInfestWorldPosition()));
+            }
+
+            if (finished && running) {
+                running = false;
+                return btResult;
             }
 
             return btResult;
@@ -48,12 +55,14 @@ namespace GameOff_2019.Entities.DemonEntity.Behaviours {
             var random = new Random();
             var randomTime = random.Next((int) randomTimeRangeBetweenTreeInfestions.x, (int) randomTimeRangeBetweenTreeInfestions.y);
             timer.Start(randomTime);
+            finished = true;
         }
 
         private void TargetCannotBeReached() {
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.TreeInfested), this, nameof(TreeInfested));
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.TargetCannotBeReached), this, nameof(TargetCannotBeReached));
             btResult = BTResult.Failure;
+            finished = true;
         }
     }
 }

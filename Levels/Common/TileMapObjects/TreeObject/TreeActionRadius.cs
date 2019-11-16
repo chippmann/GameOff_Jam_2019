@@ -8,10 +8,10 @@ using Godot;
 
 namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
     public class TreeActionRadius : Area2D {
-        [Export] private NodePath textureNodePath = null;
+        [Export] private readonly NodePath textureNodePath = null;
         private Sprite treeActionRadiusTexture;
-        [Export] private Texture healthyTexture = null;
-        [Export] private Texture infestedTexture = null;
+        [Export] private readonly Texture healthyTexture = null;
+        [Export] private readonly Texture infestedTexture = null;
         private PathfindingTileMap pathfindingTileMap;
         private TileMapManipulator tileMapManipulator;
         private readonly List<Node2D> nodesInActionRadius = new List<Node2D>();

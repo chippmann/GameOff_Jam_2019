@@ -24,6 +24,8 @@ namespace GameOff_2019 {
 
         public static int treeHeal = 5;
         public static int treeInfestionDamage = 5;
+        public static float treeAddEnergyPerSecondsInterval = 1f;
+        public static int energyForEntitiesInRadius = 1;
 
         #endregion
     }
