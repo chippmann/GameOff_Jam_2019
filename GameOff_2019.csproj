@@ -55,6 +55,7 @@
   <ItemGroup>
       <Compile Include="Data\Entities.cs" />
       <Compile Include="Data\Hashtag.cs" />
+    <Compile Include="Data\Statuses.cs" />
       <Compile Include="Data\Tweet.cs" />
       <Compile Include="Data\Url.cs" />
       <Compile Include="Data\User.cs" />
@@ -134,6 +135,7 @@
   <ItemGroup>
     <Content Include="executeGame.sh" />
     <Content Include="Ui\TwitterUi\DebugTwitterJsonResponse.json" />
+    <Content Include="Ui\TwitterUi\StaticTweets.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\DemonEntity\Particles\Textures" />

@@ -56,36 +56,39 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
             name.SetText(tweet.user.name);
             displayName.SetText($"@{tweet.user.screen_name}");
             SetTimeSincePosting();
-            var randomReplyCount = new Random().Next(1, tweet.user.followers_count / 50);
+            var randomReplyCount = new Random().Next(0, tweet.user.followers_count / 50);
             replies.SetText(randomReplyCount > 0 ? randomReplyCount.ToString() : "");
             retweets.SetText(tweet.retweet_count.ToString());
             likes.SetText(tweetToSet.favorite_count.ToString());
 
             var bbCode = tweet.text;
             foreach (var hashTag in tweet.entities.hashtags) {
-                bbCode = bbCode.Insert(bbCode.IndexOf(hashTag.text, StringComparison.Ordinal), "[color=#1a95e0]");
-                bbCode = bbCode.Insert(bbCode.IndexOf(hashTag.text, StringComparison.Ordinal) + hashTag.text.Length, "[/color]");
+                bbCode = bbCode.Insert(bbCode.ToLower().IndexOf("#" + hashTag.text.ToLower(), StringComparison.Ordinal), "[color=#1a95e0]");
+                bbCode = bbCode.Insert(bbCode.ToLower().IndexOf("#" + hashTag.text.ToLower(), StringComparison.Ordinal) + ("#" + hashTag.text.ToLower()).Length, "[/color]");
             }
 
             foreach (var url in tweet.entities.urls) {
-                bbCode = bbCode.Insert(bbCode.IndexOf(url.url, StringComparison.Ordinal), "[color=#1a95e0][url]");
-                bbCode = bbCode.Insert(bbCode.IndexOf(url.url, StringComparison.Ordinal) + url.url.Length, "[/url][/color]");
+                bbCode = bbCode.Insert(bbCode.ToLower().IndexOf(url.url.ToLower(), StringComparison.Ordinal), "[color=#1a95e0][url]");
+                bbCode = bbCode.Insert(bbCode.ToLower().IndexOf(url.url.ToLower(), StringComparison.Ordinal) + url.url.ToLower().Length, "[/url][/color]");
             }
-//            foreach (var mention in tweet.entities.user_mentions) {
-//                bbCode = bbCode.Insert(mention.indices[0], "[color=#1a95e0]");
-//                bbCode = bbCode.Insert(mention.indices[0] + mention.indices[1] + mention.indices.Count, "[/color]");
-//            }
+
+            foreach (var mention in tweet.entities.user_mentions) {
+                bbCode = bbCode.Insert(bbCode.ToLower().IndexOf(("@" + mention.screen_name).ToLower(), StringComparison.Ordinal), "[color=#1a95e0]");
+                bbCode = bbCode.Insert(bbCode.ToLower().IndexOf(("@" + mention.screen_name).ToLower(), StringComparison.Ordinal) + ("@" + mention.screen_name).ToLower().Length, "[/color]");
+            }
 
             text.SetBbcode(bbCode);
         }
 
         public void SetCustomMinimumSize() {
-            text.SetCustomMinimumSize(new Vector2(text.GetRect().Size.x, text.GetVScroll().GetMax())); //workaround as rich text label doesn't scale to content -.-
+            text.SetCustomMinimumSize(new Vector2(0, text.GetVScroll().GetMax())); //workaround as rich text label doesn't scale to content -.-
+            text.SetSize(new Vector2(213, text.GetVScroll().GetMax()));
+            SetSize(new Vector2(250, GetSize().y));
         }
 
         private void SetTimeSincePosting() {
             //Sat May 04 15:00:33 +0000 2019
-            var tweetTime = DateTime.ParseExact(tweet.created_at, "ddd MMMM dd HH:mm:ss zzzz yyyy", null);
+            var tweetTime = DateTime.ParseExact(tweet.created_at, "ddd MMM dd HH:mm:ss zzzz yyyy", null);
             string timeString;
             var difference = DateTime.Now - tweetTime;
 

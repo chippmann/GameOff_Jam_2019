@@ -16,7 +16,7 @@ namespace GameOff_2019.Ui.TwitterUi {
         [Export] private readonly PackedScene fillerTweetPackedScene;
         [Export] private readonly PackedScene playerBuffParticlesPackedScene;
         [Export] private readonly PackedScene demonBuffParticlesPackedScene;
-        [Export] private readonly string pathToTweetsJson = "res://Ui/TwitterUi/DebugTwitterJsonResponse.json";
+        [Export] private readonly string pathToTweetsJson = "res://Ui/TwitterUi/StaticTweets.json";
         [Export] private readonly NodePath tmpTweetContainerNodePath = null;
         private Control tmpTweetContainer;
         [Export] private readonly NodePath playerEnergyNodePath = null;
@@ -57,7 +57,7 @@ namespace GameOff_2019.Ui.TwitterUi {
             var file = new File();
             file.Open(pathToTweetsJson, (int) File.ModeFlags.Read);
             var json = file.GetAsText();
-            tweets = Serializer.Deserialize<List<Tweet>>(json);
+            tweets = Serializer.Deserialize<Statuses>(json).statuses;
         }
 
         /// <summary>
@@ -115,8 +115,8 @@ namespace GameOff_2019.Ui.TwitterUi {
         }
 
         private async void AddBuff(Tweet tweet, TweetUi tweetUi) {
-            var isPositive = tweet.entities.hashtags.Any(hashTag => hashTag.text == "#climateChange");
-            var isNegative = tweet.entities.hashtags.Any(hashTag => hashTag.text == "#ClimateHoax");
+            var isPositive = tweet.entities.hashtags.Any(hashTag => hashTag.text.ToLower() == "climatechange");
+            var isNegative = tweet.entities.hashtags.Any(hashTag => hashTag.text.ToLower() == "climatehoax");
             if (isPositive && !isNegative) {
                 await AddEnergyAndParticles(tweetUi, playerBuffParticlesPackedScene, playerEnergy.GetGlobalPosition() + playerEnergy.GetSize() / 2, gameState.AddPlayerEnergy);
             }

@@ -58,7 +58,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-editor/display_folded = true
 margin_right = 213.0
 margin_bottom = 15.0
 mouse_filter = 1
@@ -66,7 +65,6 @@ size_flags_horizontal = 3
 custom_constants/margin_top = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer"]
-editor/display_folded = true
 margin_top = 5.0
 margin_right = 213.0
 margin_bottom = 15.0
@@ -74,17 +72,19 @@ size_flags_horizontal = 3
 custom_constants/separation = 0
 
 [node name="AutorName" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-margin_right = 60.0
+margin_right = 131.0
 margin_bottom = 10.0
+size_flags_horizontal = 3
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Trisha Gee"
+clip_text = true
 
 [node name="TwitterName" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 60.0
+margin_left = 131.0
 margin_top = 4.0
-margin_right = 113.0
+margin_right = 184.0
 margin_bottom = 10.0
 size_flags_vertical = 12
 custom_fonts/font = ExtResource( 5 )
@@ -92,10 +92,11 @@ custom_colors/font_color = Color( 0.533333, 0.6, 0.65098, 1 )
 text = "@trisha_gee"
 
 [node name="TimeSincePosting" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 113.0
+margin_left = 184.0
 margin_top = 4.0
-margin_right = 137.0
+margin_right = 208.0
 margin_bottom = 10.0
+size_flags_horizontal = 8
 size_flags_vertical = 12
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.533333, 0.6, 0.65098, 1 )
@@ -106,7 +107,7 @@ margin_left = 208.0
 margin_right = 213.0
 margin_bottom = 4.0
 rect_min_size = Vector2( 5, 4 )
-size_flags_horizontal = 10
+size_flags_horizontal = 8
 size_flags_vertical = 0
 texture = ExtResource( 6 )
 expand = true
