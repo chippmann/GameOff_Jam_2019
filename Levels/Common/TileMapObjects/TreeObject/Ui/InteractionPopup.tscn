@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/Ui/InteractionPopup.cs" type="Script" id=1]
 [ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/Ui/InteractionOption.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/Assets/ ic_skull.png" type="Texture" id=3]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/Assets/ic_heart.png" type="Texture" id=4]
 
 [node name="PopupPanel" type="PopupPanel"]
 margin_right = 8.0
@@ -30,11 +32,14 @@ columns = 3
 [node name="KillTreeOption" parent="MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_right = 64.0
 margin_bottom = 82.0
+icon = ExtResource( 3 )
 textureRectNodePath = NodePath("../KillTreeOption/TextureRect")
 labelNodePath = NodePath("../KillTreeOption/Label")
 
 [node name="HealTreeOption" parent="MarginContainer/GridContainer" instance=ExtResource( 2 )]
-margin_right = 64.0
+margin_left = 68.0
+margin_right = 132.0
 margin_bottom = 82.0
+icon = ExtResource( 4 )
 textureRectNodePath = NodePath("../HealTreeOption/TextureRect")
 labelNodePath = NodePath("../HealTreeOption/Label")
