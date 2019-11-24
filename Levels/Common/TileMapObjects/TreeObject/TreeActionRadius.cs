@@ -50,7 +50,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
         }
 
         public void Healed() {
-            treeActionRadiusTexture.SetTexture(infestedTexture);
+            treeActionRadiusTexture.SetTexture(healthyTexture);
         }
     }
 }

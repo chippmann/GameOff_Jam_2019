@@ -60,7 +60,7 @@ namespace GameOff_2019.Entities.PlayerEntity.States {
                 GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.InvalidatePlayerPath), this, nameof(OnPathInvalidated));
             }
 
-            var tileMapObject = pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(targetPosition));
+            var tileMapObject = pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(targetPosition);
             if (tileMapObject is TreeTileMapObject treeTileMapObject) {
                 //TODO: show animation
                 treeTileMapObject.Heal();
