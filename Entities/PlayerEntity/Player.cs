@@ -2,6 +2,7 @@ using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common;
 using GameOff_2019.Entities.PlayerEntity.States.Message;
 using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
+using GameOff_2019.RoundLogic;
 using Godot;
 
 namespace GameOff_2019.Entities.PlayerEntity {
@@ -11,10 +12,13 @@ namespace GameOff_2019.Entities.PlayerEntity {
         [Export] private readonly NodePath playerStateMachineNodePath = null;
         private PlayerStateMachine playerStateMachine;
 
+        private GameState gameState;
+
         public override void _Ready() {
             base._Ready();
             removeTreeChecker = GetNode<RemoveTreeChecker>(removeTreeCheckerNodePath);
             playerStateMachine = GetNode<PlayerStateMachine>(playerStateMachineNodePath);
+            gameState = NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true);
         }
 
         public override void _UnhandledInput(InputEvent @event) {
@@ -28,8 +32,9 @@ namespace GameOff_2019.Entities.PlayerEntity {
                 var mousePosition = GetGlobalMousePosition();
                 if (pathfindingTileMap.IsWorldPositionInTileMap(mousePosition)) {
                     if (
-                        (pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == pathfindingTileMap.traversableId
-                         || pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == pathfindingTileMap.playerTraversableId)
+                        gameState.GetPlayerEnergy() >= GameValues.plantTreeEnergyUsage
+                        && (pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == pathfindingTileMap.traversableId
+                            || pathfindingTileMap.GetCell((int) pathfindingTileMap.WorldToMap(mousePosition).x, (int) pathfindingTileMap.WorldToMap(mousePosition).y) == pathfindingTileMap.playerTraversableId)
                         && pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(mousePosition)).CanInteract()
                     ) {
                         playerStateMachine.TransitionTo(playerStateMachine.plantTree, new MoveToPositionMessage(mousePosition));

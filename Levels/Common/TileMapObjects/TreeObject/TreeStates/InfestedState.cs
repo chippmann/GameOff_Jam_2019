@@ -78,7 +78,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
         }
 
         private void OnEnergyTimerTimeout() {
-            if (!treeActionRadius.IsEntityInActionRadius(demon)) return;
+//            if (!treeActionRadius.IsEntityInActionRadius(demon)) return;
             if (!(addEnergyParticleEffectPackedScene.Instance() is TreeAddEnergyParticleEffect addEnergyParticleEffect)) return;
             addEnergyParticleEffect.Init(demon);
             addEnergyParticleEffect.SetGlobalPosition(GetGlobalPosition());

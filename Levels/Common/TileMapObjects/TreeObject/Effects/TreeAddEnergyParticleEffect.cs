@@ -15,6 +15,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Effects {
         private Tween positionTween;
 
         private Vector2 tmpTargetPosition;
+        private bool targetReached = false;
 
         public override void _Ready() {
             base._Ready();
@@ -32,8 +33,9 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Effects {
 
         public override async void _Process(float delta) {
             base._Process(delta);
-            if (GetGlobalPosition().DistanceTo(targetToFollow.GetGlobalPosition()) < GameConstants.GameUnitSize / 2f) {
+            if (!targetReached && GetGlobalPosition().DistanceTo(targetToFollow.GetGlobalPosition()) < GameConstants.GameUnitSize / 2f) {
                 if (targetToFollow is Player) {
+                    targetReached = true;
                     gameState.AddPlayerEnergy(GameValues.energyForEntitiesInRadius);
                 }
                 else {
