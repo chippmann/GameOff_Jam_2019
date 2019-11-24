@@ -5,31 +5,33 @@ using System.Threading.Tasks;
 using GameOff_2019.Data;
 using GameOff_2019.EngineUtils;
 using GameOff_2019.RoundLogic;
-using GameOff_2019.Serialization;
 using GameOff_2019.Ui.TwitterUi.Dynamic;
 using Godot;
 
 namespace GameOff_2019.Ui.TwitterUi {
     public class TwitterFeed : VBoxContainer {
-        [Export] private readonly PackedScene tweetPackedScene;
-        [Export] private readonly PackedScene tweetWithImagePackedScene;
-        [Export] private readonly PackedScene fillerTweetPackedScene;
-        [Export] private readonly PackedScene playerBuffParticlesPackedScene;
-        [Export] private readonly PackedScene demonBuffParticlesPackedScene;
-        [Export] private readonly string pathToTweetsJson = "res://Ui/TwitterUi/StaticTweets.json";
+        [Export] private readonly PackedScene tweetPackedScene = null;
+        [Export] private readonly PackedScene tweetWithImagePackedScene = null;
+        [Export] private readonly PackedScene fillerTweetPackedScene = null;
+        [Export] private readonly PackedScene playerBuffParticlesPackedScene = null;
+        [Export] private readonly PackedScene demonBuffParticlesPackedScene = null;
+
         [Export] private readonly NodePath tmpTweetContainerNodePath = null;
         private Control tmpTweetContainer;
         [Export] private readonly NodePath playerEnergyNodePath = null;
         private ProgressBar playerEnergy;
         [Export] private readonly NodePath demonEnergyNodePath = null;
         private ProgressBar demonEnergy;
+        [Export] private readonly NodePath tweetUpdaterNodePath = null;
+        private TweetUpdater tweetUpdater;
 
 
-        private List<Tweet> tweets;
-        private readonly List<long> shownTweets = new List<long>();
+        private readonly List<Tweet> tweets = new List<Tweet>();
+        private readonly List<Tweet> tutorialTweets = new List<Tweet>();
         private readonly Tween buffAnimationTween = new Tween();
         private GameState gameState;
         private Timer tweetTimer;
+        private Timer tutorialTweetTimer;
 
         public override void _Ready() {
             base._Ready();
@@ -37,33 +39,49 @@ namespace GameOff_2019.Ui.TwitterUi {
             tmpTweetContainer = GetNode<Control>(tmpTweetContainerNodePath);
             playerEnergy = GetNode<ProgressBar>(playerEnergyNodePath);
             demonEnergy = GetNode<ProgressBar>(demonEnergyNodePath);
+            tweetUpdater = GetNode<TweetUpdater>(tweetUpdaterNodePath);
             tweetTimer = new Timer {OneShot = true};
+            tutorialTweetTimer = new Timer {OneShot = true};
             AddChild(tweetTimer);
+            AddChild(tutorialTweetTimer);
             AddChild(buffAnimationTween);
-            ReadTweetsFromDebugJson();
+            tweetUpdater.GetTweets(UpdateTweets);
+            tutorialTweets.AddRange(tweetUpdater.GetTutorialTweets().statuses);
         }
 
         private int count = 0;
+        private int tutorialCount = 0;
 
         public override void _Process(float delta) {
             base._Process(delta);
-            if (!tweetTimer.IsStopped()) return;
-            if (count >= tweets.Count) {
-                count = 0;
+            if (tweetTimer.IsStopped() && tweets.Count > 0) {
+                if (tweets.Count > 0 && count > tweets.Count / 4 * 3) {
+                    tweetUpdater.GetTweets(UpdateTweets);
+                }
+
+                if (count >= tweets.Count) {
+                    count = 0;
+                }
+
+                AddTweetToFeed(tweets[count]);
+                count++;
+                tweetTimer.Start(new Random().Next(10, 20));
             }
 
-            AddTweetToFeed(tweets[count]);
-            count++;
-            tweetTimer.Start(new Random().Next(10, 40));
+            if (tutorialTweetTimer.IsStopped() && tutorialTweets.Count > 0) {
+                if (tutorialCount >= tutorialTweets.Count) {
+                    tutorialCount = 0;
+                }
+
+                tutorialTweets[tutorialCount].created_at = DateTime.Now.ToString("ddd MMM dd HH:mm:ss zzzz yyyy");
+                AddTweetToFeed(tutorialTweets[tutorialCount]);
+                tutorialCount++;
+                tutorialTweetTimer.Start(new Random().Next(10, 20));
+            }
         }
 
-        private void ReadTweetsFromDebugJson() {
-            var file = new File();
-            file.Open(pathToTweetsJson, (int) File.ModeFlags.Read);
-            var json = file.GetAsText();
-            tweets = Serializer.Deserialize<Statuses>(json).statuses;
-            tweets.Sort((tweet1, tweet2) => DateTime.ParseExact(tweet1.created_at, "ddd MMM dd HH:mm:ss zzzz yyyy", null).CompareTo(DateTime.ParseExact(tweet2.created_at, "ddd MMM dd HH:mm:ss zzzz yyyy", null)));
-            tweets.Reverse();
+        private void UpdateTweets(Statuses statuses) {
+            tweets.AddRange(statuses.statuses);
         }
 
         /// <summary>
@@ -77,8 +95,6 @@ namespace GameOff_2019.Ui.TwitterUi {
             var timer = new Timer();
             AddChild(animationTween);
             AddChild(timer);
-
-            shownTweets.Add(tweet.id);
 
             tmpTweetContainer.AddChild(tweetUi);
             tweetUi.Init(tweet);
@@ -120,9 +136,12 @@ namespace GameOff_2019.Ui.TwitterUi {
             AddBuff(tweet, tweetUi);
         }
 
+        private readonly List<string> positiveHashTags = new List<string>() {"climatechange", "fridayforfuture", "teamtrees"};
+        private readonly List<string> negativeHashTags = new List<string>() {"climatehoax", "americafirst"};
+
         private async void AddBuff(Tweet tweet, TweetUi tweetUi) {
-            var isPositive = tweet.entities.hashtags.Any(hashTag => hashTag.text.ToLower() == "climatechange");
-            var isNegative = tweet.entities.hashtags.Any(hashTag => hashTag.text.ToLower() == "climatehoax");
+            var isPositive = tweet.entities.hashtags.Any(hashTag => positiveHashTags.Contains(hashTag.text.ToLower()));
+            var isNegative = tweet.entities.hashtags.Any(hashTag => negativeHashTags.Contains(hashTag.text.ToLower()));
             if (isPositive && !isNegative) {
                 await AddEnergyAndParticles(tweetUi, playerBuffParticlesPackedScene, playerEnergy.GetGlobalPosition() + playerEnergy.GetSize() / 2, gameState.AddPlayerEnergy);
             }

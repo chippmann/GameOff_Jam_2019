@@ -32,7 +32,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Effects {
 
         public override async void _Process(float delta) {
             base._Process(delta);
-            if ((GetGlobalPosition()).DistanceTo(targetToFollow.GetGlobalPosition()) < GameConstants.GameUnitSize / 2f) {
+            if (GetGlobalPosition().DistanceTo(targetToFollow.GetGlobalPosition()) < GameConstants.GameUnitSize / 2f) {
                 if (targetToFollow is Player) {
                     gameState.AddPlayerEnergy(GameValues.energyForEntitiesInRadius);
                 }

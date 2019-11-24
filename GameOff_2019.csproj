@@ -53,8 +53,10 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Credentials.cs" />
       <Compile Include="Data\Entities.cs" />
       <Compile Include="Data\Hashtag.cs" />
+    <Compile Include="Data\RestResponse.cs" />
     <Compile Include="Data\Statuses.cs" />
       <Compile Include="Data\Tweet.cs" />
       <Compile Include="Data\Url.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\TreeTileMapObject.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\Ui\InteractionOption.cs" />
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\Ui\InteractionPopup.cs" />
+    <Compile Include="Networking\RestClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoundLogic\GameState.cs" />
     <Compile Include="Serialization\Serializer.cs" />
@@ -131,17 +134,18 @@
       <Compile Include="Ui\PointsUi.cs" />
     <Compile Include="Ui\TwitterUi\Dynamic\FillerTweet.cs" />
       <Compile Include="Ui\TwitterUi\Dynamic\TweetUi.cs" />
+    <Compile Include="Ui\TwitterUi\TweetUpdater.cs" />
     <Compile Include="Ui\TwitterUi\TwitterFeed.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Credentials\tweetsApiCredentials.json" />
     <Content Include="executeGame.sh" />
-    <Content Include="Ui\TwitterUi\DebugTwitterJsonResponse.json" />
+    <Content Include="Ui\TwitterUi\TutorialTweets.json" />
     <Content Include="Ui\TwitterUi\StaticTweets.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\DemonEntity\Particles\Textures" />
     <Folder Include="Levels\Common\TileMapObjects\TreeObject\Assets" />
-    <Folder Include="Networking" />
       <Folder Include="Ui\TwitterUi\Effects" />
     <Folder Include="Ui\TwitterUi\Static" />
   </ItemGroup>

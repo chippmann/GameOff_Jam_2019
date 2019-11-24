@@ -1,6 +1,8 @@
+using System;
+
 namespace GameOff_2019.Data {
     public class Tweet {
-        public string created_at { get; set; }
+        public string created_at = DateTime.Now.ToString("ddd MMM dd HH:mm:ss zzzz yyyy");
         public long id { get; set; }
         public string text { get; set; }
         public Entities entities { get; set; }
