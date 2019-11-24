@@ -12,13 +12,17 @@ textureRectNodePath = NodePath("TextureRect")
 labelNodePath = NodePath("Label")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 64.0
-margin_bottom = 64.0
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture = ExtResource( 2 )
+expand = true
 
 [node name="Label" type="Label" parent="."]
-margin_top = 68.0
-margin_right = 64.0
-margin_bottom = 82.0
+margin_top = 36.0
+margin_right = 52.0
+margin_bottom = 50.0
 text = "Kill Tree"
 align = 1

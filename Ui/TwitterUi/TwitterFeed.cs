@@ -136,7 +136,7 @@ namespace GameOff_2019.Ui.TwitterUi {
             AddBuff(tweet, tweetUi);
         }
 
-        private readonly List<string> positiveHashTags = new List<string>() {"climatechange", "fridayforfuture", "teamtrees"};
+        public static readonly List<string> positiveHashTags = new List<string>() {"climatechange", "fridayforfuture", "teamtrees"};
         private readonly List<string> negativeHashTags = new List<string>() {"climatehoax", "americafirst"};
 
         private async void AddBuff(Tweet tweet, TweetUi tweetUi) {

@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Linq;
 using GameOff_2019.Data;
 using Godot;
 
@@ -7,6 +8,10 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
     public class TweetUi : PanelContainer {
         [Export] private readonly NodePath avatarNodePath = null;
         private TextureRect avatar;
+        [Export] private readonly Texture positiveAvatar = null;
+        [Export] private readonly Texture negativeAvatar = null;
+        [Export] private readonly Texture tutorAvatar = null;
+        [Export] private readonly Texture infoAvatar = null;
         [Export] private readonly NodePath nameNodePath = null;
         private Label name;
         [Export] private readonly NodePath displayNameNodePath = null;
@@ -61,6 +66,8 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
             replies.SetText(randomReplyCount > 0 ? randomReplyCount.ToString() : "");
             retweets.SetText(tweet.retweet_count.ToString());
             likes.SetText(tweetToSet.favorite_count.ToString());
+            SetAvatar();
+
 
             var bbCode = tweet.text;
             foreach (var hashTag in tweet.entities.hashtags) {
@@ -108,6 +115,21 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
             }
 
             timeSincePosting.SetText($"·{timeString}");
+        }
+
+        private void SetAvatar() {
+            if (tweet.entities.hashtags.Any(hashTag => hashTag.text == "Tutorial")) {
+                avatar.SetTexture(tutorAvatar);
+            }
+            else if (tweet.entities.hashtags.Any(hashTag => hashTag.text == "Information")) {
+                avatar.SetTexture(infoAvatar);
+            }
+            else if (tweet.entities.hashtags.Any(hashTag => TwitterFeed.positiveHashTags.Contains(hashTag.text.ToLower()))) {
+                avatar.SetTexture(positiveAvatar);
+            }
+            else {
+                avatar.SetTexture(negativeAvatar);
+            }
         }
     }
 }
