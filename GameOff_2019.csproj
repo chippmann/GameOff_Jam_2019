@@ -145,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\DemonEntity\Particles\Textures" />
+      <Folder Include="Levels\Assets" />
     <Folder Include="Levels\Common\TileMapObjects\TreeObject\Assets" />
       <Folder Include="Ui\TwitterUi\Effects" />
     <Folder Include="Ui\TwitterUi\Static" />

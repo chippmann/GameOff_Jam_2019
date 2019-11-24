@@ -16,7 +16,7 @@ namespace GameOff_2019.Ui {
         private Control mouseCaptureBottom;
         [Export] private readonly NodePath uiContainerCanvasLayerNodePath = null;
         private CanvasLayer uiContainerCanvasLayer;
-        [Export] private readonly int mouseSensitivity = 15;
+        [Export] private readonly int mouseSensitivity = 30;
 
 
         private readonly bool[] moveInput = new bool[4];

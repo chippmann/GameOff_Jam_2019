@@ -10,6 +10,7 @@ namespace GameOff_2019.Entities.Common.Navigation {
         [Export] public readonly int traversableId = 0;
         [Export] public readonly int treeId = 1;
         [Export] public readonly int playerTraversableId = 2;
+        [Export] public readonly int emptyId = 3;
 
         [Export] private readonly NodePath pathfindingDebugCanvasNodePath = null;
         [Export] private readonly NodePath tileMapManipulatorNodePath = null;

@@ -24,7 +24,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
 
         public override void _Process(float delta) {
             base._Process(delta);
-            if (treeTileMapObject != null) {
+            if (treeTileMapObject != null && IsVisible()) {
                 healTreeInteractionObject.SetActive(treeTileMapObject.IsInfested());
                 killTreeInteractionObject.SetActive(player.CanRemoveTree(GetGlobalPosition()));
             }

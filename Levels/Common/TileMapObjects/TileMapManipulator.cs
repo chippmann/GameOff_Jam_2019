@@ -86,9 +86,10 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
                     throw new Exception("Expected already setup tileMapObjectNodeReference!");
                 }
             }
-            else {
-                throw new Exception("Instance is not a tileMapObject");
-            }
+
+//            else {
+//                throw new Exception("Instance is not a tileMapObject");
+//            }
         }
 
         public List<Vector2> GetOverlappingTiles(Vector2 parentTilePosition) {
@@ -188,17 +189,19 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
                         childObjectNodeReference.parents.Remove(uniqueCellId);
 
                         if (childObjectNodeReference.parents.Count == 0) {
-                            childObjectNodeReference.node.QueueFree();
+                            childObjectNodeReference.node?.QueueFree();
 
-                            if (tileIdToPackedSceneMapping.TryGetValue(pathfindingTileMap.traversableId, out var traversablePackedScene)) {
-                                pathfindingTileMap.SetCell((int) overlappingTile.x, (int) overlappingTile.y, pathfindingTileMap.traversableId);
-                                childObjectNodeReference.node = traversablePackedScene.Instance() as Node2D;
-                                tileMapObjectContainer.AddChild(childObjectNodeReference.node);
-                                objectNodeReference.node.ZIndex = (int) tileMapPosition.y * 2;
-                                childObjectNodeReference.node?.SetGlobalPosition(pathfindingTileMap.MapToWorld(overlappingTile) + pathfindingTileMap.CellSize / 2);
-                            }
-                            else {
-                                throw new Exception("PackedScene cannot be null!");
+                            if (pathfindingTileMap.GetCell((int) overlappingTile.x, (int) overlappingTile.y) != -1 && pathfindingTileMap.GetCell((int) overlappingTile.x, (int) overlappingTile.y) != pathfindingTileMap.emptyId) {
+                                if (tileIdToPackedSceneMapping.TryGetValue(pathfindingTileMap.traversableId, out var traversablePackedScene)) {
+                                    pathfindingTileMap.SetCell((int) overlappingTile.x, (int) overlappingTile.y, pathfindingTileMap.traversableId);
+                                    childObjectNodeReference.node = traversablePackedScene.Instance() as Node2D;
+                                    tileMapObjectContainer.AddChild(childObjectNodeReference.node);
+                                    objectNodeReference.node.ZIndex = (int) tileMapPosition.y * 2;
+                                    childObjectNodeReference.node?.SetGlobalPosition(pathfindingTileMap.MapToWorld(overlappingTile) + pathfindingTileMap.CellSize / 2);
+                                }
+                                else {
+                                    throw new Exception("PackedScene cannot be null!");
+                                }
                             }
                         }
                     }

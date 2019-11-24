@@ -11,10 +11,10 @@
 [ext_resource path="res://Entities/PlayerEntity/States/PlayerHealTreeState.cs" type="Script" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 32.0
+radius = 63.3806
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 32.0
+radius = 63.6775
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -26,6 +26,7 @@ removeTreeCheckerNodePath = NodePath("RemoveTreeChecker")
 playerStateMachineNodePath = NodePath("StateMachine")
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
