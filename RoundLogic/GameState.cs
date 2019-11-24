@@ -10,11 +10,6 @@ namespace GameOff_2019.RoundLogic {
 
         public int negativeTweetCount;
 
-        public override void _PhysicsProcess(float delta) {
-            base._PhysicsProcess(delta);
-            Logger.Debug(playerEnergy.ToString());
-        }
-
         public void AddPlayerPoints(int points) {
             playerPoints += points;
             GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.PointsChanged));

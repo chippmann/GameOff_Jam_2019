@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using GameOff_2019.Data;
@@ -57,7 +58,11 @@ namespace GameOff_2019.Ui.TwitterUi {
             file.Open(pathToTweetsJson, (int) File.ModeFlags.Read);
             var json = file.GetAsText();
             var statuses = Serializer.Deserialize<Statuses>(json);
-            statuses.statuses.Sort((tweet1, tweet2) => DateTime.ParseExact(tweet1.created_at, "ddd MMM dd HH:mm:ss zzzz yyyy", null).CompareTo(DateTime.ParseExact(tweet2.created_at, "ddd MMM dd HH:mm:ss zzzz yyyy", null)));
+            statuses.statuses.Sort((tweet1, tweet2) => {
+                DateTime.TryParseExact(tweet1.created_at, "ddd MMM dd HH:mm:ss zzz yyyy", new System.Globalization.CultureInfo("en-US", false), DateTimeStyles.AssumeUniversal, out var dateTime1);
+                DateTime.TryParseExact(tweet2.created_at, "ddd MMM dd HH:mm:ss zzz yyyy", new System.Globalization.CultureInfo("en-US", false), DateTimeStyles.AssumeUniversal, out var dateTime2);
+                return dateTime1.CompareTo(dateTime2);
+            });
             statuses.statuses.Reverse();
             return statuses;
         }

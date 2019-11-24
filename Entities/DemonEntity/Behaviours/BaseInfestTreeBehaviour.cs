@@ -12,7 +12,7 @@ namespace GameOff_2019.Entities.DemonEntity.Behaviours {
         [Export] private readonly NodePath movePositionFinderNodePath = null;
         protected MovePositionFinder movePositionFinder;
         [Export] public readonly int energyConsumption = 20;
-        [Export] private readonly Vector2 randomTimeRangeBetweenTreeInfestions = new Vector2(10, 30);
+        [Export] private readonly Vector2 randomTimeRangeBetweenTreeInfestions = new Vector2(10, 20);
         [Export] private readonly NodePath timerNodePath = null;
         public Timer timer;
 

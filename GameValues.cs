@@ -14,7 +14,7 @@ namespace GameOff_2019 {
         public static int killTreePoints = 200;
         public static int infestTreePoints = 100;
         public static int infestTreeEnergyUsage = 20;
-        public static int pointsPerSecondForInfestedTree = 1; //multiplied with three growth
+        public static int pointsPerSecondForInfestedTree = 10; //multiplied with three growth
 
         #endregion
 

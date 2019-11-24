@@ -435,3 +435,4 @@ fabric.properties
 
 # End of https://www.gitignore.io/api/godot,rider,csharp
 /Credentials/tweetsApiCredentials.json
+/Build

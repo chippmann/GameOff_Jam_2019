@@ -39,6 +39,7 @@ script = ExtResource( 4 )
 [node name="TileMap" type="TileMap" parent="." groups=[
 "pathfindingTileMap",
 ]]
+visible = false
 z_index = -1
 tile_set = ExtResource( 5 )
 format = 1

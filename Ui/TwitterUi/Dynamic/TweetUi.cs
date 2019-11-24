@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using GameOff_2019.Data;
 using Godot;
 
@@ -88,7 +89,8 @@ namespace GameOff_2019.Ui.TwitterUi.Dynamic {
 
         private void SetTimeSincePosting() {
             //Sat May 04 15:00:33 +0000 2019
-            var tweetTime = DateTime.ParseExact(tweet.created_at, "ddd MMM dd HH:mm:ss zzzz yyyy", null);
+            DateTime.TryParseExact(tweet.created_at, "ddd MMM dd HH:mm:ss zzz yyyy", new System.Globalization.CultureInfo("en-US", false), DateTimeStyles.AssumeUniversal, out var tweetTime);
+//            var tweetTime = DateTime.ParseExact(tweet.created_at, "ddd MMM dd HH:mm:ss zzz yyyy", new System.Globalization.CultureInfo("en-US", false), DateTimeStyles.AssumeUniversal);
             string timeString;
             var difference = DateTime.Now - tweetTime;
 
