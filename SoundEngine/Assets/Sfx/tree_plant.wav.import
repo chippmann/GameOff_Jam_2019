@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/tree_plant.wav-151a669d94a1744633fc609c6fb00320.sample"
+
+[deps]
+
+source_file="res://SoundEngine/Assets/Sfx/tree_plant.wav"
+dest_files=[ "res://.import/tree_plant.wav-151a669d94a1744633fc609c6fb00320.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

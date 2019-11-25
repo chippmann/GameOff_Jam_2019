@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -46,22 +46,22 @@
       <HintPath>$(ProjectDir)/.mono/assemblies/GodotSharpEditor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-      <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
-          <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-          <Private>True</Private>
-      </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Credentials.cs" />
-      <Compile Include="Data\Entities.cs" />
-      <Compile Include="Data\Hashtag.cs" />
+    <Compile Include="Data\Entities.cs" />
+    <Compile Include="Data\Hashtag.cs" />
     <Compile Include="Data\RestResponse.cs" />
     <Compile Include="Data\Statuses.cs" />
-      <Compile Include="Data\Tweet.cs" />
-      <Compile Include="Data\Url.cs" />
-      <Compile Include="Data\User.cs" />
-      <Compile Include="Data\UserMention.cs" />
+    <Compile Include="Data\Tweet.cs" />
+    <Compile Include="Data\Url.cs" />
+    <Compile Include="Data\User.cs" />
+    <Compile Include="Data\UserMention.cs" />
     <Compile Include="EngineUtils\Eventing.cs" />
     <Compile Include="EngineUtils\GameConstants.cs" />
     <Compile Include="EngineUtils\Logger.cs" />
@@ -101,12 +101,12 @@
     <Compile Include="Entities\PlayerEntity\Player.cs" />
     <Compile Include="Entities\PlayerEntity\PlayerStateMachine.cs" />
     <Compile Include="Entities\PlayerEntity\RemoveTreeChecker.cs" />
-      <Compile Include="Entities\PlayerEntity\States\Message\MoveToPositionMessage.cs" />
-      <Compile Include="Entities\PlayerEntity\States\PlayerHealTreeState.cs" />
-      <Compile Include="Entities\PlayerEntity\States\PlayerIdleState.cs" />
-      <Compile Include="Entities\PlayerEntity\States\PlayerMoveToPositionState.cs" />
-      <Compile Include="Entities\PlayerEntity\States\PlayerPlantTreeState.cs" />
-      <Compile Include="GameValues.cs" />
+    <Compile Include="Entities\PlayerEntity\States\Message\MoveToPositionMessage.cs" />
+    <Compile Include="Entities\PlayerEntity\States\PlayerHealTreeState.cs" />
+    <Compile Include="Entities\PlayerEntity\States\PlayerIdleState.cs" />
+    <Compile Include="Entities\PlayerEntity\States\PlayerMoveToPositionState.cs" />
+    <Compile Include="Entities\PlayerEntity\States\PlayerPlantTreeState.cs" />
+    <Compile Include="GameValues.cs" />
     <Compile Include="Levels\Common\BaseLevel.cs" />
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\HoverIndicator.cs" />
     <Compile Include="Levels\Common\TileMapObjects\BaseObject\BaseTileMapObject.cs" />
@@ -129,18 +129,73 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoundLogic\GameState.cs" />
     <Compile Include="Serialization\Serializer.cs" />
+    <Compile Include="SoundEngine\SoundEngineNode.cs" />
     <Compile Include="TestScript.cs" />
-      <Compile Include="Ui\EnergyUi.cs" />
+    <Compile Include="Ui\EnergyUi.cs" />
     <Compile Include="Ui\LevelMoveMouseControl.cs" />
-      <Compile Include="Ui\PointsUi.cs" />
+    <Compile Include="Ui\PointsUi.cs" />
     <Compile Include="Ui\TwitterUi\Dynamic\FillerTweet.cs" />
-      <Compile Include="Ui\TwitterUi\Dynamic\TweetUi.cs" />
+    <Compile Include="Ui\TwitterUi\Dynamic\TweetUi.cs" />
     <Compile Include="Ui\TwitterUi\TweetUpdater.cs" />
     <Compile Include="Ui\TwitterUi\TwitterFeed.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Credentials\tweetsApiCredentials.json" />
     <Content Include="executeGame.sh" />
+    <Content Include="SoundEngine\Assets\Music\intro_01.ogg" />
+    <Content Include="SoundEngine\Assets\Music\intro_01.ogg.import" />
+    <Content Include="SoundEngine\Assets\Music\intro_02.ogg" />
+    <Content Include="SoundEngine\Assets\Music\intro_02.ogg.import" />
+    <Content Include="SoundEngine\Assets\Music\intro_03.ogg" />
+    <Content Include="SoundEngine\Assets\Music\intro_03.ogg.import" />
+    <Content Include="SoundEngine\Assets\Music\theme_01.ogg" />
+    <Content Include="SoundEngine\Assets\Music\theme_01.ogg.import" />
+    <Content Include="SoundEngine\Assets\Music\theme_02.ogg" />
+    <Content Include="SoundEngine\Assets\Music\theme_02.ogg.import" />
+    <Content Include="SoundEngine\Assets\Music\theme_03.ogg" />
+    <Content Include="SoundEngine\Assets\Music\theme_03.ogg.import" />
+    <Content Include="SoundEngine\Assets\Music\theme_04.ogg" />
+    <Content Include="SoundEngine\Assets\Music\theme_04.ogg.import" />
+    <Content Include="SoundEngine\Assets\Sfx\deamon_walk.wav" />
+    <Content Include="SoundEngine\Assets\Sfx\deamon_walk.wav.import" />
+    <Content Include="SoundEngine\Assets\Sfx\infect_tree.wav" />
+    <Content Include="SoundEngine\Assets\Sfx\infect_tree.wav.import" />
+    <Content Include="SoundEngine\Assets\Sfx\losing_sound.ogg" />
+    <Content Include="SoundEngine\Assets\Sfx\losing_sound.ogg.import" />
+    <Content Include="SoundEngine\Assets\Sfx\player_walk.wav" />
+    <Content Include="SoundEngine\Assets\Sfx\player_walk.wav.import" />
+    <Content Include="SoundEngine\Assets\Sfx\rainforest-01.ogg" />
+    <Content Include="SoundEngine\Assets\Sfx\rainforest-01.ogg.import" />
+    <Content Include="SoundEngine\Assets\Sfx\rainforest-02.ogg" />
+    <Content Include="SoundEngine\Assets\Sfx\rainforest-02.ogg.import" />
+    <Content Include="SoundEngine\Assets\Sfx\rainforest-03.ogg" />
+    <Content Include="SoundEngine\Assets\Sfx\rainforest-03.ogg.import" />
+    <Content Include="SoundEngine\Assets\Sfx\rainforest-04.ogg" />
+    <Content Include="SoundEngine\Assets\Sfx\rainforest-04.ogg.import" />
+    <Content Include="SoundEngine\Assets\Sfx\rainforest-05.ogg" />
+    <Content Include="SoundEngine\Assets\Sfx\rainforest-05.ogg.import" />
+    <Content Include="SoundEngine\Assets\Sfx\tree_dies.wav" />
+    <Content Include="SoundEngine\Assets\Sfx\tree_dies.wav.import" />
+    <Content Include="SoundEngine\Assets\Sfx\tree_healing.wav" />
+    <Content Include="SoundEngine\Assets\Sfx\tree_healing.wav.import" />
+    <Content Include="SoundEngine\Assets\Sfx\tree_kill.wav" />
+    <Content Include="SoundEngine\Assets\Sfx\tree_kill.wav.import" />
+    <Content Include="SoundEngine\Assets\Sfx\tree_plant.wav" />
+    <Content Include="SoundEngine\Assets\Sfx\tree_plant.wav.import" />
+    <Content Include="SoundEngine\Assets\Sfx\tweet_normal.wav" />
+    <Content Include="SoundEngine\Assets\Sfx\tweet_normal.wav.import" />
+    <Content Include="SoundEngine\Assets\Sfx\tweet_tutor.wav" />
+    <Content Include="SoundEngine\Assets\Sfx\tweet_tutor.wav.import" />
+    <Content Include="SoundEngine\Assets\Sfx\whistle1.ogg" />
+    <Content Include="SoundEngine\Assets\Sfx\whistle1.ogg.import" />
+    <Content Include="SoundEngine\Assets\Sfx\whistle2.ogg" />
+    <Content Include="SoundEngine\Assets\Sfx\whistle2.ogg.import" />
+    <Content Include="SoundEngine\Assets\Sfx\whistle3.ogg" />
+    <Content Include="SoundEngine\Assets\Sfx\whistle3.ogg.import" />
+    <Content Include="SoundEngine\Assets\Sfx\whistle4.ogg" />
+    <Content Include="SoundEngine\Assets\Sfx\whistle4.ogg.import" />
+    <Content Include="SoundEngine\Assets\Sfx\winning_sound.ogg" />
+    <Content Include="SoundEngine\Assets\Sfx\winning_sound.ogg.import" />
     <Content Include="Ui\TwitterUi\TutorialTweets.json" />
     <Content Include="Ui\TwitterUi\StaticTweets.json" />
   </ItemGroup>
@@ -149,11 +204,11 @@
     <Folder Include="Entities\PlayerEntity\Assets" />
       <Folder Include="Levels\Assets" />
     <Folder Include="Levels\Common\TileMapObjects\TreeObject\Assets" />
-      <Folder Include="Ui\TwitterUi\Effects" />
+    <Folder Include="Ui\TwitterUi\Effects" />
     <Folder Include="Ui\TwitterUi\Static" />
   </ItemGroup>
-    <ItemGroup>
-        <None Include="packages.config" />
-    </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
