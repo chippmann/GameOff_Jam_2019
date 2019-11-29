@@ -40,6 +40,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
 
         public void Init(TreeTileMapObject owner) {
             treeTileMapObject = owner;
+            SetGlobalPosition(owner.GetGlobalPosition());
         }
 
         private void KillTreeSelected(InputEvent inputEvent) {

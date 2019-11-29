@@ -4,17 +4,17 @@
 [ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeTileMapObject.cs" type="Script" id=2]
 [ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/Ui/InteractionPopup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeState.cs" type="Script" id=4]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/Assets/tree.png" type="Texture" id=5]
-[ext_resource path="res://Levels/Common/TileMapObjects/BaseObject/TransparencyManager.cs" type="Script" id=6]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeActionRadius.cs" type="Script" id=7]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/treeCircle_green.svg" type="Texture" id=8]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/treeCircle_red.svg" type="Texture" id=9]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStateMachine.cs" type="Script" id=10]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/GrowingState.cs" type="Script" id=11]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/Effects/TreeAddEnergyParticleEffect.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/FullyGrownState.cs" type="Script" id=13]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/InfestedState.cs" type="Script" id=14]
-[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/DeadState.cs" type="Script" id=15]
+[ext_resource path="res://Levels/Common/TileMapObjects/BaseObject/TransparencyManager.cs" type="Script" id=5]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeActionRadius.cs" type="Script" id=6]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/treeCircle_green.svg" type="Texture" id=7]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/treeCircle_red.svg" type="Texture" id=8]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStateMachine.cs" type="Script" id=9]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/GrowingState.cs" type="Script" id=10]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/Effects/TreeAddEnergyParticleEffect.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/FullyGrownState.cs" type="Script" id=12]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/InfestedState.cs" type="Script" id=13]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/TreeStates/DeadState.cs" type="Script" id=14]
+[ext_resource path="res://Levels/Common/TileMapObjects/TreeObject/Assets/tree.png" type="Texture" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 86.7298, 193.346 )
@@ -34,34 +34,29 @@ interactionPopupPackedScene = ExtResource( 3 )
 [node name="TreeState" type="Node2D" parent="." index="0"]
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
-self_modulate = Color( 0, 0.623529, 0.133333, 1 )
-texture = ExtResource( 5 )
-offset = Vector2( 0, -220 )
-
-[node name="Hover" parent="." index="2"]
+[node name="Hover" parent="." index="1"]
 editor/display_folded = true
 visible = false
 
-[node name="TransparencyManager" type="Area2D" parent="." index="3"]
+[node name="TransparencyManager" type="Area2D" parent="." index="2"]
 position = Vector2( 0, -190 )
 collision_layer = 8
 collision_mask = 6
-script = ExtResource( 6 )
+script = ExtResource( 5 )
 spriteNodePath = NodePath("../Sprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransparencyManager" index="0"]
 shape = SubResource( 1 )
 
-[node name="TreeActionRadius" type="Area2D" parent="." index="4" groups=[
+[node name="TreeActionRadius" type="Area2D" parent="." index="3" groups=[
 "actionRadius",
 ]]
 collision_layer = 8
 collision_mask = 14
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 textureNodePath = NodePath("Sprite")
-healthyTexture = ExtResource( 8 )
-infestedTexture = ExtResource( 9 )
+healthyTexture = ExtResource( 7 )
+infestedTexture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TreeActionRadius" index="0"]
 shape = SubResource( 2 )
@@ -69,14 +64,14 @@ shape = SubResource( 2 )
 [node name="Sprite" type="Sprite" parent="TreeActionRadius" index="1"]
 modulate = Color( 1, 1, 1, 0.188235 )
 scale = Vector2( 3.25, 3.25 )
-z_as_relative = false
-texture = ExtResource( 8 )
+z_index = -20
+texture = ExtResource( 7 )
 
-[node name="TreeStateMachine" type="Node2D" parent="." index="5" groups=[
+[node name="TreeStateMachine" type="Node2D" parent="." index="4" groups=[
 "state_machine",
 ]]
 editor/display_folded = true
-script = ExtResource( 10 )
+script = ExtResource( 9 )
 initialStateNodePath = NodePath("GrowingState")
 growing = NodePath("GrowingState")
 fullGrown = NodePath("FullyGrownState")
@@ -84,14 +79,14 @@ infested = NodePath("InfestedState")
 dead = NodePath("DeadState")
 
 [node name="GrowingState" type="Node2D" parent="TreeStateMachine" index="0"]
-script = ExtResource( 11 )
+script = ExtResource( 10 )
 treeStateNodePath = NodePath("../../TreeState")
 treeSpriteNodePath = NodePath("../../Sprite")
 treeGrowthTimerNodePath = NodePath("TreeGrowthTimer")
 pointTimerNodePath = NodePath("PointTimer")
 addEnergyTimerNodePath = NodePath("AddEnergyTimer")
 treeActionRadiusNodePath = NodePath("../../TreeActionRadius")
-addEnergyParticleEffectPackedScene = ExtResource( 12 )
+addEnergyParticleEffectPackedScene = ExtResource( 11 )
 
 [node name="TreeGrowthTimer" type="Timer" parent="TreeStateMachine/GrowingState" index="0"]
 
@@ -100,25 +95,25 @@ addEnergyParticleEffectPackedScene = ExtResource( 12 )
 [node name="AddEnergyTimer" type="Timer" parent="TreeStateMachine/GrowingState" index="2"]
 
 [node name="FullyGrownState" type="Node2D" parent="TreeStateMachine" index="1"]
-script = ExtResource( 13 )
+script = ExtResource( 12 )
 pointTimerNodePath = NodePath("PointTimer")
 addEnergyTimerNodePath = NodePath("AddEnergyTimer")
 treeActionRadiusNodePath = NodePath("../../TreeActionRadius")
 treeStateNodePath = NodePath("../../TreeState")
-addEnergyParticleEffectPackedScene = ExtResource( 12 )
+addEnergyParticleEffectPackedScene = ExtResource( 11 )
 
 [node name="PointTimer" type="Timer" parent="TreeStateMachine/FullyGrownState" index="0"]
 
 [node name="AddEnergyTimer" type="Timer" parent="TreeStateMachine/FullyGrownState" index="1"]
 
 [node name="InfestedState" type="Node2D" parent="TreeStateMachine" index="2"]
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 pointTimerNodePath = NodePath("PointTimer")
 damageTimerNodePath = NodePath("DamageTimer")
 addEnergyTimerNodePath = NodePath("AddEnergyTimer")
 treeActionRadiusNodePath = NodePath("../../TreeActionRadius")
 treeStateNodePath = NodePath("../../TreeState")
-addEnergyParticleEffectPackedScene = ExtResource( 12 )
+addEnergyParticleEffectPackedScene = ExtResource( 11 )
 
 [node name="PointTimer" type="Timer" parent="TreeStateMachine/InfestedState" index="0"]
 
@@ -128,15 +123,9 @@ addEnergyParticleEffectPackedScene = ExtResource( 12 )
 
 [node name="DeadState" type="Node2D" parent="TreeStateMachine" index="3"]
 position = Vector2( 0.735107, 0 )
-script = ExtResource( 15 )
+script = ExtResource( 14 )
 
-[node name="Control" type="Control" parent="." index="6"]
-editor/display_folded = true
-visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="InteractionPopup" parent="Control" index="0" instance=ExtResource( 3 )]
-visible = true
-margin_right = 82.0
-margin_bottom = 100.0
+[node name="Sprite" type="Sprite" parent="." index="5"]
+self_modulate = Color( 0, 0.623529, 0.133333, 1 )
+texture = ExtResource( 15 )
+offset = Vector2( 0, -220 )

@@ -19,7 +19,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
         [Export] private readonly PackedScene interactionPopupPackedScene = null;
         private InteractionPopup interactionPopup;
 
-        private CanvasLayer uiContainer;
+        private Control uiContainer;
 
         public override void _Ready() {
             base._Ready();
@@ -29,7 +29,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
             treeState = GetNode<TreeState>(treeStateNodePath);
             interactionPopup = interactionPopupPackedScene.Instance() as InteractionPopup;
 
-            uiContainer = NodeGetter.GetFirstNodeInGroup<CanvasLayer>(GetTree(), GameConstants.UiContainerGroup, true);
+            uiContainer = NodeGetter.GetFirstNodeInGroup<Control>(GetTree(), GameConstants.UiContainerGroup, true);
 
             uiContainer?.AddChild(interactionPopup);
             interactionPopup.Init(this);

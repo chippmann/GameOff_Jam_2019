@@ -14,8 +14,10 @@ namespace GameOff_2019.Ui {
         private Control mouseCaptureTop;
         [Export] private readonly NodePath mouseCaptureBottomNodePath = null;
         private Control mouseCaptureBottom;
+
         [Export] private readonly NodePath uiContainerCanvasLayerNodePath = null;
-        private CanvasLayer uiContainerCanvasLayer;
+
+//        private CanvasLayer uiContainerCanvasLayer;
         [Export] private readonly int mouseSensitivity = 30;
 
 
@@ -36,8 +38,8 @@ namespace GameOff_2019.Ui {
             mouseCaptureRight = GetNode<Control>(mouseCaptureRightNodePath);
             mouseCaptureTop = GetNode<Control>(mouseCaptureTopNodePath);
             mouseCaptureBottom = GetNode<Control>(mouseCaptureBottomNodePath);
-            uiContainerCanvasLayer = GetNode<CanvasLayer>(uiContainerCanvasLayerNodePath);
-            uiContainerInitialOffset = uiContainerCanvasLayer.GetOffset();
+//            uiContainerCanvasLayer = GetNode<CanvasLayer>(uiContainerCanvasLayerNodePath);
+//            uiContainerInitialOffset = uiContainerCanvasLayer.GetOffset();
         }
 
         public override void _PhysicsProcess(float delta) {
@@ -60,8 +62,8 @@ namespace GameOff_2019.Ui {
             }
 
             camera.SetPosition(newCameraPosition);
-            var transform = new Transform2D(uiContainerCanvasLayer.Transform.x, uiContainerCanvasLayer.Transform.y, -camera.GetGlobalPosition() + uiContainerInitialOffset);
-            uiContainerCanvasLayer.SetTransform(transform);
+//            var transform = new Transform2D(uiContainerCanvasLayer.Transform.x, uiContainerCanvasLayer.Transform.y, -camera.GetGlobalPosition() + uiContainerInitialOffset);
+//            uiContainerCanvasLayer.SetTransform(transform);
         }
 
         private Vector2 MoveWindowWithKeyboard() {
