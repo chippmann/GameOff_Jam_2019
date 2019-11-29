@@ -79,13 +79,17 @@ namespace GameOff_2019.Entities.DemonEntity.States {
         }
 
         private void OnPathInvalidated() {
-            var tilePositionNextToTree = ((TreeTileMapObject) pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(targetPosition))).GetTilePositionNextToTree();
-            if (tilePositionNextToTree != new Vector2(-1, -1)) {
-                entityMovement.MoveToPosition(pathfindingTileMap.MapToWorld(tilePositionNextToTree), isPlayer: false, paramsToReturn: new object[] { }, targetCannotBeReachedParamsToReturn: new object[] {GetOwner<Demon>()});
+            var tileMapObjectWithTileMapCoordinates = pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(targetPosition));
+            if (tileMapObjectWithTileMapCoordinates is TreeTileMapObject treeTileMapObject) {
+                var tilePositionNextToTree = treeTileMapObject.GetTilePositionNextToTree();
+                if (tilePositionNextToTree != new Vector2(-1, -1)) {
+                    entityMovement.MoveToPosition(pathfindingTileMap.MapToWorld(tilePositionNextToTree), isPlayer: false, paramsToReturn: new object[] { }, targetCannotBeReachedParamsToReturn: new object[] {GetOwner<Demon>()});
+                    return;
+                }
             }
-            else {
-                GetStateMachine<DemonStateMachine>().TransitionTo(GetStateMachine<DemonStateMachine>().idle);
-            }
+
+            GetStateMachine<DemonStateMachine>().TransitionTo(GetStateMachine<DemonStateMachine>().idle);
+            GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.TargetCannotBeReached), GetOwner<Demon>());
         }
     }
 }

@@ -97,6 +97,7 @@
     <Compile Include="Entities\DemonEntity\States\DemonInfestTreeState.cs" />
     <Compile Include="Entities\DemonEntity\States\DemonMoveToPositionState.cs" />
     <Compile Include="Entities\DemonEntity\MovePositionFinder.cs" />
+    <Compile Include="Entities\PlayerEntity\Animation\PlayerAnimationManager.cs" />
     <Compile Include="Entities\PlayerEntity\Player.cs" />
     <Compile Include="Entities\PlayerEntity\PlayerStateMachine.cs" />
     <Compile Include="Entities\PlayerEntity\RemoveTreeChecker.cs" />
@@ -145,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\DemonEntity\Particles\Textures" />
+    <Folder Include="Entities\PlayerEntity\Assets" />
       <Folder Include="Levels\Assets" />
     <Folder Include="Levels\Common\TileMapObjects\TreeObject\Assets" />
       <Folder Include="Ui\TwitterUi\Effects" />
