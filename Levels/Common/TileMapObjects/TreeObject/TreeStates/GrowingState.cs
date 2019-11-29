@@ -28,7 +28,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
         [Export] private readonly PackedScene addEnergyParticleEffectPackedScene = null;
         private GameState gameState;
 
-        private Vector2 initialScale;
+        private readonly Vector2 finalScale = new Vector2(1, 1);
         private Player player;
 
         public override void _Ready() {
@@ -45,7 +45,6 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
             pointTimer.Connect("timeout", this, nameof(OnPointTimerTimeout));
             treeGrowthTimer.Connect("timeout", this, nameof(OnTreeGrowthTimerTimeout));
             addEnergyTimer.Connect("timeout", this, nameof(OnEnergyTimerTimeout));
-            initialScale = treeSprite.Scale;
         }
 
         public override void Enter(IStateMachineMessage message = null) {
@@ -61,7 +60,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
         public override void UnhandledInput(InputEvent @event) { }
 
         public override void PhysicsProcess(float delta) {
-            treeSprite.Scale = new Vector2((treeState.treeGrowth / 100f) * initialScale.x, (treeState.treeGrowth / 100f) * initialScale.y);
+            treeSprite.Scale = new Vector2((treeState.treeGrowth / 100f) * finalScale.x, (treeState.treeGrowth / 100f) * finalScale.y);
         }
 
         public override void Exit() {
