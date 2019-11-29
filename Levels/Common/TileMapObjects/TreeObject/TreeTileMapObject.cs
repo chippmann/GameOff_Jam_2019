@@ -18,7 +18,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
         [Export] private readonly NodePath treeStateNodePath = null;
         public TreeState treeState;
         [Export] private readonly PackedScene interactionPopupPackedScene = null;
-        [Export] private AudioStreamSample killTree = null;
+        [Export] private AudioStreamSample killTreeSound = null;
         private InteractionPopup interactionPopup;
         private SoundEngineNode soundEngineNode;
 
@@ -77,7 +77,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
         }
 
         public void Kill() {
-            soundEngineNode.PlaySfx(killTree);
+            soundEngineNode.PlaySfx(killTreeSound);
             stateMachine.TransitionTo(stateMachine.dead);
         }
 
