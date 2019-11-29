@@ -12,7 +12,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
         private PathfindingTileMap pathfindingTileMap;
         [Export] private readonly NodePath tileMapObjectContainerNodePath = null;
         private Node2D tileMapObjectContainer;
-        [Export] public readonly int actionRadiusInTiles = 2;
+        [Export] private readonly int actionRadiusInTiles = 2;
 
 
         // ReSharper disable once CollectionNeverUpdated.Local

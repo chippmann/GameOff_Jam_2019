@@ -42,7 +42,24 @@ namespace GameOff_2019.Ui {
 
         public override void _PhysicsProcess(float delta) {
             var positionChange = AreMoveInputsPressed() ? MoveWindowWithKeyboard() : MoveWindowWithMouse();
-            camera.SetPosition(camera.GetPosition() + positionChange * mouseSensitivity);
+            var newCameraPosition = camera.GetPosition() + positionChange * mouseSensitivity;
+            if (newCameraPosition.x < 0) {
+                newCameraPosition.x = 0;
+            }
+
+            if (newCameraPosition.y < 0) {
+                newCameraPosition.y = 0;
+            }
+
+            if (newCameraPosition.x > 10150) { //TODO: if we have some time left: replace this hardcoded values with calculated ones. Somehow `GameConstants.BackgroundImageWidth + 250 - GetViewport().GetVisibleRect().Size.x` isn't correct
+                newCameraPosition.x = 10150;
+            }
+
+            if (newCameraPosition.y > 11280) { //TODO: if we have some time left: replace this hardcoded values with calculated ones. Somehow `GameConstants.BackgroundImageHeight - GetViewport().GetVisibleRect().Size.y` isn't correct
+                newCameraPosition.y = 11280;
+            }
+
+            camera.SetPosition(newCameraPosition);
             var transform = new Transform2D(uiContainerCanvasLayer.Transform.x, uiContainerCanvasLayer.Transform.y, -camera.GetGlobalPosition() + uiContainerInitialOffset);
             uiContainerCanvasLayer.SetTransform(transform);
         }

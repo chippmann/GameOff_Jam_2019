@@ -16,5 +16,7 @@ namespace GameOff_2019.EngineUtils {
         public const string ControlsActionCancel = "actionCancel";
 
         public const string ControlsActionClick = "actionClick";
+        public const int BackgroundImageWidth = 12800;
+        public const int BackgroundImageHeight = 12800;
     }
 }

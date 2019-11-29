@@ -27,18 +27,18 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="GameUiMarginContainer" type="MarginContainer" parent="HBoxContainer"]
-margin_right = 1123.0
+margin_right = 1026.0
 margin_bottom = 720.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/GameUiMarginContainer"]
-margin_right = 1123.0
+margin_right = 1026.0
 margin_bottom = 720.0
 mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer"]
-margin_right = 1123.0
+margin_right = 1026.0
 margin_bottom = 85.0
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -47,13 +47,13 @@ custom_constants/margin_bottom = 5
 [node name="Panel" type="Panel" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 1123.0
+margin_right = 1026.0
 margin_bottom = 80.0
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 1123.0
+margin_right = 1026.0
 margin_bottom = 80.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
@@ -63,7 +63,7 @@ custom_constants/margin_bottom = 5
 [node name="GameStatsHBoxContainer" type="HBoxContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 1113.0
+margin_right = 1016.0
 margin_bottom = 70.0
 
 [node name="PlayerAvatarMarginContainer" type="MarginContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer"]
@@ -74,7 +74,7 @@ custom_constants/margin_right = 10
 
 [node name="PlayerAvatarTextureRect" type="TextureRect" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/PlayerAvatarMarginContainer"]
 margin_right = 64.0
-margin_bottom = 64.0
+margin_bottom = 65.0
 rect_min_size = Vector2( 64, 64 )
 texture = ExtResource( 2 )
 expand = true
@@ -82,18 +82,18 @@ expand = true
 [node name="ProgressBarsVBoxContainer" type="VBoxContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer"]
 editor/display_folded = true
 margin_left = 78.0
-margin_right = 1030.0
+margin_right = 933.0
 margin_bottom = 65.0
 size_flags_horizontal = 3
 
 [node name="PointsMarginContainer" type="MarginContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer"]
-margin_right = 952.0
+margin_right = 855.0
 margin_bottom = 41.0
 custom_constants/margin_top = 2
 
 [node name="PointsHBoxContainer" type="HBoxContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/PointsMarginContainer"]
 margin_top = 2.0
-margin_right = 952.0
+margin_right = 855.0
 margin_bottom = 41.0
 script = ExtResource( 3 )
 playerPointsLabelNodePath = NodePath("PlayerPointsLabel")
@@ -109,7 +109,7 @@ text = "Player:
 
 [node name="PointsProgressBar" type="ProgressBar" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/PointsMarginContainer/PointsHBoxContainer"]
 margin_left = 55.0
-margin_right = 889.0
+margin_right = 792.0
 margin_bottom = 39.0
 rect_min_size = Vector2( 0, 30 )
 size_flags_horizontal = 3
@@ -120,8 +120,8 @@ percent_visible = false
 [node name="Tween" type="Tween" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/PointsMarginContainer/PointsHBoxContainer/PointsProgressBar"]
 
 [node name="DemonPointsLabel" type="Label" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/PointsMarginContainer/PointsHBoxContainer"]
-margin_left = 893.0
-margin_right = 952.0
+margin_left = 796.0
+margin_right = 855.0
 margin_bottom = 39.0
 text = "Demon:
 0"
@@ -129,7 +129,7 @@ align = 2
 
 [node name="EnergyHBoxContainer" type="HBoxContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer"]
 margin_top = 45.0
-margin_right = 952.0
+margin_right = 855.0
 margin_bottom = 65.0
 script = ExtResource( 4 )
 playerEnergyProgressNodePath = NodePath("PlayerEnergyMarginContainer/PlayerEnergyProgressBar")
@@ -150,8 +150,8 @@ rect_min_size = Vector2( 250, 20 )
 [node name="PlayerEnergyTween" type="Tween" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/EnergyHBoxContainer/PlayerEnergyMarginContainer/PlayerEnergyProgressBar"]
 
 [node name="DemonMarginContainer" type="MarginContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/EnergyHBoxContainer"]
-margin_left = 702.0
-margin_right = 952.0
+margin_left = 605.0
+margin_right = 855.0
 margin_bottom = 20.0
 size_flags_horizontal = 10
 
@@ -163,22 +163,22 @@ rect_min_size = Vector2( 250, 20 )
 [node name="DemonEnergyTween" type="Tween" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/EnergyHBoxContainer/DemonMarginContainer/DemonEnergyProgressBar"]
 
 [node name="DemonAvatarMarginContainer" type="MarginContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer"]
-margin_left = 1034.0
-margin_right = 1108.0
+margin_left = 937.0
+margin_right = 1011.0
 margin_bottom = 65.0
 custom_constants/margin_left = 10
 
 [node name="DemonAvatarTextureRect" type="TextureRect" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/DemonAvatarMarginContainer"]
 margin_left = 10.0
 margin_right = 74.0
-margin_bottom = 64.0
+margin_bottom = 65.0
 rect_min_size = Vector2( 64, 64 )
 texture = ExtResource( 5 )
 expand = true
 
 [node name="TwitterFeedMarginContainer" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 1127.0
-margin_right = 1377.0
+margin_left = 1030.0
+margin_right = 1280.0
 margin_bottom = 720.0
 mouse_filter = 2
 size_flags_horizontal = 8
