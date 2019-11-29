@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Entities/PlayerEntity/Player.cs" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -12,12 +12,14 @@
 [ext_resource path="res://SoundEngine/Assets/Sfx/tree_plant.wav" type="AudioStream" id=10]
 [ext_resource path="res://Entities/PlayerEntity/States/PlayerHealTreeState.cs" type="Script" id=11]
 [ext_resource path="res://SoundEngine/Assets/Sfx/tree_healing.wav" type="AudioStream" id=12]
+[ext_resource path="res://Entities/PlayerEntity/Animation/PlayerSpriteFrames.tres" type="SpriteFrames" id=13]
+[ext_resource path="res://Entities/PlayerEntity/Animation/PlayerAnimationManager.cs" type="Script" id=14]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 63.3806
+radius = 52.0092
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 63.6775
+radius = 51.9996
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -29,6 +31,7 @@ removeTreeCheckerNodePath = NodePath("RemoveTreeChecker")
 playerStateMachineNodePath = NodePath("StateMachine")
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
@@ -50,6 +53,7 @@ shape = SubResource( 2 )
 [node name="StateMachine" type="Node2D" parent="." groups=[
 "state_machine",
 ]]
+editor/display_folded = true
 script = ExtResource( 5 )
 initialStateNodePath = NodePath("IdleState")
 idle = NodePath("IdleState")
@@ -76,3 +80,10 @@ script = ExtResource( 11 )
 entityMovementNodePath = NodePath("../../Movement")
 playerWalkSound = ExtResource( 8 )
 healTree = ExtResource( 12 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 13 )
+animation = "down"
+offset = Vector2( 0, -96 )
+script = ExtResource( 14 )
+entityMovementNodePath = NodePath("../Movement")
