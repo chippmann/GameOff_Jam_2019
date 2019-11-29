@@ -67,6 +67,7 @@ wanderRandomBehaviourNodePath = NodePath("WanderRandomBehaviour")
 infestRandomTreeBehaviourNodePath = NodePath("InfestRandomBehaviour")
 infestTreeThatPlayerCantReachBehaviourNodePath = NodePath("InfestPlayerCantReachBehaviour")
 infestTreeWithBestDistanceToHealthBehaviourNodePath = NodePath("InfestBestRatioBehaviour")
+movePositionFinderNodePath = NodePath("../Movement/MoveToPositionFinder")
 
 [node name="IdleBehaviour" type="Node2D" parent="BehaviourTree"]
 script = ExtResource( 9 )

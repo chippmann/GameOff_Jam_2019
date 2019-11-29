@@ -21,10 +21,13 @@ namespace GameOff_2019.Entities.DemonEntity {
             player = NodeGetter.GetFirstNodeInGroup<Player>(GetTree(), GameConstants.PlayerGroup, true);
         }
 
+        public bool HasTreeToInfest() {
+            return tileMapManipulator.GetTileMapObjectsOfType<TreeTileMapObject>().Any(treeTileMapObject => !treeTileMapObject.IsInfested());
+        }
 
-        public TreeTileMapObject FindNearestTree() {
+        public TreeTileMapObject FindNearestTree(bool canPlayerBeInReach = false) {
             var treeTileMapObjectWithoutPlayerInActionRadius =
-                tileMapManipulator.GetTileMapObjectsOfType<TreeTileMapObject>().Where(treeTileMapObject => !treeTileMapObject.EntityInActionRadius(player) && !treeTileMapObject.IsInfested()).ToList();
+                tileMapManipulator.GetTileMapObjectsOfType<TreeTileMapObject>().Where(treeTileMapObject => (!treeTileMapObject.EntityInActionRadius(player) || canPlayerBeInReach) && !treeTileMapObject.IsInfested()).ToList();
             treeTileMapObjectWithoutPlayerInActionRadius.Sort((treeObject1, treeObject2) =>
                 treeObject1.GetTileMapPosition().DistanceTo(pathfindingTileMap.WorldToMap(GetGlobalPosition())).CompareTo(treeObject2.GetTileMapPosition().DistanceTo(pathfindingTileMap.WorldToMap(GetGlobalPosition()))));
 
@@ -45,6 +48,10 @@ namespace GameOff_2019.Entities.DemonEntity {
 
         public TreeTileMapObject FindTreeThatPlayerCantReachOrNearestTree() {
             return FindNearestTree(); //TODO: implement formula
+        }
+
+        public TreeTileMapObject FindTreeThatPlayerCantReachOrNearestTreeWithPlayerInReach() {
+            return FindNearestTree(true); //TODO: implement formula
         }
 
         public TraversableTileMapObject FindRandomPosition() {

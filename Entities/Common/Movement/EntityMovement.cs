@@ -113,9 +113,6 @@ namespace GameOff_2019.Entities.Common.Movement {
             }
 
             velocity = entity.MoveAndSlide(velocity);
-            if (internalIsPlayer) {
-                Logger.Debug("Velocity: " + velocity);
-            }
         }
 
         private bool IsMovingDiagonally() {
