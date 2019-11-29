@@ -4,6 +4,7 @@ namespace GameOff_2019 {
 
         public static int plantTreePoints = 10;
         public static int plantTreeEnergyUsage = 20;
+        public static int healTreeEnergyUsage = 30;
         public static int healTreePoints = 10;
         public static int pointsPerSecondForHealthyTree = 1; //multiplied with three growth
 

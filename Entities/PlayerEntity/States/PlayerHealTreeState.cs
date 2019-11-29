@@ -64,6 +64,7 @@ namespace GameOff_2019.Entities.PlayerEntity.States {
             if (tileMapObject is TreeTileMapObject treeTileMapObject) {
                 //TODO: show animation
                 treeTileMapObject.Heal();
+                gameState.UsePlayerEnergy(GameValues.healTreeEnergyUsage);
                 gameState.AddPlayerPoints(GameValues.healTreePoints);
             }
 
