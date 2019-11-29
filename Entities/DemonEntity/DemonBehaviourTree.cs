@@ -20,6 +20,8 @@ namespace GameOff_2019.Entities.DemonEntity {
         private DemonInfestTreeThatPlayerCantReachBehaviour infestTreeThatPlayerCantReachBehaviour;
         [Export] private readonly NodePath infestTreeWithBestDistanceToHealthBehaviourNodePath = null;
         private DemonInfestTreeWithBestDistanceToHealthRationBehaviour infestTreeWithBestDistanceToHealthBehaviour;
+        [Export] private readonly NodePath movePositionFinderNodePath = null;
+        private MovePositionFinder movePositionFinder;
 
         private SimpleBehaviourTree behaviourTree;
         private GameState gameState;
@@ -34,6 +36,7 @@ namespace GameOff_2019.Entities.DemonEntity {
             infestRandomTreeBehaviour = GetNode<DemonInfestRandomTreeBehaviour>(infestRandomTreeBehaviourNodePath);
             infestTreeThatPlayerCantReachBehaviour = GetNode<DemonInfestTreeThatPlayerCantReachBehaviour>(infestTreeThatPlayerCantReachBehaviourNodePath);
             infestTreeWithBestDistanceToHealthBehaviour = GetNode<DemonInfestTreeWithBestDistanceToHealthRationBehaviour>(infestTreeWithBestDistanceToHealthBehaviourNodePath);
+            movePositionFinder = GetNode<MovePositionFinder>(movePositionFinderNodePath);
             gameState = NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true);
 
             await ToSignal(GetNode<Eventing>(Eventing.EventingNodePath), nameof(Eventing.LevelSetupFinished));
@@ -55,30 +58,41 @@ namespace GameOff_2019.Entities.DemonEntity {
                                 .SetEvaluateFunc(HasEnergy)
                                 .Build(
                                     new BTSelector.Builder()
-                                        .SetEvaluateFunc(HasLessPointsThanPlayer)
+                                        .SetEvaluateFunc(HasTreeToInfest)
                                         .Build(
-                                            new BTSequence.Builder().Build(
-                                                wanderInsideBehaviour,
-                                                new BTSelector.Builder()
-                                                    .SetEvaluateFunc(RandomTimeSinceLastTreeInfestElapsed)
-                                                    .Build(
-                                                        infestRandomTreeBehaviour,
-                                                        new BTFailer()
-                                                    )
-                                            ),
                                             new BTSelector.Builder()
-                                                .SetEvaluateFunc(HasTreeToKillWithoutPlayerIntervention)
+                                                .SetEvaluateFunc(HasLessPointsThanPlayer)
                                                 .Build(
-                                                    infestTreeThatPlayerCantReachBehaviour,
-                                                    infestTreeWithBestDistanceToHealthBehaviour
-                                                )
+                                                    new BTSelector.Builder()
+                                                        .SetEvaluateFunc(HasTreeToKillWithoutPlayerIntervention)
+                                                        .Build(
+                                                            infestTreeThatPlayerCantReachBehaviour,
+                                                            infestTreeWithBestDistanceToHealthBehaviour
+                                                        ),
+                                                    new BTSelector.Builder()
+                                                        .SetEvaluateFunc(RandomTimeSinceLastTreeInfestElapsed)
+                                                        .Build(
+                                                            infestRandomTreeBehaviour,
+                                                            wanderInsideBehaviour
+                                                        )
+                                                ),
+                                            wanderInsideBehaviour
                                         )
                                     ,
-                                    wanderOutsideBehaviour
+                                    new BTSelector.Builder()
+                                        .SetEvaluateFunc(HasLessPointsThanPlayer)
+                                        .Build(
+                                            wanderInsideBehaviour,
+                                            wanderOutsideBehaviour
+                                        )
                                 ),
                             wanderOutsideBehaviour
                         )
                 );
+        }
+
+        private bool HasTreeToInfest() {
+            return movePositionFinder.HasTreeToInfest();
         }
 
         private bool TwoTeetsReceived() {

@@ -21,7 +21,7 @@ namespace GameOff_2019.Entities.Common.Movement {
         private int currentTargetNode = -1;
         private int stuckFrames;
         private readonly int maxStuckFrames = 20;
-        private readonly int entityMaxPositionErrorInPixels = 2;
+        private readonly int entityMaxPositionErrorInPixels = 4;
         private Vector2 oldPosition;
 
 
@@ -220,6 +220,10 @@ namespace GameOff_2019.Entities.Common.Movement {
         private bool ReachedNodeOnYAxis(Vector2 previousDestination, Vector2 currentDestination) {
             return (previousDestination.y <= currentDestination.y && Mathf.Round(GetGlobalPosition().y + entityMaxPositionErrorInPixels) >= currentDestination.y)
                    || (previousDestination.y >= currentDestination.y && Mathf.Round(GetGlobalPosition().y - entityMaxPositionErrorInPixels) <= currentDestination.y);
+        }
+
+        public Vector2 GetVelocity() {
+            return velocity;
         }
     }
 }
