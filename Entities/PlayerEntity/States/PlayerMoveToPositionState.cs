@@ -10,7 +10,7 @@ using Godot;
 namespace GameOff_2019.Entities.PlayerEntity.States {
     public class PlayerMoveToPositionState : State {
         [Export] private readonly NodePath entityMovementNodePath = null;
-        [Export] private AudioStreamSample playerWalkSound = null;
+        [Export] private AudioStreamOGGVorbis playerWalkSound = null;
         private EntityMovement entityMovement;
         private Vector2 targetPosition;
         private SoundEngineNode soundEngineNode;
@@ -27,7 +27,7 @@ namespace GameOff_2019.Entities.PlayerEntity.States {
                 throw new Exception("State message is not of Type \"MoveToPositionMessage\"");
             }
             
-            soundPlayer = soundEngineNode.PlaySfx(playerWalkSound);
+            soundPlayer = soundEngineNode.PlaySfxLoop(playerWalkSound);
             
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.PlayerTargetReached), this, nameof(TargetReached));
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.TargetCannotBeReached), this, nameof(PlayerTargetCannotBeReached));

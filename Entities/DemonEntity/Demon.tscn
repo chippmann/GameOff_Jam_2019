@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Entities/DemonEntity/Demon.cs" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -18,7 +18,9 @@
 [ext_resource path="res://Entities/DemonEntity/DemonStateMachine.cs" type="Script" id=16]
 [ext_resource path="res://Entities/DemonEntity/States/DemonIdleState.cs" type="Script" id=17]
 [ext_resource path="res://Entities/DemonEntity/States/DemonMoveToPositionState.cs" type="Script" id=18]
-[ext_resource path="res://Entities/DemonEntity/States/DemonInfestTreeState.cs" type="Script" id=19]
+[ext_resource path="res://SoundEngine/Assets/Sfx/deamon_walk.ogg" type="AudioStream" id=19]
+[ext_resource path="res://Entities/DemonEntity/States/DemonInfestTreeState.cs" type="Script" id=20]
+[ext_resource path="res://SoundEngine/Assets/Sfx/infect_tree.wav" type="AudioStream" id=21]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.8273
@@ -39,7 +41,6 @@ modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 2 )
 
 [node name="Movement" type="Node2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 3 )
 entityBodyNodePath = NodePath("..")
 
@@ -107,7 +108,6 @@ timerNodePath = NodePath("../../InfestTimer")
 [node name="StateMachine" type="Node2D" parent="." groups=[
 "state_machine",
 ]]
-editor/display_folded = true
 script = ExtResource( 16 )
 initialStateNodePath = NodePath("IdleState")
 idle = NodePath("IdleState")
@@ -120,10 +120,13 @@ script = ExtResource( 17 )
 [node name="MoveToPositionState" type="Node2D" parent="StateMachine"]
 script = ExtResource( 18 )
 entityMovementNodePath = NodePath("../../Movement")
+deamonWalkSound = ExtResource( 19 )
 
 [node name="InfestTreeState" type="Node2D" parent="StateMachine"]
-script = ExtResource( 19 )
+script = ExtResource( 20 )
 entityMovementNodePath = NodePath("../../Movement")
+deamonWalkSound = ExtResource( 19 )
+infestTreeSound = ExtResource( 21 )
 
 [node name="InfestTimer" type="Timer" parent="."]
 one_shot = true

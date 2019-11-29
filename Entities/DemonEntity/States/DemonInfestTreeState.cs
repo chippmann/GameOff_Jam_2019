@@ -7,14 +7,19 @@ using GameOff_2019.Entities.Common.StateMachine;
 using GameOff_2019.Entities.PlayerEntity.States.Message;
 using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using GameOff_2019.RoundLogic;
+using GameOff_2019.SoundEngine;
 using Godot;
 
 namespace GameOff_2019.Entities.DemonEntity.States {
     public class DemonInfestTreeState : State {
         [Export] private readonly NodePath entityMovementNodePath = null;
+        [Export] private AudioStreamOGGVorbis deamonWalkSound = null;
+        [Export] private AudioStreamSample infestTreeSound = null;
         private EntityMovement entityMovement;
         private Vector2 targetPosition;
         private PathfindingTileMap pathfindingTileMap;
+        private SoundEngineNode soundEngineNode;
+        private AudioStreamPlayer2D soundPlayer;
 
         private GameState gameState;
 
@@ -23,6 +28,8 @@ namespace GameOff_2019.Entities.DemonEntity.States {
             entityMovement = GetNode<EntityMovement>(entityMovementNodePath);
             gameState = NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true);
 
+            soundEngineNode = NodeGetter.GetFirstNodeInGroup<SoundEngineNode>(GetTree(), GameConstants.SoundEngineGroup, true);
+            
             pathfindingTileMap = NodeGetter.GetFirstNodeInGroup<PathfindingTileMap>(GetTree(), GameConstants.PathfindingTileMapGroup, true);
         }
 
@@ -30,6 +37,8 @@ namespace GameOff_2019.Entities.DemonEntity.States {
             if (!(message is MoveToPositionMessage)) {
                 throw new Exception("State message is not of Type \"MoveToPositionMessage\"");
             }
+            
+            soundPlayer = soundEngineNode.PlaySfxLoop2D(deamonWalkSound, NodeGetter.GetFirstNodeInGroup<Demon>(GetTree(), GameConstants.DemonGroup, true));
 
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.DemonTargetReached), this, nameof(TargetReached));
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.TargetCannotBeReached), this, nameof(TargetCannotBeReached));
@@ -44,6 +53,9 @@ namespace GameOff_2019.Entities.DemonEntity.States {
 
         public override void Exit() {
             entityMovement.StopMovement();
+
+            soundEngineNode.StopSfx(soundPlayer);
+            
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.DemonTargetReached), this, nameof(TargetReached));
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.TargetCannotBeReached), this, nameof(TargetCannotBeReached));
             if (GetNode<Eventing>(Eventing.EventingNodePath).IsConnected(nameof(Eventing.InvalidateDemonPath), this, nameof(OnPathInvalidated))) {
@@ -67,6 +79,7 @@ namespace GameOff_2019.Entities.DemonEntity.States {
                 treeTileMapObject.Infest();
                 gameState.AddDemonPoints(GameValues.infestTreePoints);
                 GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.TreeInfested), treeTileMapObject);
+                soundEngineNode.PlaySfx(infestTreeSound);
             }
 
             GetStateMachine<DemonStateMachine>().TransitionTo(GetStateMachine<DemonStateMachine>().idle);

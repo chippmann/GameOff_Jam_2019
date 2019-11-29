@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Ui/MainTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Ui/TwitterUi/Assets/avatar_player.png" type="Texture" id=2]
@@ -12,8 +12,10 @@
 [ext_resource path="res://Ui/TwitterUi/Dynamic/FillerTweet.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Ui/TwitterUi/Effects/PlayerBuffParticleEffect.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Ui/TwitterUi/Effects/DemonBuffParticleEffect.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Ui/TwitterUi/TweetUpdater.cs" type="Script" id=13]
-[ext_resource path="res://Networking/RestClient.cs" type="Script" id=14]
+[ext_resource path="res://SoundEngine/Assets/Sfx/tweet_tutor.wav" type="AudioStream" id=13]
+[ext_resource path="res://SoundEngine/Assets/Sfx/tweet_normal.wav" type="AudioStream" id=14]
+[ext_resource path="res://Ui/TwitterUi/TweetUpdater.cs" type="Script" id=15]
+[ext_resource path="res://Networking/RestClient.cs" type="Script" id=16]
 
 [node name="GameUi" type="Control"]
 anchor_right = 1.0
@@ -211,7 +213,7 @@ size_flags_vertical = 3
 scroll_horizontal_enabled = false
 scroll_vertical_enabled = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/TwitterFeedMarginContainer/VBoxContainer/ScrollContainer"]
+[node name="TwitterFeed" type="VBoxContainer" parent="HBoxContainer/TwitterFeedMarginContainer/VBoxContainer/ScrollContainer"]
 margin_right = 250.0
 margin_bottom = 646.0
 mouse_filter = 2
@@ -227,14 +229,16 @@ demonBuffParticlesPackedScene = ExtResource( 12 )
 tmpTweetContainerNodePath = NodePath("../../../../../TmpTweetContainer")
 playerEnergyNodePath = NodePath("../../../../GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/EnergyHBoxContainer/PlayerEnergyMarginContainer/PlayerEnergyProgressBar")
 demonEnergyNodePath = NodePath("../../../../GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer/ProgressBarsVBoxContainer/EnergyHBoxContainer/DemonMarginContainer/DemonEnergyProgressBar")
-tweetUpdaterNodePath = NodePath("TweetUpdater")
+tweetUpdaterNodePath = NodePath("../TwitterFeed/TweetUpdater")
+tweetTutorSound = ExtResource( 13 )
+tweetNormalSound = ExtResource( 14 )
 
-[node name="TweetUpdater" type="Node2D" parent="HBoxContainer/TwitterFeedMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-script = ExtResource( 13 )
-restClientNodePath = NodePath("RestClient")
+[node name="TweetUpdater" type="Node2D" parent="HBoxContainer/TwitterFeedMarginContainer/VBoxContainer/ScrollContainer/TwitterFeed"]
+script = ExtResource( 15 )
+restClientNodePath = NodePath("../../TwitterFeed/TweetUpdater/RestClient")
 
-[node name="RestClient" type="Node2D" parent="HBoxContainer/TwitterFeedMarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/TweetUpdater"]
-script = ExtResource( 14 )
+[node name="RestClient" type="Node2D" parent="HBoxContainer/TwitterFeedMarginContainer/VBoxContainer/ScrollContainer/TwitterFeed/TweetUpdater"]
+script = ExtResource( 16 )
 
 [node name="TmpTweetContainer" type="Control" parent="."]
 anchor_left = 1.0

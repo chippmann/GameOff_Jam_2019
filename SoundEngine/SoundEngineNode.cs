@@ -51,17 +51,43 @@ namespace GameOff_2019.SoundEngine {
             return false;
         }
 
-        public AudioStreamPlayer PlaySfx(AudioStreamSample stream)
+        public AudioStreamPlayer PlaySfxLoop(AudioStreamOGGVorbis stream)
         {
             AudioStreamPlayer player = new AudioStreamPlayer();
-            // TODO: Loop is not working because it is not handed over correctly
             player.SetStream(stream);
             AddChild(player);
             
             player.Play();
             return player;
         }
+        
+        public AudioStreamPlayer2D PlaySfxLoop2D(AudioStreamOGGVorbis stream, Node2D target)
+        {
+            PositionalAudioStreamPlayer2D player = new PositionalAudioStreamPlayer2D();
+            player.Init(target);
+            player.SetStream(stream);
+            AddChild(player);
+            
+            player.Play();
+            return player;
+        }
+        
+        public void PlaySfx(AudioStreamSample stream)
+        {
+            AudioStreamPlayer player = new AudioStreamPlayer();
+            player.SetStream(stream);
+            AddChild(player);
+            
+            player.Play();
+        }
 
+        public bool StopSfx(AudioStreamPlayer2D player)
+        {
+            player.Stop();
+            RemoveChild(player);
+            return true;
+        }
+        
         public bool StopSfx(AudioStreamPlayer player)
         {
             player.Stop();

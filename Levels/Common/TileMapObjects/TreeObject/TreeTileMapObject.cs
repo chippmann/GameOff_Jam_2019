@@ -4,6 +4,7 @@ using GameOff_2019.Entities.Common;
 using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
 using GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates;
 using GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui;
+using GameOff_2019.SoundEngine;
 using Godot;
 
 namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
@@ -17,7 +18,9 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
         [Export] private readonly NodePath treeStateNodePath = null;
         public TreeState treeState;
         [Export] private readonly PackedScene interactionPopupPackedScene = null;
+        [Export] private AudioStreamSample killTree = null;
         private InteractionPopup interactionPopup;
+        private SoundEngineNode soundEngineNode;
 
         private Control uiContainer;
 
@@ -30,6 +33,8 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
             interactionPopup = interactionPopupPackedScene.Instance() as InteractionPopup;
 
             uiContainer = NodeGetter.GetFirstNodeInGroup<Control>(GetTree(), GameConstants.UiContainerGroup, true);
+            
+            soundEngineNode = NodeGetter.GetFirstNodeInGroup<SoundEngineNode>(GetTree(), GameConstants.SoundEngineGroup, true);
 
             uiContainer?.AddChild(interactionPopup);
             interactionPopup.Init(this);
@@ -72,6 +77,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
         }
 
         public void Kill() {
+            soundEngineNode.PlaySfx(killTree);
             stateMachine.TransitionTo(stateMachine.dead);
         }
 
