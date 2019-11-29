@@ -4,7 +4,6 @@ using GameOff_2019.SoundEngine;
 
 namespace GameOff_2019.Ui.Menu.MainMenu {
     public class MainMenuManager: Control {
-        [Export] private readonly PackedScene mainGameScene = null;
         [Export] private readonly NodePath startGameButtonNodePath = null;
         private Button startGameButton;
         [Export] private readonly NodePath quitGameButtonNodePath = null;
@@ -30,7 +29,6 @@ namespace GameOff_2019.Ui.Menu.MainMenu {
 
         private void OnStartPressed() {
             QueueFree();
-            GetTree().ChangeSceneTo(mainGameScene);
         }
 
         private void OnQuitPressed() {

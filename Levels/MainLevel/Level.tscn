@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Levels/Common/BaseLevel.cs" type="Script" id=1]
 [ext_resource path="res://Ui/LevelMoveMouseControl.tscn" type="PackedScene" id=2]
@@ -14,16 +14,12 @@
 [ext_resource path="res://Entities/DemonEntity/Demon.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Entities/PlayerEntity/Player.tscn" type="PackedScene" id=13]
 [ext_resource path="res://SoundEngine/SoundEngine.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Ui/Intro/Intro.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Ui/Menu/MainMenu/MainMenu.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Ui/Menu/VictoryMenu/VictoryMenu.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Ui/Menu/VictoryMenu/VictoryMenuManager.cs" type="Script" id=18]
-[ext_resource path="res://Ui/Menu/LooseMenu/LooseMenu.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Ui/Menu/LooseMenu/LooseMenuManager.cs" type="Script" id=20]
 
-[node name="NavigationTestScene" type="Node2D"]
+[node name="Level" type="Node2D"]
+visible = false
 z_index = -1000
 script = ExtResource( 1 )
+gameUiNodePath = NodePath("Camera2D/CanvasLayer/GameUi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -44,9 +40,15 @@ drag_margin_bottom = 0.0
 layer = 2
 
 [node name="LevelMoveMouseControl" parent="Camera2D/CanvasLayer" instance=ExtResource( 2 )]
-uiContainerCanvasLayerNodePath = NodePath("../../../Node2D2/UiContainer")
+cameraNodePath = NodePath("../../../../Level/Camera2D")
+mouseCaptureLeftNodePath = NodePath("../../../../Level/Camera2D/CanvasLayer/LevelMoveMouseControl/MouseCaptureLeft")
+mouseCaptureRightNodePath = NodePath("../../../../Level/Camera2D/CanvasLayer/LevelMoveMouseControl/MouseCaptureRight")
+mouseCaptureTopNodePath = NodePath("../../../../Level/Camera2D/CanvasLayer/LevelMoveMouseControl/MouseCaptureTop")
+mouseCaptureBottomNodePath = NodePath("../../../../Level/Camera2D/CanvasLayer/LevelMoveMouseControl/MouseCaptureBottom")
+uiContainerCanvasLayerNodePath = NodePath("../../../../Level/Node2D2/UiContainer")
 
 [node name="GameUi" parent="Camera2D/CanvasLayer" instance=ExtResource( 3 )]
+visible = false
 
 [node name="GameState" type="Node2D" parent="." groups=[
 "gameState",
@@ -71,8 +73,8 @@ tile_data = PoolIntArray( 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 
 script = ExtResource( 7 )
 treeId = 2
 playerTraversableId = 1
-pathfindingDebugCanvasNodePath = NodePath("DebugCanvas")
-tileMapManipulatorNodePath = NodePath("TileMapManipulator")
+pathfindingDebugCanvasNodePath = NodePath("../../Level/TileMap/DebugCanvas")
+tileMapManipulatorNodePath = NodePath("../../Level/TileMap/TileMapManipulator")
 shouldDebugPathfinding = true
 
 [node name="DebugCanvas" type="Node2D" parent="TileMap"]
@@ -81,8 +83,8 @@ script = ExtResource( 8 )
 
 [node name="TileMapManipulator" type="Node2D" parent="TileMap"]
 script = ExtResource( 9 )
-pathfindingTileMapNodePath = NodePath("..")
-tileMapObjectContainerNodePath = NodePath("../../TileMapObjectsContainer")
+pathfindingTileMapNodePath = NodePath("../../../Level/TileMap")
+tileMapObjectContainerNodePath = NodePath("../../../Level/TileMapObjectsContainer")
 tileIdToPackedSceneMapping = {
 0: ExtResource( 10 ),
 1: ExtResource( 10 ),
@@ -93,9 +95,13 @@ tileIdToPackedSceneMapping = {
 
 [node name="Demon" parent="." instance=ExtResource( 12 )]
 position = Vector2( 11404.5, 5854.77 )
+entityMovementNodePath = NodePath("../../Level/Demon/Movement")
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 13 )]
 position = Vector2( 1088.02, 5187.07 )
+entityMovementNodePath = NodePath("../../Level/KinematicBody2D/Movement")
+removeTreeCheckerNodePath = NodePath("../../Level/KinematicBody2D/RemoveTreeChecker")
+playerStateMachineNodePath = NodePath("../../Level/KinematicBody2D/StateMachine")
 
 [node name="Node2D2" type="Node2D" parent="."]
 z_as_relative = false
@@ -105,13 +111,3 @@ z_as_relative = false
 ]]
 
 [node name="SoundEngine" parent="." instance=ExtResource( 14 )]
-
-[node name="Intro" parent="." instance=ExtResource( 15 )]
-
-[node name="MainMenu" parent="." instance=ExtResource( 16 )]
-
-[node name="VictoryMenu" parent="." instance=ExtResource( 17 )]
-script = ExtResource( 18 )
-
-[node name="LooseMenu" parent="." instance=ExtResource( 19 )]
-script = ExtResource( 20 )

@@ -127,6 +127,7 @@
     <Compile Include="Levels\Common\TileMapObjects\TreeObject\Ui\InteractionPopup.cs" />
     <Compile Include="Networking\RestClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoundLogic\GameManager.cs" />
     <Compile Include="RoundLogic\GameState.cs" />
     <Compile Include="Serialization\Serializer.cs" />
     <Compile Include="SoundEngine\PositionalAudioStreamPlayer2D.cs" />
@@ -210,6 +211,7 @@
     <Folder Include="Entities\PlayerEntity\Assets" />
       <Folder Include="Levels\Assets" />
     <Folder Include="Levels\Common\TileMapObjects\TreeObject\Assets" />
+    <Folder Include="Levels\MainLevel" />
     <Folder Include="Ui\Intro\assets" />
     <Folder Include="Ui\TwitterUi\Effects" />
     <Folder Include="Ui\TwitterUi\Static" />

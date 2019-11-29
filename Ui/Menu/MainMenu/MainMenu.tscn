@@ -1,17 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Ui/MainTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Ui/Menu/MainMenu/MainMenuManager.cs" type="Script" id=2]
-[ext_resource path="res://MainScene.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Ui/Menu/assets/menu_font.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Ui/Intro/assets/intro_font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Ui/Menu/assets/menu_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Ui/Intro/assets/intro_font.tres" type="DynamicFont" id=4]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
-mainGameScene = ExtResource( 3 )
 startGameButtonNodePath = NodePath("MarginContainer/VBoxContainer/startButton")
 quitGameButtonNodePath = NodePath("MarginContainer/VBoxContainer/quitButton")
 
@@ -31,6 +29,8 @@ margin_right = 74.5
 margin_bottom = 34.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 149.0
+margin_bottom = 68.0
 alignment = 1
 
 [node name="startButton" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -38,7 +38,7 @@ margin_right = 149.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 80, 32 )
 theme = ExtResource( 1 )
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 text = "game_start_button"
 flat = true
 
@@ -48,7 +48,7 @@ margin_right = 149.0
 margin_bottom = 68.0
 rect_min_size = Vector2( 80, 32 )
 theme = ExtResource( 1 )
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 text = "game_quit_button"
 flat = true
 
@@ -64,5 +64,5 @@ margin_top = -58.7076
 margin_top = 23.0
 margin_right = 390.0
 margin_bottom = 34.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 4 )
 text = "planted with love by Cedric Hippmann and Josias Bruderer"

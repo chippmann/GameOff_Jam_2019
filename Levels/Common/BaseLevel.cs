@@ -4,20 +4,18 @@ using Godot;
 
 namespace GameOff_2019.Levels.Common {
     public class BaseLevel : Node2D {
+        [Export] private readonly NodePath gameUiNodePath = null;
+        private Control gameUi;
+        
         public override void _Ready() {
             base._Ready();
             GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.LevelSetupFinished));
+            gameUi = GetNode<Control>(gameUiNodePath);
         }
 
-        public override void _UnhandledInput(InputEvent @event) {
-            base._UnhandledInput(@event);
-            if (@event.IsActionPressed("debugAddEvilTweet")) {
-                NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true).negativeTweetCount++;
-            }
-
-            if (@event.IsActionPressed("debugAddDemonEnergy")) {
-                NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true).AddDemonEnergy(20);
-            }
+        public void SetLevelVisibility(bool isVisible) {
+            SetVisible(isVisible);
+            gameUi.SetVisible(isVisible);
         }
     }
 }
