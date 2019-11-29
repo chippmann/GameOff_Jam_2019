@@ -17,6 +17,8 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
         private TreeState treeState;
         [Export] private readonly NodePath treeSpriteNodePath = null;
         private Sprite treeSprite;
+        [Export] private readonly NodePath transparencyCollisionShapeNodePath = null;
+        private CollisionShape2D transparencyCollisionShape;
         [Export] private readonly NodePath treeGrowthTimerNodePath = null;
         private Timer treeGrowthTimer;
         [Export] private readonly NodePath pointTimerNodePath = null;
@@ -38,6 +40,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
 
             treeState = GetNode<TreeState>(treeStateNodePath);
             treeSprite = GetNode<Sprite>(treeSpriteNodePath);
+            transparencyCollisionShape = GetNode<CollisionShape2D>(transparencyCollisionShapeNodePath);
             treeGrowthTimer = GetNode<Timer>(treeGrowthTimerNodePath);
             pointTimer = GetNode<Timer>(pointTimerNodePath);
             addEnergyTimer = GetNode<Timer>(addEnergyTimerNodePath);
@@ -61,6 +64,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
 
         public override void PhysicsProcess(float delta) {
             treeSprite.Scale = new Vector2((treeState.treeGrowth / 100f) * finalScale.x, (treeState.treeGrowth / 100f) * finalScale.y);
+            transparencyCollisionShape.GetParent<Node2D>().Scale = new Vector2((treeState.treeGrowth / 100f) * finalScale.x, (treeState.treeGrowth / 100f) * finalScale.y);
         }
 
         public override void Exit() {
