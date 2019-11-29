@@ -133,7 +133,11 @@
     <Compile Include="SoundEngine\SoundEngineNode.cs" />
     <Compile Include="TestScript.cs" />
     <Compile Include="Ui\EnergyUi.cs" />
+    <Compile Include="Ui\Intro\IntroManager.cs" />
     <Compile Include="Ui\LevelMoveMouseControl.cs" />
+    <Compile Include="Ui\Menu\LooseMenu\LooseMenuManager.cs" />
+    <Compile Include="Ui\Menu\MainMenu\MainMenuManager.cs" />
+    <Compile Include="Ui\Menu\VictoryMenu\VictoryMenuManager.cs" />
     <Compile Include="Ui\PointsUi.cs" />
     <Compile Include="Ui\TwitterUi\Dynamic\FillerTweet.cs" />
     <Compile Include="Ui\TwitterUi\Dynamic\TweetUi.cs" />
@@ -197,6 +201,7 @@
     <Content Include="SoundEngine\Assets\Sfx\whistle4.ogg.import" />
     <Content Include="SoundEngine\Assets\Sfx\winning_sound.ogg" />
     <Content Include="SoundEngine\Assets\Sfx\winning_sound.ogg.import" />
+    <Content Include="Ui\Menu\assets\menu_font.tres" />
     <Content Include="Ui\TwitterUi\TutorialTweets.json" />
     <Content Include="Ui\TwitterUi\StaticTweets.json" />
   </ItemGroup>
@@ -205,6 +210,7 @@
     <Folder Include="Entities\PlayerEntity\Assets" />
       <Folder Include="Levels\Assets" />
     <Folder Include="Levels\Common\TileMapObjects\TreeObject\Assets" />
+    <Folder Include="Ui\Intro\assets" />
     <Folder Include="Ui\TwitterUi\Effects" />
     <Folder Include="Ui\TwitterUi\Static" />
   </ItemGroup>

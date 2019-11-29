@@ -15,27 +15,29 @@ namespace GameOff_2019.SoundEngine {
         public override void _Ready() {
             musicPlayer = new AudioStreamPlayer();
             musicPlayer.SetBus("Music");
-            
+
             AddChild(musicPlayer);
-            
+
             PlayMusic("rainforest-01", true);
             musicPlayer.SetVolumeDb(-12);
         }
-        
-        public bool PlayMusic(string name, bool repeat = true) {
+
+        public void PlayMusic(string name, bool repeat = true, bool fade = true) {
             Logger.Debug("Play Music: "+name);
             AudioStreamOGGVorbis stream = GetMusicStream(name, repeat);
             if (stream != null)
             {
                 musicPlayer.SetStream(stream);
                 musicPlayer.Play();
-                return true;
             }
             else
             {
                 Logger.Warning("Music " + name + " not found");
             }
-            return false;
+        }
+
+        public void StopMusic() {
+            musicPlayer.Stop();
         }
 
         public AudioStreamPlayer PlaySfxLoop(AudioStreamOGGVorbis stream)

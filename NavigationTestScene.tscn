@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Levels/Common/BaseLevel.cs" type="Script" id=1]
 [ext_resource path="res://Ui/LevelMoveMouseControl.tscn" type="PackedScene" id=2]
@@ -14,6 +14,12 @@
 [ext_resource path="res://Entities/DemonEntity/Demon.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Entities/PlayerEntity/Player.tscn" type="PackedScene" id=13]
 [ext_resource path="res://SoundEngine/SoundEngine.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Ui/Intro/Intro.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Ui/Menu/MainMenu/MainMenu.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Ui/Menu/VictoryMenu/VictoryMenu.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Ui/Menu/VictoryMenu/VictoryMenuManager.cs" type="Script" id=18]
+[ext_resource path="res://Ui/Menu/LooseMenu/LooseMenu.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Ui/Menu/LooseMenu/LooseMenuManager.cs" type="Script" id=20]
 
 [node name="NavigationTestScene" type="Node2D"]
 z_index = -1000
@@ -99,3 +105,13 @@ z_as_relative = false
 ]]
 
 [node name="SoundEngine" parent="." instance=ExtResource( 14 )]
+
+[node name="Intro" parent="." instance=ExtResource( 15 )]
+
+[node name="MainMenu" parent="." instance=ExtResource( 16 )]
+
+[node name="VictoryMenu" parent="." instance=ExtResource( 17 )]
+script = ExtResource( 18 )
+
+[node name="LooseMenu" parent="." instance=ExtResource( 19 )]
+script = ExtResource( 20 )
