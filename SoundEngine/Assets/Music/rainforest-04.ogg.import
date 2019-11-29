@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/rainforest-04.ogg-632ef54d2c45b57a4634802c546a0687.oggstr"
+
+[deps]
+
+source_file="res://SoundEngine/Assets/Music/rainforest-04.ogg"
+dest_files=[ "res://.import/rainforest-04.ogg-632ef54d2c45b57a4634802c546a0687.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

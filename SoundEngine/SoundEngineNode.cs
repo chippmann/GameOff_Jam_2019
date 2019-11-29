@@ -18,21 +18,8 @@ namespace GameOff_2019.SoundEngine {
             
             AddChild(musicPlayer);
             
-            // string[] tracks = {"intro_01", "intro_01"};
-            // bool[] repeats = {false, false, true};
-            // PlayMusic(tracks, repeats);
-        }
-
-        public bool PlayMusic(string[] names, bool[] repeats)
-        {
-            for(int i = 0; i <= names.Length; i++){
-                // TODO: get "song ended" event and process
-                // while (musicPlayer.IsPlaying()){}
-                // PlayMusic(names[i], repeats[i]);                
-            }
-
-            return true;
-
+            PlayMusic("rainforest-01", true);
+            musicPlayer.SetVolumeDb(-12);
         }
         
         public bool PlayMusic(string name, bool repeat = true) {
