@@ -9,6 +9,7 @@ margin_bottom = 40.0
 script = ExtResource( 1 )
 icon = ExtResource( 2 )
 textureRectNodePath = NodePath("TextureRect")
+inactivityColorRectNodePath = NodePath("TextureRect/InactivityColorRect")
 labelNodePath = NodePath("Label")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -19,6 +20,15 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 2 )
 expand = true
+
+[node name="InactivityColorRect" type="ColorRect" parent="TextureRect"]
+visible = false
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+color = Color( 0.0823529, 0.12549, 0.168627, 0.85098 )
 
 [node name="Label" type="Label" parent="."]
 margin_top = 132.0

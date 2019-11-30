@@ -70,5 +70,9 @@ namespace GameOff_2019.Entities.PlayerEntity {
         public bool CanRemoveTree(Vector2 treeWorldPosition) {
             return removeTreeChecker.CanRemoveTree(pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(pathfindingTileMap.WorldToMap(treeWorldPosition)));
         }
+
+        public bool CanHealTree() {
+            return gameState.GetPlayerEnergy() >= GameValues.healTreeEnergyUsage;
+        }
     }
 }

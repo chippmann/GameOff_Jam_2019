@@ -25,7 +25,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
         public override void _Process(float delta) {
             base._Process(delta);
             if (treeTileMapObject != null && IsVisible()) {
-                healTreeInteractionObject.SetActive(treeTileMapObject.IsInfested());
+                healTreeInteractionObject.SetActive(treeTileMapObject.IsInfested() && player.CanHealTree());
                 killTreeInteractionObject.SetActive(player.CanRemoveTree(GetGlobalPosition()));
             }
         }
@@ -52,7 +52,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
         }
 
         private void HealTreeSelected(InputEvent inputEvent) {
-            if (inputEvent.IsActionPressed(GameConstants.ControlsActionClick)) {
+            if (inputEvent.IsActionPressed(GameConstants.ControlsActionClick) && player.CanHealTree()) {
                 if (healTreeInteractionObject.IsActive()) {
                     player.HealTree(treeTileMapObject);
                     Visible = false;
