@@ -136,7 +136,7 @@ namespace Planty.Entities.Common.Movement {
                 currentPathToFollow.RemoveAt(currentPathToFollow.Count - 1);
             }
 
-            if (currentPathToFollow.Count == 0) {
+            if (currentPathToFollow.Count == 0 || (currentPathToFollow.Count == 1 && currentPathToFollow[0] == startTile)) {
                 GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.TargetCannotBeReached), targetCannotBeReachedParams);
             }
 
