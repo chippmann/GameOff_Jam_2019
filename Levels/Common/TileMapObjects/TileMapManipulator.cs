@@ -9,6 +9,7 @@ using Planty.Entities.Common.Navigation;
 using Planty.Levels.Common.TileMapObjects.BaseObject;
 using Planty.Levels.Common.TileMapObjects.TraversableObject;
 using Planty.Levels.Common.TileMapObjects.TreeObject;
+using Planty.RoundLogic;
 
 namespace Planty.Levels.Common.TileMapObjects {
     public class TileMapManipulator : Node {
@@ -18,9 +19,7 @@ namespace Planty.Levels.Common.TileMapObjects {
         private Node2D tileMapObjectContainer;
         [Export] private readonly int actionRadiusInTiles = 2;
 
-
-        private static bool hasTileMapSetupBegun = false;
-        public static bool isTileMapSetup = false;
+        private GameState gameState;
 
 
         // ReSharper disable once CollectionNeverUpdated.Local
@@ -30,15 +29,16 @@ namespace Planty.Levels.Common.TileMapObjects {
 
         public override void _Ready() {
             base._Ready();
-            if (hasTileMapSetupBegun) {
+            gameState = NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true);
+            if (gameState.hasTileMapSetupBegun) {
                 return;
             }
 
-            SetupTileMap();
+            SetupTileMap(gameState);
         }
 
-        public async void SetupTileMap() {
-            hasTileMapSetupBegun = true;
+        public async void SetupTileMap(GameState gameState) {
+            gameState.hasTileMapSetupBegun = true;
             pathfindingTileMap = GetNode<PathfindingTileMap>(pathfindingTileMapNodePath);
             tileMapObjectContainer = GetNode<Node2D>(tileMapObjectContainerNodePath);
             SetupTileMapObjectNodeReferences();
@@ -47,7 +47,7 @@ namespace Planty.Levels.Common.TileMapObjects {
             pathfindingTileMap.UpdateAStarGrid();
             await task;
             tileMapObjectContainer.AddChild(task.Result);
-            isTileMapSetup = true;
+            gameState.isTileMapSetup = true;
             Logger.Debug("Setup of tileMap finished!");
         }
 

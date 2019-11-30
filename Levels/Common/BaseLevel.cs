@@ -1,6 +1,7 @@
 using Godot;
 using Planty.EngineUtils;
 using Planty.Levels.Common.TileMapObjects;
+using Planty.RoundLogic;
 using Planty.Ui.Menu.PauseMenu;
 
 namespace Planty.Levels.Common {
@@ -32,9 +33,9 @@ namespace Planty.Levels.Common {
             }
         }
 
-        public void Setup() {
+        public void Setup(GameState gameState) {
             tileMapManipulator = GetNode<TileMapManipulator>(tileMapManipulatorNodePath);
-            tileMapManipulator.SetupTileMap();
+            tileMapManipulator.SetupTileMap(gameState);
         }
 
         public void SetLevelVisibility(bool isVisible) {

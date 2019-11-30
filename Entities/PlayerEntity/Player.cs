@@ -2,7 +2,6 @@ using Godot;
 using Planty.EngineUtils;
 using Planty.Entities.Common;
 using Planty.Entities.PlayerEntity.States.Message;
-using Planty.Levels.Common.TileMapObjects;
 using Planty.Levels.Common.TileMapObjects.TreeObject;
 using Planty.RoundLogic;
 
@@ -23,7 +22,7 @@ namespace Planty.Entities.PlayerEntity {
         }
 
         public override void _UnhandledInput(InputEvent @event) {
-            if (!TileMapManipulator.isTileMapSetup) {
+            if (!gameState.isTileMapSetup) {
                 return;
             }
 

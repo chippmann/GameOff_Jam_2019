@@ -2,7 +2,6 @@ using Godot;
 using Planty.EngineUtils;
 using Planty.Entities.Common.BehaviourTree;
 using Planty.Entities.DemonEntity.Behaviours;
-using Planty.Levels.Common.TileMapObjects;
 using Planty.RoundLogic;
 
 namespace Planty.Entities.DemonEntity {
@@ -46,7 +45,7 @@ namespace Planty.Entities.DemonEntity {
 
         public override void _Process(float delta) {
             base._Process(delta);
-            if (!TileMapManipulator.isTileMapSetup) {
+            if (!gameState.isTileMapSetup) {
                 return;
             }
 

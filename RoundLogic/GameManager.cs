@@ -16,6 +16,7 @@ namespace Planty.RoundLogic {
 
         private Node2D tmpLevelHolder = new Node2D();
         private BaseLevel mainLevel;
+        private GameState gameState;
 
         public override void _Ready() {
             base._Ready();
@@ -27,15 +28,16 @@ namespace Planty.RoundLogic {
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.GameOver), this, nameof(OnGameOver));
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.ContinuePressed), this, nameof(OnContinuePressed));
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.FinishCurrentGame), this, nameof(OnFinishCurrentGamePressed));
+            gameState = NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true);
 
             menuContainer.AddChild(introPackedScene.Instance());
-            SetupMainLevel();
+            SetupMainLevel(gameState);
         }
 
-        private void SetupMainLevel() {
+        private void SetupMainLevel(GameState gameState) {
             mainLevel = levelPackedScene.Instance() as BaseLevel;
             tmpLevelHolder.AddChild(mainLevel);
-            mainLevel?.Setup();
+            mainLevel?.Setup(gameState);
         }
 
         private void OnIntroFinished() {
@@ -50,25 +52,29 @@ namespace Planty.RoundLogic {
         private void OnGameWon() {
             mainLevel.QueueFree();
             menuContainer.AddChild(wonMenuPackedScene.Instance());
-            SetupMainLevel(); //for the next round we can already prepare the level
+            SetupMainLevel(gameState); //for the next round we can already prepare the level
         }
 
         private void OnGameOver() {
             mainLevel.QueueFree();
             menuContainer.AddChild(lostEndMenuPackedScene.Instance());
-            SetupMainLevel(); //for the next round we can already prepare the level
+            SetupMainLevel(gameState); //for the next round we can already prepare the level
         }
 
         private void OnContinuePressed() {
             menuContainer.AddChild(mainMenuPackedScene.Instance());
-            NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true).QueueFree(); //reset game state
-            AddChild(new GameState());
+            gameState.QueueFree(); //reset game state
+            gameState = new GameState();
+            AddChild(gameState);
         }
 
         private void OnFinishCurrentGamePressed() {
             mainLevel.QueueFree();
+            gameState.QueueFree(); //reset game state
+            gameState = new GameState();
+            AddChild(gameState);
             menuContainer.AddChild(mainMenuPackedScene.Instance());
-            SetupMainLevel(); //for the next round we can already prepare the level
+            SetupMainLevel(gameState); //for the next round we can already prepare the level
         }
     }
 }

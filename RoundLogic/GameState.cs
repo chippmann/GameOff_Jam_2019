@@ -13,6 +13,9 @@ namespace Planty.RoundLogic {
         private bool internalGameOverAlreadyTriggered = false;
         public int tutorialTweetsCount = 0;
 
+        public bool hasTileMapSetupBegun = false;
+        public bool isTileMapSetup = false;
+
         public override void _Ready() {
             base._Ready();
             AddToGroup(GameConstants.GameStateGroup);
