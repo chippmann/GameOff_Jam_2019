@@ -212,6 +212,7 @@
     <Folder Include="Levels\Common\TileMapObjects\TreeObject\Assets" />
     <Folder Include="Levels\MainLevel" />
     <Folder Include="Ui\Intro\assets" />
+    <Folder Include="Ui\Menu\MainMenu\Assets" />
     <Folder Include="Ui\TwitterUi\Effects" />
     <Folder Include="Ui\TwitterUi\Static" />
   </ItemGroup>
