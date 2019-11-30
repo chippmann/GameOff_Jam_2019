@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using GameOff_2019.Data;
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Networking;
-using GameOff_2019.Serialization;
 using Godot;
+using Planty.Data;
+using Planty.EngineUtils;
+using Planty.Networking;
+using Planty.Serialization;
 
-namespace GameOff_2019.Ui.TwitterUi {
+namespace Planty.Ui.TwitterUi {
     public class TweetUpdater : Node2D {
         [Export] private readonly NodePath restClientNodePath = null;
         private RestClient restClient;

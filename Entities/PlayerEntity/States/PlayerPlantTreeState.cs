@@ -1,15 +1,15 @@
 using System;
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common;
-using GameOff_2019.Entities.Common.Movement;
-using GameOff_2019.Entities.Common.Navigation;
-using GameOff_2019.Entities.Common.StateMachine;
-using GameOff_2019.Entities.PlayerEntity.States.Message;
-using GameOff_2019.RoundLogic;
-using GameOff_2019.SoundEngine;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common;
+using Planty.Entities.Common.Movement;
+using Planty.Entities.Common.Navigation;
+using Planty.Entities.Common.StateMachine;
+using Planty.Entities.PlayerEntity.States.Message;
+using Planty.RoundLogic;
+using Planty.SoundEngine;
 
-namespace GameOff_2019.Entities.PlayerEntity.States {
+namespace Planty.Entities.PlayerEntity.States {
     public class PlayerPlantTreeState : State {
         [Export] private readonly NodePath entityMovementNodePath = null;
         [Export] private AudioStreamOGGVorbis playerWalkSound = null;

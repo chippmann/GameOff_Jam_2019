@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GameOff_2019.Data;
-using GameOff_2019.EngineUtils;
-using GameOff_2019.RoundLogic;
-using GameOff_2019.SoundEngine;
-using GameOff_2019.Ui.TwitterUi.Dynamic;
 using Godot;
+using Planty.Data;
+using Planty.EngineUtils;
+using Planty.RoundLogic;
+using Planty.SoundEngine;
+using Planty.Ui.TwitterUi.Dynamic;
 
-namespace GameOff_2019.Ui.TwitterUi {
+namespace Planty.Ui.TwitterUi {
     public class TwitterFeed : VBoxContainer {
         [Export] private readonly PackedScene tweetPackedScene = null;
         [Export] private readonly PackedScene tweetWithImagePackedScene = null;

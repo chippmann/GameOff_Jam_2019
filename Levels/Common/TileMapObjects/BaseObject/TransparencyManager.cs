@@ -1,8 +1,8 @@
 using System;
-using GameOff_2019.EngineUtils;
 using Godot;
+using Planty.EngineUtils;
 
-namespace GameOff_2019.Levels.Common.TileMapObjects.BaseObject {
+namespace Planty.Levels.Common.TileMapObjects.BaseObject {
     public class TransparencyManager : Area2D {
         [Export] private readonly int transparencyPercentage = 50;
         [Export] private readonly NodePath spriteNodePath = null;

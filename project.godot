@@ -15,9 +15,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GameOff_2019"
+config/name="Planty"
 run/main_scene="res://MainScene.tscn"
-config/icon="res://icon.png"
+config/icon="res://ic_planty.png"
 
 [autoload]
 

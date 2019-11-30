@@ -1,8 +1,8 @@
-using GameOff_2019.EngineUtils;
-using GameOff_2019.RoundLogic;
 using Godot;
+using Planty.EngineUtils;
+using Planty.RoundLogic;
 
-namespace GameOff_2019.Ui {
+namespace Planty.Ui {
     public class PointsUi : HBoxContainer {
         [Export] private readonly NodePath playerPointsLabelNodePath = null;
         private Label playerPointsLabel;

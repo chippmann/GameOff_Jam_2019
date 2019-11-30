@@ -1,11 +1,11 @@
 using System;
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common.BehaviourTree;
-using GameOff_2019.Entities.PlayerEntity.States.Message;
-using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common.BehaviourTree;
+using Planty.Entities.PlayerEntity.States.Message;
+using Planty.Levels.Common.TileMapObjects.TreeObject;
 
-namespace GameOff_2019.Entities.DemonEntity.Behaviours {
+namespace Planty.Entities.DemonEntity.Behaviours {
     public abstract class BaseInfestTreeBehaviour : BTAction {
         [Export] private readonly NodePath stateMachineNodePath = null;
         private DemonStateMachine stateMachine;

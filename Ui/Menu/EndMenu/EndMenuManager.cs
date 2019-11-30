@@ -1,8 +1,8 @@
-using GameOff_2019.EngineUtils;
-using GameOff_2019.RoundLogic;
 using Godot;
+using Planty.EngineUtils;
+using Planty.RoundLogic;
 
-namespace GameOff_2019.Ui.Menu.EndMenu {
+namespace Planty.Ui.Menu.EndMenu {
     public class EndMenuManager : Control {
         [Export] private readonly string pointsLimitTitleText = "";
         [Export] private readonly string pointsLimitMessageText = "";

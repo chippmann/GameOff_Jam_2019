@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common;
-using GameOff_2019.Entities.Common.Navigation;
-using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common;
+using Planty.Entities.Common.Navigation;
+using Planty.Levels.Common.TileMapObjects.BaseObject;
 
-namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
+namespace Planty.Levels.Common.TileMapObjects.TreeObject {
     public class TreeActionRadius : Area2D {
         [Export] private readonly NodePath textureNodePath = null;
         private Sprite treeActionRadiusTexture;

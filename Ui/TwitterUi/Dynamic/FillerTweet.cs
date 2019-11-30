@@ -1,5 +1,5 @@
 using Godot;
 
-namespace GameOff_2019.Ui.TwitterUi.Dynamic {
+namespace Planty.Ui.TwitterUi.Dynamic {
     public class FillerTweet : Control { }
 }

@@ -1,16 +1,16 @@
 using System;
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common;
-using GameOff_2019.Entities.Common.Movement;
-using GameOff_2019.Entities.Common.Navigation;
-using GameOff_2019.Entities.Common.StateMachine;
-using GameOff_2019.Entities.PlayerEntity.States.Message;
-using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
-using GameOff_2019.RoundLogic;
-using GameOff_2019.SoundEngine;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common;
+using Planty.Entities.Common.Movement;
+using Planty.Entities.Common.Navigation;
+using Planty.Entities.Common.StateMachine;
+using Planty.Entities.PlayerEntity.States.Message;
+using Planty.Levels.Common.TileMapObjects.TreeObject;
+using Planty.RoundLogic;
+using Planty.SoundEngine;
 
-namespace GameOff_2019.Entities.PlayerEntity.States {
+namespace Planty.Entities.PlayerEntity.States {
     public class PlayerHealTreeState : State {
         [Export] private readonly NodePath entityMovementNodePath = null;
         [Export] private AudioStreamOGGVorbis playerWalkSound = null;
@@ -36,7 +36,7 @@ namespace GameOff_2019.Entities.PlayerEntity.States {
             if (!(message is MoveToPositionMessage)) {
                 throw new Exception("State message is not of Type \"MoveToPositionMessage\"");
             }
-            
+
             soundPlayer = soundEngineNode.PlaySfxLoop(playerWalkSound);
 
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.PlayerTargetReached), this, nameof(TargetReached));
@@ -52,9 +52,9 @@ namespace GameOff_2019.Entities.PlayerEntity.States {
 
         public override void Exit() {
             entityMovement.StopMovement();
-            
+
             soundEngineNode.StopSfx(soundPlayer);
-            
+
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.PlayerTargetReached), this, nameof(TargetReached));
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.TargetCannotBeReached), this, nameof(PlayerTargetCannotBeReached));
             if (GetNode<Eventing>(Eventing.EventingNodePath).IsConnected(nameof(Eventing.InvalidatePlayerPath), this, nameof(OnPathInvalidated))) {
@@ -70,7 +70,7 @@ namespace GameOff_2019.Entities.PlayerEntity.States {
             if (GetNode<Eventing>(Eventing.EventingNodePath).IsConnected(nameof(Eventing.InvalidatePlayerPath), this, nameof(OnPathInvalidated))) {
                 GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.InvalidatePlayerPath), this, nameof(OnPathInvalidated));
             }
-            
+
             soundEngineNode.PlaySfx(healTree);
 
             var tileMapObject = pathfindingTileMap.tileMapManipulator.GetTileMapObjectWithTileMapCoordinates(targetPosition);

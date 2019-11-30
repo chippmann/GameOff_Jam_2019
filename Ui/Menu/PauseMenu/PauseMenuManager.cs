@@ -1,7 +1,7 @@
-using GameOff_2019.EngineUtils;
 using Godot;
+using Planty.EngineUtils;
 
-namespace GameOff_2019.Ui.Menu.PauseMenu {
+namespace Planty.Ui.Menu.PauseMenu {
     public class PauseMenuManager : Control {
         [Export] private readonly NodePath continueButtonNodePath = null;
         private Button continueButton;

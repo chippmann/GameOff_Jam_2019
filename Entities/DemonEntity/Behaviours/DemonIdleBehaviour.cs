@@ -1,9 +1,9 @@
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common.BehaviourTree;
-using GameOff_2019.Entities.DemonEntity.States;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common.BehaviourTree;
+using Planty.Entities.DemonEntity.States;
 
-namespace GameOff_2019.Entities.DemonEntity.Behaviours {
+namespace Planty.Entities.DemonEntity.Behaviours {
     public class DemonIdleBehaviour : BTAction {
         [Export] private readonly NodePath stateMachineNodePath = null;
         private DemonStateMachine stateMachine;

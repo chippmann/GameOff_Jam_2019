@@ -1,8 +1,8 @@
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.PlayerEntity;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.PlayerEntity;
 
-namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
+namespace Planty.Levels.Common.TileMapObjects.TreeObject.Ui {
     public class InteractionPopup : PopupPanel {
         [Export] private readonly NodePath killTreeInteractionObjectNodePath = null;
         private InteractionOption killTreeInteractionObject;

@@ -1,8 +1,8 @@
 using System;
-using GameOff_2019.EngineUtils;
 using Godot;
+using Planty.EngineUtils;
 
-namespace GameOff_2019.Entities.DemonEntity.Behaviours {
+namespace Planty.Entities.DemonEntity.Behaviours {
     public class DemonWanderRandomPositionBehaviour : BaseDemonWanderBehaviour {
         protected override Vector2 GetWanderWorldPosition() {
             var random = new Random();

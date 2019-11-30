@@ -1,5 +1,5 @@
-using GameOff_2019.Entities.Common;
+using Planty.Entities.Common;
 
-namespace GameOff_2019.Entities.DemonEntity {
+namespace Planty.Entities.DemonEntity {
     public class Demon : Entity { }
 }

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using GameOff_2019.EngineUtils;
 using Godot;
+using Planty.EngineUtils;
 
-namespace GameOff_2019.Entities.Common.Movement {
+namespace Planty.Entities.Common.Movement {
     public class EntityMovement : Node2D {
         [Export] private readonly NodePath entityBodyNodePath = null;
         private Entity entity;

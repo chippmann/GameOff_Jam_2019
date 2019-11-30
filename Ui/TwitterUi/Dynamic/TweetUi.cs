@@ -1,10 +1,10 @@
 using System;
 using System.Globalization;
 using System.Linq;
-using GameOff_2019.Data;
 using Godot;
+using Planty.Data;
 
-namespace GameOff_2019.Ui.TwitterUi.Dynamic {
+namespace Planty.Ui.TwitterUi.Dynamic {
     public class TweetUi : PanelContainer {
         [Export] private readonly NodePath avatarNodePath = null;
         private TextureRect avatar;

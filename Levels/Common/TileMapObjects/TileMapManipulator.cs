@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common.Navigation;
-using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
-using GameOff_2019.Levels.Common.TileMapObjects.TraversableObject;
-using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using Godot;
 using Godot.Collections;
+using Planty.EngineUtils;
+using Planty.Entities.Common.Navigation;
+using Planty.Levels.Common.TileMapObjects.BaseObject;
+using Planty.Levels.Common.TileMapObjects.TraversableObject;
+using Planty.Levels.Common.TileMapObjects.TreeObject;
 
-namespace GameOff_2019.Levels.Common.TileMapObjects {
+namespace Planty.Levels.Common.TileMapObjects {
     public class TileMapManipulator : Node {
         [Export] private readonly NodePath pathfindingTileMapNodePath = null;
         private PathfindingTileMap pathfindingTileMap;

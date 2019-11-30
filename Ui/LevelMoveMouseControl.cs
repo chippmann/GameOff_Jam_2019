@@ -1,9 +1,9 @@
 using System;
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.PlayerEntity;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.PlayerEntity;
 
-namespace GameOff_2019.Ui {
+namespace Planty.Ui {
     public class LevelMoveMouseControl : Control {
         [Export] private readonly NodePath cameraNodePath = null;
         private Camera2D camera;

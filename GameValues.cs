@@ -1,4 +1,4 @@
-namespace GameOff_2019 {
+namespace Planty {
     public class GameValues {
         #region Player
 

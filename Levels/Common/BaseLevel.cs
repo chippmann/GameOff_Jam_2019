@@ -1,9 +1,9 @@
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Levels.Common.TileMapObjects;
-using GameOff_2019.Ui.Menu.PauseMenu;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Levels.Common.TileMapObjects;
+using Planty.Ui.Menu.PauseMenu;
 
-namespace GameOff_2019.Levels.Common {
+namespace Planty.Levels.Common {
     public class BaseLevel : Node2D {
         [Export] private readonly NodePath gameUiNodePath = null;
         private Control gameUi;

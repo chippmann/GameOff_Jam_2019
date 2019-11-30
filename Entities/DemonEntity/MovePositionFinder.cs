@@ -1,14 +1,14 @@
 using System;
 using System.Linq;
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common.Navigation;
-using GameOff_2019.Entities.PlayerEntity;
-using GameOff_2019.Levels.Common.TileMapObjects;
-using GameOff_2019.Levels.Common.TileMapObjects.TraversableObject;
-using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common.Navigation;
+using Planty.Entities.PlayerEntity;
+using Planty.Levels.Common.TileMapObjects;
+using Planty.Levels.Common.TileMapObjects.TraversableObject;
+using Planty.Levels.Common.TileMapObjects.TreeObject;
 
-namespace GameOff_2019.Entities.DemonEntity {
+namespace Planty.Entities.DemonEntity {
     public class MovePositionFinder : Node2D {
         private PathfindingTileMap pathfindingTileMap;
         private TileMapManipulator tileMapManipulator;

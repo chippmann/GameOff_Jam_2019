@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject {
+namespace Planty.Levels.Common.TileMapObjects.TreeObject {
     public class TreeState : Node2D {
         [Export] public readonly int maxHealth = 100;
 

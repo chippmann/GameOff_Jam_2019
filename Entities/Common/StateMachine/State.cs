@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GameOff_2019.Entities.Common.StateMachine {
+namespace Planty.Entities.Common.StateMachine {
     public abstract class State : Node2D {
         private FiniteStateMachine stateMachine;
         private State parentState;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-namespace GameOff_2019.Entities.Common.Navigation {
+namespace Planty.Entities.Common.Navigation {
     public class DebugPathfindingCanvas : Node2D {
         private readonly Dictionary<DateTime, List<Vector2>> debugPaths = new Dictionary<DateTime, List<Vector2>>();
 

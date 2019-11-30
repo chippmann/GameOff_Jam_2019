@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using GameOff_2019.Data;
-using GameOff_2019.Serialization;
 using Godot;
+using Planty.Data;
+using Planty.Serialization;
 
-namespace GameOff_2019.Networking {
+namespace Planty.Networking {
     public class RestClient : Node2D {
         private HTTPRequest httpRequest;
         public const string CredentialsFilePath = "res://Credentials/tweetsApiCredentials.json";

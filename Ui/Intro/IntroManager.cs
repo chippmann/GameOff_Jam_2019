@@ -1,7 +1,7 @@
-using GameOff_2019.EngineUtils;
 using Godot;
+using Planty.EngineUtils;
 
-namespace GameOff_2019.Ui.Intro {
+namespace Planty.Ui.Intro {
     public class IntroManager : Control {
         [Export] private readonly NodePath videoPlayerNodePath = null;
         private VideoPlayer videoPlayer;

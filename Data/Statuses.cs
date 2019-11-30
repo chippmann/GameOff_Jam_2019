@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace GameOff_2019.Data {
+namespace Planty.Data {
     public class Statuses {
         public List<Tweet> statuses { get; set; }
     }

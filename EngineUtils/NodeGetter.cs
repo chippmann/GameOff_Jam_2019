@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace GameOff_2019.EngineUtils {
+namespace Planty.EngineUtils {
     public class NodeGetter {
         public static T GetFirstNodeInGroup<T>(SceneTree tree, string nodeGroup, bool onlyOneCanExist = false) where T : Node {
             var nodes = tree.GetNodesInGroup(nodeGroup);

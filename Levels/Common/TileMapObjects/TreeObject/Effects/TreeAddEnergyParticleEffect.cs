@@ -1,10 +1,10 @@
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common;
-using GameOff_2019.Entities.PlayerEntity;
-using GameOff_2019.RoundLogic;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common;
+using Planty.Entities.PlayerEntity;
+using Planty.RoundLogic;
 
-namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Effects {
+namespace Planty.Levels.Common.TileMapObjects.TreeObject.Effects {
     public class TreeAddEnergyParticleEffect : Particles2D {
         [Export] private readonly int speedInTileMaps = 4;
         [Export] private readonly Texture playerTexture = null;

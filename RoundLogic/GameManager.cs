@@ -1,8 +1,8 @@
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Levels.Common;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Levels.Common;
 
-namespace GameOff_2019.RoundLogic {
+namespace Planty.RoundLogic {
     public class GameManager : Control {
         [Export] private readonly NodePath levelContainerNodePath = null;
         private Node2D levelContainer;

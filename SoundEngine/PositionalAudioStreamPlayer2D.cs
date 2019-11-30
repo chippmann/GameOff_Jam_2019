@@ -1,7 +1,7 @@
-using GameOff_2019.EngineUtils;
 using Godot;
+using Planty.EngineUtils;
 
-namespace GameOff_2019.SoundEngine {
+namespace Planty.SoundEngine {
     public class PositionalAudioStreamPlayer2D : AudioStreamPlayer2D {
         private Node2D targetToFollow;
 

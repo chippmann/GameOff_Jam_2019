@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Ui {
+namespace Planty.Levels.Common.TileMapObjects.TreeObject.Ui {
     public class InteractionOption : VBoxContainer {
         [Export] private readonly string labelKey = "NoLabelKeySet!";
         [Export] private readonly Texture icon = null;

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GameOff_2019.Entities.Common.BehaviourTree {
+namespace Planty.Entities.Common.BehaviourTree {
     public class BTSequence : BTItem {
         private List<BTItem> items = new List<BTItem>();
         private int currentItem;

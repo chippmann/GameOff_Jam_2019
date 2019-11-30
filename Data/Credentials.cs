@@ -1,4 +1,4 @@
-namespace GameOff_2019.Data {
+namespace Planty.Data {
     public class Credentials {
         public string url { get; set; }
         public string user { get; set; }

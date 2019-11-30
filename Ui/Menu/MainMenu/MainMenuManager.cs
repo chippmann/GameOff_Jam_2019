@@ -1,9 +1,9 @@
-using GameOff_2019.EngineUtils;
-using GameOff_2019.RoundLogic;
-using GameOff_2019.SoundEngine;
 using Godot;
+using Planty.EngineUtils;
+using Planty.RoundLogic;
+using Planty.SoundEngine;
 
-namespace GameOff_2019.Ui.Menu.MainMenu {
+namespace Planty.Ui.Menu.MainMenu {
     public class MainMenuManager : Control {
         [Export] private readonly NodePath startGameWithPointLimitButtonNodePath = null;
         private Button startWithPointLimitGameButton;

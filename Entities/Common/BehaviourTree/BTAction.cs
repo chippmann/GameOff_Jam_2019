@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 
-namespace GameOff_2019.Entities.Common.BehaviourTree {
+namespace Planty.Entities.Common.BehaviourTree {
     public abstract class BTAction : Node2D, BTItem {
         public KeyValuePair<BTResult, BTItem> Execute() {
             var result = ExecuteInternal();

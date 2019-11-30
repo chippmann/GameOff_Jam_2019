@@ -1,7 +1,7 @@
-using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using Godot;
+using Planty.Levels.Common.TileMapObjects.TreeObject;
 
-namespace GameOff_2019.EngineUtils {
+namespace Planty.EngineUtils {
     public class Eventing : Node2D {
         public static string EventingNodePath = "/root/Eventing";
 

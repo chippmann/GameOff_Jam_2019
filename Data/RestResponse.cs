@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GameOff_2019.Data {
+namespace Planty.Data {
     public class RestResponse {
         public HTTPRequest.Result result { get; set; }
         public int responseCode { get; set; }

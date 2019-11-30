@@ -1,11 +1,11 @@
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common.BehaviourTree;
-using GameOff_2019.Entities.DemonEntity.Behaviours;
-using GameOff_2019.Levels.Common.TileMapObjects;
-using GameOff_2019.RoundLogic;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common.BehaviourTree;
+using Planty.Entities.DemonEntity.Behaviours;
+using Planty.Levels.Common.TileMapObjects;
+using Planty.RoundLogic;
 
-namespace GameOff_2019.Entities.DemonEntity {
+namespace Planty.Entities.DemonEntity {
     public class DemonBehaviourTree : Node2D {
         [Export] private readonly NodePath idleBehaviourNodePath = null;
         private DemonIdleBehaviour idleBehaviour;

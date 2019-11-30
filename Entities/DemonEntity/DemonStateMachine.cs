@@ -1,7 +1,7 @@
-using GameOff_2019.Entities.Common.StateMachine;
 using Godot;
+using Planty.Entities.Common.StateMachine;
 
-namespace GameOff_2019.Entities.DemonEntity {
+namespace Planty.Entities.DemonEntity {
     public class DemonStateMachine : FiniteStateMachine {
         [Export] public readonly NodePath idle;
         [Export] public readonly NodePath moveToPosition;

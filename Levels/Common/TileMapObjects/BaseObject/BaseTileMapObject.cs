@@ -1,8 +1,8 @@
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common.Navigation;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common.Navigation;
 
-namespace GameOff_2019.Levels.Common.TileMapObjects.BaseObject {
+namespace Planty.Levels.Common.TileMapObjects.BaseObject {
     public class TileMapObject : Node2D {
         protected PathfindingTileMap pathfindingTileMap;
 

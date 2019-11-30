@@ -1,6 +1,6 @@
 using System;
 
-namespace GameOff_2019.Data {
+namespace Planty.Data {
     public class Tweet {
         public string created_at = DateTime.Now.ToString("ddd MMM dd HH:mm:ss zzz yyyy");
         public long id { get; set; }

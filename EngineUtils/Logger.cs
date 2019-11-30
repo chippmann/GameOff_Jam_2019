@@ -3,7 +3,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Godot;
 
-namespace GameOff_2019.EngineUtils {
+namespace Planty.EngineUtils {
     public class Logger {
         public static void Debug(string message, [CallerLineNumber] int lineNumber = -1, [CallerFilePath] string caller = null) {
             var callerClassName = caller.Split("/").Last().Split(".").First();

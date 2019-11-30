@@ -1,7 +1,7 @@
-using GameOff_2019.EngineUtils;
 using Godot;
+using Planty.EngineUtils;
 
-namespace GameOff_2019.RoundLogic {
+namespace Planty.RoundLogic {
     public class GameState : Node2D {
         private int playerPoints = 0;
         private int playerEnergy = 100;

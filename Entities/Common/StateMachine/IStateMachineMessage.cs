@@ -1,3 +1,3 @@
-namespace GameOff_2019.Entities.Common.StateMachine {
+namespace Planty.Entities.Common.StateMachine {
     public interface IStateMachineMessage { }
 }

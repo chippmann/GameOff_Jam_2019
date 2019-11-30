@@ -1,8 +1,8 @@
-using GameOff_2019.EngineUtils;
 using Godot;
 using Godot.Collections;
+using Planty.EngineUtils;
 
-namespace GameOff_2019.Entities.Common.StateMachine {
+namespace Planty.Entities.Common.StateMachine {
     public class FiniteStateMachine : Node2D {
         public const string StateMachineGroup = "state_machine";
 

@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common;
-using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
-using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common;
+using Planty.Levels.Common.TileMapObjects.BaseObject;
+using Planty.Levels.Common.TileMapObjects.TreeObject;
 
-namespace GameOff_2019.Entities.PlayerEntity {
+namespace Planty.Entities.PlayerEntity {
     public class RemoveTreeChecker : Area2D {
         private readonly List<Area2D> treeActionRadiusList = new List<Area2D>();
 

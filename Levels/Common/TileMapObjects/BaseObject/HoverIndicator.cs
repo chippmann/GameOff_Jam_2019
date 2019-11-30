@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common.Navigation;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common.Navigation;
 
 public class HoverIndicator : Sprite {
     [Export] private readonly NodePath actionRadiusColliderNodePath = null;

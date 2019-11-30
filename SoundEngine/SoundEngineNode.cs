@@ -1,11 +1,8 @@
 using Godot;
-using System;
-using System.IO;
-using GameOff_2019.EngineUtils;
+using Planty.EngineUtils;
 
-namespace GameOff_2019.SoundEngine {
-    public class SoundEngineNode : Node
-    {
+namespace Planty.SoundEngine {
+    public class SoundEngineNode : Node {
         // Declare member variables here. Examples:
         // private int a = 2;
         // private string b = "text";
@@ -23,15 +20,13 @@ namespace GameOff_2019.SoundEngine {
         }
 
         public void PlayMusic(string name, bool repeat = true, bool fade = true) {
-            Logger.Debug("Play Music: "+name);
+            Logger.Debug("Play Music: " + name);
             AudioStreamOGGVorbis stream = GetMusicStream(name, repeat);
-            if (stream != null)
-            {
+            if (stream != null) {
                 musicPlayer.SetStream(stream);
                 musicPlayer.Play();
             }
-            else
-            {
+            else {
                 Logger.Warning("Music " + name + " not found");
             }
         }
@@ -40,56 +35,51 @@ namespace GameOff_2019.SoundEngine {
             musicPlayer.Stop();
         }
 
-        public AudioStreamPlayer PlaySfxLoop(AudioStreamOGGVorbis stream)
-        {
+        public AudioStreamPlayer PlaySfxLoop(AudioStreamOGGVorbis stream) {
             AudioStreamPlayer player = new AudioStreamPlayer();
             player.SetStream(stream);
             AddChild(player);
-            
+
             player.Play();
             return player;
         }
-        
-        public AudioStreamPlayer2D PlaySfxLoop2D(AudioStreamOGGVorbis stream, Node2D target)
-        {
+
+        public AudioStreamPlayer2D PlaySfxLoop2D(AudioStreamOGGVorbis stream, Node2D target) {
             PositionalAudioStreamPlayer2D player = new PositionalAudioStreamPlayer2D();
             player.Init(target);
             player.SetStream(stream);
             AddChild(player);
-            
+
             player.Play();
             return player;
         }
-        
-        public void PlaySfx(AudioStreamSample stream)
-        {
+
+        public void PlaySfx(AudioStreamSample stream) {
             AudioStreamPlayer player = new AudioStreamPlayer();
             player.SetStream(stream);
             AddChild(player);
-            
+
             player.Play();
         }
 
-        public bool StopSfx(AudioStreamPlayer2D player)
-        {
+        public bool StopSfx(AudioStreamPlayer2D player) {
             player.Stop();
             RemoveChild(player);
             return true;
         }
-        
-        public bool StopSfx(AudioStreamPlayer player)
-        {
+
+        public bool StopSfx(AudioStreamPlayer player) {
             player.Stop();
             RemoveChild(player);
             return true;
         }
-        
+
         private AudioStreamOGGVorbis GetMusicStream(string name, bool repeat = true) {
-            AudioStreamOGGVorbis stream = ResourceLoader.Load<AudioStreamOGGVorbis>("res://SoundEngine/Assets/Music/"+name+".ogg");
+            AudioStreamOGGVorbis stream = ResourceLoader.Load<AudioStreamOGGVorbis>("res://SoundEngine/Assets/Music/" + name + ".ogg");
             stream.SetLoop(repeat);
             return stream;
         }
-        
+
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)

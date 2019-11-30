@@ -1,10 +1,10 @@
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common.Navigation;
-using GameOff_2019.Entities.Common.StateMachine;
-using GameOff_2019.Entities.PlayerEntity;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common.Navigation;
+using Planty.Entities.Common.StateMachine;
+using Planty.Entities.PlayerEntity;
 
-namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
+namespace Planty.Levels.Common.TileMapObjects.TreeObject.TreeStates {
     public class DeadState : State {
         private PathfindingTileMap pathfindingTileMap;
 

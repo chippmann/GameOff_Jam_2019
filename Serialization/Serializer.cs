@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace GameOff_2019.Serialization {
+namespace Planty.Serialization {
     public class Serializer {
         public static string Serialize<T>(T obj) {
             return JsonConvert.SerializeObject(obj);

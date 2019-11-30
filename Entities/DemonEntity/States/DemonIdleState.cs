@@ -1,7 +1,7 @@
-using GameOff_2019.Entities.Common.StateMachine;
 using Godot;
+using Planty.Entities.Common.StateMachine;
 
-namespace GameOff_2019.Entities.DemonEntity.States {
+namespace Planty.Entities.DemonEntity.States {
     public class DemonIdleState : State {
         public override void Enter(IStateMachineMessage message = null) { }
 

@@ -1,11 +1,11 @@
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common.StateMachine;
-using GameOff_2019.Entities.PlayerEntity;
-using GameOff_2019.Levels.Common.TileMapObjects.TreeObject.Effects;
-using GameOff_2019.RoundLogic;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common.StateMachine;
+using Planty.Entities.PlayerEntity;
+using Planty.Levels.Common.TileMapObjects.TreeObject.Effects;
+using Planty.RoundLogic;
 
-namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
+namespace Planty.Levels.Common.TileMapObjects.TreeObject.TreeStates {
     public class GrowingState : State {
         [Export] private readonly int initialHealth = 10;
         [Export] private readonly int treeGrowthRatePerMinute = 5;

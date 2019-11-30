@@ -1,12 +1,12 @@
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Entities.Common;
-using GameOff_2019.Entities.PlayerEntity.States.Message;
-using GameOff_2019.Levels.Common.TileMapObjects;
-using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
-using GameOff_2019.RoundLogic;
 using Godot;
+using Planty.EngineUtils;
+using Planty.Entities.Common;
+using Planty.Entities.PlayerEntity.States.Message;
+using Planty.Levels.Common.TileMapObjects;
+using Planty.Levels.Common.TileMapObjects.TreeObject;
+using Planty.RoundLogic;
 
-namespace GameOff_2019.Entities.PlayerEntity {
+namespace Planty.Entities.PlayerEntity {
     public class Player : Entity {
         [Export] private readonly NodePath removeTreeCheckerNodePath = null;
         private RemoveTreeChecker removeTreeChecker;

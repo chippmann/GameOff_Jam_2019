@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace GameOff_2019.Data {
+namespace Planty.Data {
     public class Entities {
         public List<Hashtag> hashtags { get; set; }
         public List<Url> urls { get; set; }

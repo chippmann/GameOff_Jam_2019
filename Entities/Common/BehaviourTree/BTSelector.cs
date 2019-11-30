@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GameOff_2019.Entities.Common.BehaviourTree {
+namespace Planty.Entities.Common.BehaviourTree {
     public class BTSelector : BTItem {
         private BTItem trueItem;
         private BTItem falseItem;

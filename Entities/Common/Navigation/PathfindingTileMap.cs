@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using GameOff_2019.EngineUtils;
-using GameOff_2019.Levels.Common.TileMapObjects;
 using Godot;
 using Godot.Collections;
+using Planty.EngineUtils;
+using Planty.Levels.Common.TileMapObjects;
 
-namespace GameOff_2019.Entities.Common.Navigation {
+namespace Planty.Entities.Common.Navigation {
     public class PathfindingTileMap : TileMap {
         [Export] public readonly int traversableId = 0;
         [Export] public readonly int treeId = 1;
