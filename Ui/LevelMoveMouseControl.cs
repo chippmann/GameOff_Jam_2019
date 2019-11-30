@@ -1,5 +1,6 @@
 using System;
 using GameOff_2019.EngineUtils;
+using GameOff_2019.Entities.PlayerEntity;
 using Godot;
 
 namespace GameOff_2019.Ui {
@@ -40,6 +41,14 @@ namespace GameOff_2019.Ui {
             mouseCaptureBottom = GetNode<Control>(mouseCaptureBottomNodePath);
 //            uiContainerCanvasLayer = GetNode<CanvasLayer>(uiContainerCanvasLayerNodePath);
 //            uiContainerInitialOffset = uiContainerCanvasLayer.GetOffset();
+            SetInitialPosition();
+        }
+
+        private void SetInitialPosition() {
+            var windowWidth = (int) ProjectSettings.GetSetting("display/window/size/width");
+            var windowHeight = (int) ProjectSettings.GetSetting("display/window/size/height");
+            var playerGlobalPosition = NodeGetter.GetFirstNodeInGroup<Player>(GetTree(), GameConstants.PlayerGroup, true).GetGlobalPosition();
+            camera.SetGlobalPosition(playerGlobalPosition - new Vector2(windowWidth, windowHeight));
         }
 
         public override void _PhysicsProcess(float delta) {
