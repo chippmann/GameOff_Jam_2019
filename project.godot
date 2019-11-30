@@ -96,6 +96,10 @@ pause={
 2d_physics/layer_3="demon"
 2d_physics/layer_4="tileMapObject"
 
+[locale]
+
+translations=PoolStringArray( "res://Ui/Resources/translations.de.translation", "res://Ui/Resources/translations.en.translation" )
+
 [mono]
 
 debugger_agent/wait_for_debugger=true

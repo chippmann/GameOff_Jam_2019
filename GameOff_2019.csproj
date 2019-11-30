@@ -215,6 +215,7 @@
     <Folder Include="Ui\Intro\assets" />
     <Folder Include="Ui\Menu\MainMenu\Assets" />
       <Folder Include="Ui\Menu\PauseMenu\Assets" />
+    <Folder Include="Ui\Resources" />
     <Folder Include="Ui\TwitterUi\Effects" />
     <Folder Include="Ui\TwitterUi\Static" />
   </ItemGroup>

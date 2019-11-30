@@ -15,10 +15,10 @@ killTreeInteractionObjectNodePath = NodePath("MarginContainer/GridContainer/Kill
 healTreeInteractionObjectNodePath = NodePath("MarginContainer/GridContainer/HealTreeOption")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 14.0
-margin_bottom = 14.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 18.0
+margin_bottom = 18.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -34,6 +34,7 @@ columns = 3
 [node name="KillTreeOption" parent="MarginContainer/GridContainer" instance=ExtResource( 3 )]
 margin_right = 64.0
 margin_bottom = 82.0
+labelKey = "kill_tree"
 icon = ExtResource( 4 )
 textureRectNodePath = NodePath("../KillTreeOption/TextureRect")
 labelNodePath = NodePath("../KillTreeOption/Label")
@@ -42,6 +43,7 @@ labelNodePath = NodePath("../KillTreeOption/Label")
 margin_left = 68.0
 margin_right = 132.0
 margin_bottom = 82.0
+labelKey = "heal_tree"
 icon = ExtResource( 5 )
 textureRectNodePath = NodePath("../HealTreeOption/TextureRect")
 labelNodePath = NodePath("../HealTreeOption/Label")

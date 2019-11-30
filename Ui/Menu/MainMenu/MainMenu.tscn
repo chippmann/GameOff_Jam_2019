@@ -75,19 +75,19 @@ text = "game_quit_button"
 flat = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
-anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -390.0
-margin_top = -58.7076
+margin_top = -21.0
+custom_constants/margin_right = 10
+custom_constants/margin_bottom = 10
 
 [node name="Label" type="Label" parent="MarginContainer2"]
-margin_top = 23.0
-margin_right = 390.0
-margin_bottom = 34.0
+margin_right = 1270.0
+margin_bottom = 11.0
 custom_fonts/font = ExtResource( 5 )
-text = "planted with love by Cedric Hippmann and Josias Bruderer"
+text = "about"
+align = 2
 
 [node name="Particles2D" type="Particles2D" parent="."]
 material = ExtResource( 6 )
@@ -105,5 +105,5 @@ texture = ExtResource( 8 )
 position = Vector2( 1081.05, 188.421 )
 frames = ExtResource( 9 )
 animation = "down"
-frame = 9
+frame = 5
 playing = true

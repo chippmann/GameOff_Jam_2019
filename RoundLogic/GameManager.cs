@@ -10,7 +10,8 @@ namespace GameOff_2019.RoundLogic {
         private Control menuContainer;
         [Export] private readonly PackedScene introPackedScene = null;
         [Export] private readonly PackedScene mainMenuPackedScene = null;
-        [Export] private readonly PackedScene baseEndMenuPackedScene = null;
+        [Export] private readonly PackedScene wonMenuPackedScene = null;
+        [Export] private readonly PackedScene lostEndMenuPackedScene = null;
         [Export] private readonly PackedScene levelPackedScene = null;
 
         private Node2D tmpLevelHolder = new Node2D();
@@ -22,8 +23,8 @@ namespace GameOff_2019.RoundLogic {
             menuContainer = GetNode<Control>(menuContainerNodePath);
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.IntroFinished), this, nameof(OnIntroFinished));
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.StartGamePressed), this, nameof(OnStartGamePressed));
-            GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.GameWon), this, nameof(OnGameWonOrGameOver));
-            GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.GameOver), this, nameof(OnGameWonOrGameOver));
+            GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.GameWon), this, nameof(OnGameWon));
+            GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.GameOver), this, nameof(OnGameOver));
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.ContinuePressed), this, nameof(OnContinuePressed));
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.FinishCurrentGame), this, nameof(OnFinishCurrentGamePressed));
 
@@ -46,9 +47,15 @@ namespace GameOff_2019.RoundLogic {
             levelContainer.AddChild(mainLevel);
         }
 
-        private void OnGameWonOrGameOver() {
+        private void OnGameWon() {
             mainLevel.QueueFree();
-            menuContainer.AddChild(baseEndMenuPackedScene.Instance());
+            menuContainer.AddChild(wonMenuPackedScene.Instance());
+            SetupMainLevel(); //for the next round we can already prepare the level
+        }
+
+        private void OnGameOver() {
+            mainLevel.QueueFree();
+            menuContainer.AddChild(lostEndMenuPackedScene.Instance());
             SetupMainLevel(); //for the next round we can already prepare the level
         }
 

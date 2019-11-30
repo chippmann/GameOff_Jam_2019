@@ -82,7 +82,6 @@ texture = ExtResource( 2 )
 expand = true
 
 [node name="ProgressBarsVBoxContainer" type="VBoxContainer" parent="HBoxContainer/GameUiMarginContainer/VBoxContainer/MarginContainer/MarginContainer/GameStatsHBoxContainer"]
-editor/display_folded = true
 margin_left = 78.0
 margin_right = 933.0
 margin_bottom = 65.0

@@ -32,6 +32,6 @@ namespace GameOff_2019 {
         #endregion
 
 
-        public static int pointsLimit = 1000000;
+        public static int pointsLimit = 1;
     }
 }
