@@ -47,6 +47,15 @@ namespace GameOff_2019.EngineUtils {
         [Signal]
         public delegate void StartGamePressed();
 
+        [Signal]
+        public delegate void GameWon();
+
+        [Signal]
+        public delegate void GameOver();
+
+        [Signal]
+        public delegate void ContinuePressed();
+
         #endregion
     }
 }

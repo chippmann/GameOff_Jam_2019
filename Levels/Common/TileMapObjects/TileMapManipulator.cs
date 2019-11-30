@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common.Navigation;
 using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
+using GameOff_2019.Levels.Common.TileMapObjects.TraversableObject;
+using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using Godot;
 using Godot.Collections;
 
@@ -286,6 +288,20 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
 
         public List<T> GetTileMapObjectsOfType<T>() where T : TileMapObject {
             return tileMapObjects.Select((pair, index) => pair.Value.node).OfType<T>().ToList();
+        }
+
+        public void CheckLoosingCondition() {
+            var treeTileMapObjects = GetTileMapObjectsOfType<TreeTileMapObject>();
+            if (treeTileMapObjects.Count <= 0) {
+                GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.GameOver));
+            }
+        }
+
+        public void CheckWinningCondition() {
+            var traversableTileMapObjects = GetTileMapObjectsOfType<TraversableTileMapObject>();
+            if (traversableTileMapObjects.Count <= 0) {
+                GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.GameWon));
+            }
         }
     }
 }

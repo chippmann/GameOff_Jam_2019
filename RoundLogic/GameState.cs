@@ -9,15 +9,30 @@ namespace GameOff_2019.RoundLogic {
         private int demonEnergy = 0;
 
         public int negativeTweetCount;
+        public bool isPointLimitEnabled = false;
+        private bool internalGameOverAlreadyTriggered = false;
+
+        public override void _Ready() {
+            base._Ready();
+            AddToGroup(GameConstants.GameStateGroup);
+        }
 
         public void AddPlayerPoints(int points) {
             playerPoints += points;
             GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.PointsChanged));
+            if (isPointLimitEnabled && playerPoints >= GameValues.pointsLimit && !internalGameOverAlreadyTriggered) {
+                internalGameOverAlreadyTriggered = true;
+                GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.GameWon));
+            }
         }
 
         public void AddDemonPoints(int points) {
             demonPoints += points;
             GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.PointsChanged));
+            if (isPointLimitEnabled && demonPoints >= GameValues.pointsLimit && !internalGameOverAlreadyTriggered) {
+                internalGameOverAlreadyTriggered = true;
+                GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.GameOver));
+            }
         }
 
         public void UsePlayerEnergy(int energyToUse) {

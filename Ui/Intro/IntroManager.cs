@@ -30,8 +30,8 @@ namespace GameOff_2019.Ui.Intro {
             var fadeDownTween = new Tween();
             AddChild(fadeOutTween);
             AddChild(fadeDownTween);
-            fadeOutTween.InterpolateMethod(this, "set_modulate", Modulate,
-                new Color(Modulate.r, Modulate.g, Modulate.b, 0), 2f, Tween.TransitionType.Sine, Tween.EaseType.InOut);
+            fadeOutTween.InterpolateMethod(videoPlayer, "set_modulate", videoPlayer.Modulate,
+                new Color(videoPlayer.Modulate.r, videoPlayer.Modulate.g, videoPlayer.Modulate.b, 0), 2f, Tween.TransitionType.Sine, Tween.EaseType.InOut);
             fadeDownTween.InterpolateMethod(videoPlayer, "set_volume", videoPlayer.GetVolume(), 0, 2f,
                 Tween.TransitionType.Sine, Tween.EaseType.InOut);
             fadeOutTween.Start();

@@ -15,6 +15,11 @@ videoPlayerNodePath = NodePath("VideoPlayer")
 skipButtonNodePath = NodePath("MarginContainer/Button")
 mainMenuSceneScene = ExtResource( 3 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
 [node name="VideoPlayer" type="VideoPlayer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0

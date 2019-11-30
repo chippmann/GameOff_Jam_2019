@@ -136,9 +136,8 @@
     <Compile Include="Ui\EnergyUi.cs" />
     <Compile Include="Ui\Intro\IntroManager.cs" />
     <Compile Include="Ui\LevelMoveMouseControl.cs" />
-    <Compile Include="Ui\Menu\LooseMenu\LooseMenuManager.cs" />
+      <Compile Include="Ui\Menu\EndMenu\EndMenuManager.cs" />
     <Compile Include="Ui\Menu\MainMenu\MainMenuManager.cs" />
-    <Compile Include="Ui\Menu\VictoryMenu\VictoryMenuManager.cs" />
     <Compile Include="Ui\PointsUi.cs" />
     <Compile Include="Ui\TwitterUi\Dynamic\FillerTweet.cs" />
     <Compile Include="Ui\TwitterUi\Dynamic\TweetUi.cs" />

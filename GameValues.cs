@@ -30,5 +30,8 @@ namespace GameOff_2019 {
         public static float treeAddPointsIntervalInSeconds = 4f;
 
         #endregion
+
+
+        public static int pointsLimit = 1000000;
     }
 }

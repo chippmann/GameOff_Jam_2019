@@ -2,7 +2,7 @@ using GameOff_2019.EngineUtils;
 using Godot;
 
 namespace GameOff_2019.SoundEngine {
-    public class PositionalAudioStreamPlayer2D: AudioStreamPlayer2D {
+    public class PositionalAudioStreamPlayer2D : AudioStreamPlayer2D {
         private Node2D targetToFollow;
 
         public void Init(Node2D target) {
@@ -15,6 +15,12 @@ namespace GameOff_2019.SoundEngine {
                 Logger.Warning("Call init first.");
                 return;
             }
+
+            if (!IsInstanceValid(targetToFollow)) {
+                SetGlobalPosition(Vector2.Zero);
+                return;
+            }
+
             SetGlobalPosition(targetToFollow.GetGlobalPosition());
         }
     }

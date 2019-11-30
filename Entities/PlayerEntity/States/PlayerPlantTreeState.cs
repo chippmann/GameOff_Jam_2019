@@ -35,7 +35,7 @@ namespace GameOff_2019.Entities.PlayerEntity.States {
             if (!(message is MoveToPositionMessage)) {
                 throw new Exception("State message is not of Type \"MoveToPositionMessage\"");
             }
-            
+
             soundPlayer = soundEngineNode.PlaySfxLoop(playerWalkSound);
 
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.PlayerTargetReached), this, nameof(TargetReached));
@@ -54,7 +54,7 @@ namespace GameOff_2019.Entities.PlayerEntity.States {
             if (GetNode<Eventing>(Eventing.EventingNodePath).IsConnected(nameof(Eventing.InvalidatePlayerPath), this, nameof(OnPathInvalidated))) {
                 GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.InvalidatePlayerPath), this, nameof(OnPathInvalidated));
             }
-            
+
             soundEngineNode.StopSfx(soundPlayer);
 
 
@@ -70,13 +70,14 @@ namespace GameOff_2019.Entities.PlayerEntity.States {
             if (GetNode<Eventing>(Eventing.EventingNodePath).IsConnected(nameof(Eventing.InvalidatePlayerPath), this, nameof(OnPathInvalidated))) {
                 GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.InvalidatePlayerPath), this, nameof(OnPathInvalidated));
             }
-            
+
             soundEngineNode.PlaySfx(plantTree);
-            
+
             gameState.UsePlayerEnergy(GameValues.plantTreeEnergyUsage);
             pathfindingTileMap.tileMapManipulator.SetTree(targetPosition);
             gameState.AddPlayerPoints(GameValues.plantTreePoints);
             GetStateMachine<PlayerStateMachine>().TransitionTo(GetStateMachine<PlayerStateMachine>().idle);
+            pathfindingTileMap.tileMapManipulator.CheckWinningCondition();
         }
 
         private void PlayerTargetCannotBeReached(Entity sourceEntity) {
