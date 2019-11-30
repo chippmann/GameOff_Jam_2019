@@ -90,7 +90,6 @@ namespace GameOff_2019.Ui {
         }
 
         private Vector2 MoveWindowWithMouse() {
-            return Vector2.Zero; //TODO: DEBUG!!!! Remove!
             var mousePosition = GetLocalMousePosition();
             var left = mouseCaptureLeft.GetSize().x;
             var top = mouseCaptureTop.GetSize().y;
