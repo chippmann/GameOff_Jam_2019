@@ -11,5 +11,5 @@ dest_files=[ "res://.import/whistle2.ogg-630c558e232dff3bad216757e14bbba6.oggstr
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

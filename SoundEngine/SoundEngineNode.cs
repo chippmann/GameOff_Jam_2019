@@ -1,5 +1,7 @@
 using Godot;
 using Planty.EngineUtils;
+using Planty.Entities.DemonEntity.States;
+using Planty.Entities.PlayerEntity.States;
 
 namespace Planty.SoundEngine {
     public class SoundEngineNode : Node {
@@ -11,23 +13,24 @@ namespace Planty.SoundEngine {
         // Called when the node enters the scene tree for the first time.
         public override void _Ready() {
             musicPlayer = new AudioStreamPlayer();
-            musicPlayer.SetBus("Music");
+            //musicPlayer.SetBus("Music");
 
             AddChild(musicPlayer);
-
-            PlayMusic("rainforest-01", true);
             musicPlayer.SetVolumeDb(-12);
+            
+            // PlayMusic("rainforest-01", true);
         }
 
-        public void PlayMusic(string name, bool repeat = true, bool fade = true) {
-            Logger.Debug("Play Music: " + name);
+        public void PlayMusic(string name, bool repeat = true, bool fade = true, string bus = "Music") { 
             AudioStreamOGGVorbis stream = GetMusicStream(name, repeat);
             if (stream != null) {
                 musicPlayer.SetStream(stream);
+                musicPlayer.SetBus(bus);
+                Logger.Debug("Play Music :"+stream.ResourcePath);
                 musicPlayer.Play();
             }
             else {
-                Logger.Warning("Music " + name + " not found");
+                Logger.Warning("Music not found: " + name);
             }
         }
 
@@ -35,41 +38,61 @@ namespace Planty.SoundEngine {
             musicPlayer.Stop();
         }
 
-        public AudioStreamPlayer PlaySfxLoop(AudioStreamOGGVorbis stream) {
+        public AudioStreamPlayer PlaySfxLoop(AudioStreamOGGVorbis stream, Node owner,
+            string bus = "SfxA") {
             AudioStreamPlayer player = new AudioStreamPlayer();
             player.SetStream(stream);
-            AddChild(player);
+            player.SetBus(bus);
+            owner.AddChild(player);
 
             player.Play();
+            Logger.Debug("Play Sfx Loop: "+stream.ResourcePath);
             return player;
         }
 
-        public AudioStreamPlayer2D PlaySfxLoop2D(AudioStreamOGGVorbis stream, Node2D target) {
+        public AudioStreamPlayer2D PlaySfxLoop2D(AudioStreamOGGVorbis stream, Node2D target, string bus = "SfxA") {
             PositionalAudioStreamPlayer2D player = new PositionalAudioStreamPlayer2D();
             player.Init(target);
             player.SetStream(stream);
-            AddChild(player);
+            player.SetBus(bus);
+            target.AddChild(player);
 
             player.Play();
+            Logger.Debug("Play Sfx Loop 2D: "+stream.ResourcePath);
             return player;
         }
 
-        public void PlaySfx(AudioStreamSample stream) {
+        public void PlaySfx(AudioStreamSample stream, Node owner, string bus = "SfxA") {
             AudioStreamPlayer player = new AudioStreamPlayer();
             player.SetStream(stream);
-            AddChild(player);
+            player.SetBus(bus);
+            owner.AddChild(player);
 
             player.Play();
+            Logger.Debug("Play Sfx: "+stream.ResourcePath);
+        }
+        
+        public AudioStreamPlayer PlaySfx(AudioStreamOGGVorbis stream, Node owner, string bus = "SfxA") {
+            AudioStreamPlayer player = new AudioStreamPlayer();
+            player.SetStream(stream);
+            player.SetBus(bus);
+            owner.AddChild(player);
+
+            player.Play();
+            Logger.Debug("Play Sfx: "+stream.ResourcePath);
+            return player;
         }
 
         public bool StopSfx(AudioStreamPlayer2D player) {
             player.Stop();
+            Logger.Debug("Stop Sfx 2D: "+player.Stream.ResourcePath);
             RemoveChild(player);
             return true;
         }
 
         public bool StopSfx(AudioStreamPlayer player) {
             player.Stop();
+            Logger.Debug("Stop Sfx: "+player.Stream.ResourcePath);
             RemoveChild(player);
             return true;
         }

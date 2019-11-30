@@ -77,7 +77,7 @@ namespace Planty.Levels.Common.TileMapObjects.TreeObject {
         }
 
         public void Kill() {
-            soundEngineNode.PlaySfx(killTreeSound);
+            soundEngineNode.PlaySfx(killTreeSound, this);
             stateMachine.TransitionTo(stateMachine.dead);
         }
 

@@ -2,6 +2,7 @@ using Godot;
 using Planty.EngineUtils;
 using Planty.Levels.Common.TileMapObjects;
 using Planty.RoundLogic;
+using Planty.SoundEngine;
 using Planty.Ui.Menu.PauseMenu;
 
 namespace Planty.Levels.Common {
@@ -13,12 +14,18 @@ namespace Planty.Levels.Common {
         [Export] private readonly NodePath pauseMenuContainerNodePath = null;
         private Control pauseMenuContainer;
         [Export] private readonly PackedScene pauseMenuPackedScene = null;
+        
+        private SoundEngineNode soundEngineNode;
+
 
         public override void _Ready() {
             base._Ready();
             GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.LevelSetupFinished));
             gameUi = GetNode<Control>(gameUiNodePath);
             pauseMenuContainer = GetNode<Control>(pauseMenuContainerNodePath);
+            
+            soundEngineNode = NodeGetter.GetFirstNodeInGroup<SoundEngineNode>(GetTree(), GameConstants.SoundEngineGroup, true);
+            soundEngineNode.PlayMusic("rainforest-01");
         }
 
         public override void _Process(float delta) {

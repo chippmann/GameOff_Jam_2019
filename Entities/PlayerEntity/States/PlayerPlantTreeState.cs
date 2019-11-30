@@ -36,7 +36,7 @@ namespace Planty.Entities.PlayerEntity.States {
                 throw new Exception("State message is not of Type \"MoveToPositionMessage\"");
             }
 
-            soundPlayer = soundEngineNode.PlaySfxLoop(playerWalkSound);
+            soundPlayer = soundEngineNode.PlaySfxLoop(playerWalkSound, this);
 
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.PlayerTargetReached), this, nameof(TargetReached));
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.TargetCannotBeReached), this, nameof(PlayerTargetCannotBeReached));
@@ -71,7 +71,7 @@ namespace Planty.Entities.PlayerEntity.States {
                 GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.InvalidatePlayerPath), this, nameof(OnPathInvalidated));
             }
 
-            soundEngineNode.PlaySfx(plantTree);
+            soundEngineNode.PlaySfx(plantTree, this);
 
             gameState.UsePlayerEnergy(GameValues.plantTreeEnergyUsage);
             pathfindingTileMap.tileMapManipulator.SetTree(targetPosition);
