@@ -19,6 +19,7 @@ collision_mask = 8
 shape = SubResource( 1 )
 
 [node name="HoverIndicator" type="Sprite" parent="Hover"]
+scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 actionRadiusColliderNodePath = NodePath("../ActionRadiusCollider")
