@@ -3,7 +3,7 @@
 [ext_resource path="res://Ui/MainTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Ui/Intro/IntroManager.cs" type="Script" id=2]
 [ext_resource path="res://Ui/Menu/MainMenu/MainMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Ui/Intro/assets/main.webm" type="VideoStream" id=4]
+[ext_resource path="res://Ui/Intro/assets/main.ogv" type="VideoStream" id=4]
 [ext_resource path="res://Ui/Intro/assets/intro_font.tres" type="DynamicFont" id=5]
 
 [node name="Intro" type="Control"]
