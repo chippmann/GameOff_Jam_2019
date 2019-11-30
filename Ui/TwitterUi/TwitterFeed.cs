@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using GameOff_2019.Data;
 using GameOff_2019.EngineUtils;
 using GameOff_2019.RoundLogic;
-using GameOff_2019.Ui.TwitterUi.Dynamic;
 using GameOff_2019.SoundEngine;
+using GameOff_2019.Ui.TwitterUi.Dynamic;
 using Godot;
 
 namespace GameOff_2019.Ui.TwitterUi {
@@ -57,10 +57,11 @@ namespace GameOff_2019.Ui.TwitterUi {
 
         private int count = 0;
         private int tutorialCount = 0;
+        private int minTutorialTweetsPassed = 6;
 
         public override void _Process(float delta) {
             base._Process(delta);
-            if (tweetTimer.IsStopped() && tweets.Count > 0) {
+            if (tweetTimer.IsStopped() && tweets.Count > 0 && (gameState.tutorialTweetsCount >= minTutorialTweetsPassed || tutorialTweets.Count <= 0)) {
                 if (tweets.Count > 0 && count > tweets.Count / 4 * 3) {
                     tweetUpdater.GetTweets(UpdateTweets);
                 }
@@ -79,10 +80,12 @@ namespace GameOff_2019.Ui.TwitterUi {
                     tutorialCount = 0;
                 }
 
+                gameState.tutorialTweetsCount++;
+
                 tutorialTweets[tutorialCount].created_at = DateTime.Now.ToString("ddd MMM dd HH:mm:ss zzz yyyy");
                 AddTweetToFeed(tutorialTweets[tutorialCount]);
                 tutorialCount++;
-                tutorialTweetTimer.Start(new Random().Next(10, 20));
+                tutorialTweetTimer.Start(gameState.tutorialTweetsCount < minTutorialTweetsPassed ? 10 : new Random().Next(10, 20));
             }
         }
 
@@ -125,10 +128,11 @@ namespace GameOff_2019.Ui.TwitterUi {
 
             if (tweet.entities.hashtags.Any(hashtag => hashtag.text.ToLower().Equals("tutorial")) || tweet.entities.hashtags.Any(hashtag => hashtag.text.ToLower().Equals("information"))) {
                 soundEngineNode.PlaySfx(tweetTutorSound);
-            } else {
+            }
+            else {
                 soundEngineNode.PlaySfx(tweetNormalSound);
             }
-            
+
             tweetUi.SetGlobalPosition(fillerTweet.GetGlobalPosition() + new Vector2(250, 0));
 
             animationTween.InterpolateMethod(tweetUi, "set_global_position", tweetUi.GetGlobalPosition(), new Vector2(tweetUi.GetGlobalPosition().x - 250, tweetUi.GetGlobalPosition().y), 0.5f, Tween.TransitionType.Sine,

@@ -11,6 +11,7 @@ namespace GameOff_2019.RoundLogic {
         public int negativeTweetCount;
         public bool isPointLimitEnabled = false;
         private bool internalGameOverAlreadyTriggered = false;
+        public int tutorialTweetsCount = 0;
 
         public override void _Ready() {
             base._Ready();
