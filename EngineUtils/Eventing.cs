@@ -41,6 +41,12 @@ namespace GameOff_2019.EngineUtils {
         [Signal]
         public delegate void DemonEnergyChanged();
 
+        [Signal]
+        public delegate void IntroFinished();
+
+        [Signal]
+        public delegate void StartGamePressed();
+
         #endregion
     }
 }

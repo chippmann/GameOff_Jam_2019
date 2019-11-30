@@ -1,16 +1,14 @@
-using System;
-using GameOff_2019.Data;
 using GameOff_2019.EngineUtils;
 using Godot;
 
 namespace GameOff_2019.Ui.Intro {
-    public class IntroManager: Control {
+    public class IntroManager : Control {
         [Export] private readonly NodePath videoPlayerNodePath = null;
         private VideoPlayer videoPlayer;
         [Export] private readonly NodePath skipButtonNodePath = null;
         private Button skipButton;
         [Export] private readonly PackedScene mainMenuSceneScene = null;
-        
+
         public override void _Ready() {
             base._Ready();
             videoPlayer = GetNode<VideoPlayer>(videoPlayerNodePath);
@@ -41,15 +39,13 @@ namespace GameOff_2019.Ui.Intro {
 
             await ToSignal(fadeOutTween, "tween_all_completed");
             await ToSignal(fadeDownTween, "tween_all_completed");
-            
-            QueueFree();
 
-            GetTree().ChangeSceneTo(mainMenuSceneScene);
+            OnVideoFinished();
         }
 
         private void OnVideoFinished() {
-            GetTree().ChangeSceneTo(mainMenuSceneScene);
+            QueueFree();
+            GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.IntroFinished));
         }
     }
-    
 }

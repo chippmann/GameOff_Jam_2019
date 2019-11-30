@@ -1,3 +1,4 @@
+using GameOff_2019.EngineUtils;
 using GameOff_2019.Levels.Common;
 using Godot;
 
@@ -14,16 +15,28 @@ namespace GameOff_2019.RoundLogic {
         [Export] private readonly PackedScene levelPackedScene = null;
 
         private Node2D tmpLevelHolder = new Node2D();
+        private BaseLevel mainLevel;
 
         public override void _Ready() {
             base._Ready();
             levelContainer = GetNode<Node2D>(levelContainerNodePath);
             menuContainer = GetNode<Control>(menuContainerNodePath);
+            GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.IntroFinished), this, nameof(OnIntroFinished));
+            GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.StartGamePressed), this, nameof(OnStartGamePressed));
 
             menuContainer.AddChild(introPackedScene.Instance());
-            var baseLevel = levelPackedScene.Instance() as BaseLevel;
-            tmpLevelHolder.AddChild(baseLevel);
-            baseLevel?.Setup();
+            mainLevel = levelPackedScene.Instance() as BaseLevel;
+            tmpLevelHolder.AddChild(mainLevel);
+            mainLevel?.Setup();
+        }
+
+        private void OnIntroFinished() {
+            menuContainer.AddChild(mainMenuPackedScene.Instance());
+        }
+
+        private void OnStartGamePressed() {
+            tmpLevelHolder.RemoveChild(mainLevel);
+            levelContainer.AddChild(mainLevel);
         }
     }
 }
