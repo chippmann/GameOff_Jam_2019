@@ -1,6 +1,7 @@
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common;
 using GameOff_2019.Entities.PlayerEntity.States.Message;
+using GameOff_2019.Levels.Common.TileMapObjects;
 using GameOff_2019.Levels.Common.TileMapObjects.TreeObject;
 using GameOff_2019.RoundLogic;
 using Godot;
@@ -22,6 +23,10 @@ namespace GameOff_2019.Entities.PlayerEntity {
         }
 
         public override void _UnhandledInput(InputEvent @event) {
+            if (!TileMapManipulator.isTileMapSetup) {
+                return;
+            }
+
             if (@event.IsActionPressed("debugPathfinding")) {
                 var mousePosition = GetGlobalMousePosition();
                 playerStateMachine.TransitionTo(playerStateMachine.moveToPosition, new MoveToPositionMessage(mousePosition));

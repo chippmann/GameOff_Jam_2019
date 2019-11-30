@@ -1,6 +1,7 @@
 using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common.BehaviourTree;
 using GameOff_2019.Entities.DemonEntity.Behaviours;
+using GameOff_2019.Levels.Common.TileMapObjects;
 using GameOff_2019.RoundLogic;
 using Godot;
 
@@ -45,6 +46,10 @@ namespace GameOff_2019.Entities.DemonEntity {
 
         public override void _Process(float delta) {
             base._Process(delta);
+            if (!TileMapManipulator.isTileMapSetup) {
+                return;
+            }
+
             behaviourTree?.Tick();
         }
 

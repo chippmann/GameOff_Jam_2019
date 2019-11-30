@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using GameOff_2019.EngineUtils;
 using GameOff_2019.Entities.Common.Navigation;
 using GameOff_2019.Levels.Common.TileMapObjects.BaseObject;
 using Godot;
@@ -15,19 +17,36 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
         [Export] private readonly int actionRadiusInTiles = 2;
 
 
+        private static bool hasTileMapSetupBegun = false;
+        public static bool isTileMapSetup = false;
+
+
         // ReSharper disable once CollectionNeverUpdated.Local
         [Export] private readonly Godot.Collections.Dictionary<int, PackedScene> tileIdToPackedSceneMapping = new Godot.Collections.Dictionary<int, PackedScene>();
 
         private readonly Godot.Collections.Dictionary<int, TileMapObjectNodeReference> tileMapObjects = new Godot.Collections.Dictionary<int, TileMapObjectNodeReference>();
 
-        public override async void _Ready() {
+        public override void _Ready() {
+            base._Ready();
+            if (hasTileMapSetupBegun) {
+                return;
+            }
+
+            SetupTileMap();
+        }
+
+        public async void SetupTileMap() {
+            hasTileMapSetupBegun = true;
             pathfindingTileMap = GetNode<PathfindingTileMap>(pathfindingTileMapNodePath);
             tileMapObjectContainer = GetNode<Node2D>(tileMapObjectContainerNodePath);
-            await ToSignal(Owner, "ready");
             SetupTileMapObjectNodeReferences();
             SetupTileChildren();
-            AddTileMapObjects();
+            var task = Task.Run(AddTileMapObjects);
             pathfindingTileMap.UpdateAStarGrid();
+            await task;
+            tileMapObjectContainer.AddChild(task.Result);
+            isTileMapSetup = true;
+            Logger.Debug("Setup of tileMap finished!");
         }
 
         private void SetupTileMapObjectNodeReferences() {
@@ -62,14 +81,23 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
             }
         }
 
-        private void AddTileMapObjects() {
+        private async Task<Node2D> AddTileMapObjects() {
+            var tmpContainerNode = new Node2D();
             var usedTiles = new Array<Vector2>(pathfindingTileMap.GetUsedCells());
-            foreach (var tile in usedTiles) {
-                AddTileMapObject(tile);
-            }
+
+            var task = Task.Run(() => {
+                foreach (var tile in usedTiles) {
+                    AddTileMapObject(tile, tmpContainerNode);
+                }
+
+                return tmpContainerNode;
+            });
+
+            await task;
+            return task.Result;
         }
 
-        private void AddTileMapObject(Vector2 tile) {
+        private void AddTileMapObject(Vector2 tile, Node2D tmpContainerNode) {
             var tileId = pathfindingTileMap.GetCell((int) tile.x, (int) tile.y);
             var tileUniqueId = pathfindingTileMap.GetIdForTile(tile);
             var worldPosition = pathfindingTileMap.MapToWorld(tile) + pathfindingTileMap.CellSize / 2;
@@ -78,9 +106,9 @@ namespace GameOff_2019.Levels.Common.TileMapObjects {
             if (packedScene?.Instance() is TileMapObject tileMapObject) {
                 if (tileMapObjects.TryGetValue(tileUniqueId, out var tileMapObjectNodeReference)) {
                     tileMapObjectNodeReference.node = tileMapObject;
-                    tileMapObjectContainer.AddChild(tileMapObjectNodeReference.node);
+                    tmpContainerNode.AddChild(tileMapObjectNodeReference.node);
                     tileMapObjectNodeReference.node.ZIndex = (int) tile.y * 2;
-                    tileMapObjectNodeReference.node.SetGlobalPosition(worldPosition);
+                    tileMapObjectNodeReference.node.SetPosition(worldPosition);
                 }
                 else {
                     throw new Exception("Expected already setup tileMapObjectNodeReference!");

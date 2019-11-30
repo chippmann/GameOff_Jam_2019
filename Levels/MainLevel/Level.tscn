@@ -16,10 +16,11 @@
 [ext_resource path="res://SoundEngine/SoundEngine.tscn" type="PackedScene" id=14]
 
 [node name="Level" type="Node2D"]
-visible = false
+position = Vector2( 1, 0 )
 z_index = -1000
 script = ExtResource( 1 )
 gameUiNodePath = NodePath("Camera2D/CanvasLayer/GameUi")
+tileMapMaipulatorNodePath = NodePath("TileMap/TileMapManipulator")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -48,7 +49,6 @@ mouseCaptureBottomNodePath = NodePath("../../../../Level/Camera2D/CanvasLayer/Le
 uiContainerCanvasLayerNodePath = NodePath("../../../../Level/Node2D2/UiContainer")
 
 [node name="GameUi" parent="Camera2D/CanvasLayer" instance=ExtResource( 3 )]
-visible = false
 
 [node name="GameState" type="Node2D" parent="." groups=[
 "gameState",

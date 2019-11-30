@@ -90,7 +90,7 @@ namespace GameOff_2019.Entities.Common.Navigation {
             traversableTiles.AddRange(new Array<Vector2>(GetUsedCellsById(playerTraversableId)));
             AddTraversableTilesToAStar(traversableTiles, demonAStar);
             ConnectTraversableTiles(traversableTiles, demonAStar);
-            GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.InvalidateDemonPath));
+            GetNode<Eventing>(Eventing.EventingNodePath)?.EmitSignal(nameof(Eventing.InvalidateDemonPath));
         }
 
         private void UpdatePlayerAStarGrid() {
@@ -98,7 +98,7 @@ namespace GameOff_2019.Entities.Common.Navigation {
             traversableTiles = new Array<Vector2>(GetUsedCellsById(playerTraversableId)).ToList();
             AddTraversableTilesToAStar(traversableTiles, playerAStar);
             ConnectTraversableTiles(traversableTiles, playerAStar);
-            GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.InvalidatePlayerPath));
+            GetNode<Eventing>(Eventing.EventingNodePath)?.EmitSignal(nameof(Eventing.InvalidatePlayerPath));
         }
 
         private void AddTraversableTilesToAStar(IEnumerable<Vector2> tiles, AStar aStar) {
