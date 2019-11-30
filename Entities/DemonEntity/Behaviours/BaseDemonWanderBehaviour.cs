@@ -1,4 +1,5 @@
 using GameOff_2019.EngineUtils;
+using GameOff_2019.Entities.Common;
 using GameOff_2019.Entities.Common.BehaviourTree;
 using GameOff_2019.Entities.PlayerEntity.States.Message;
 using Godot;
@@ -47,7 +48,7 @@ namespace GameOff_2019.Entities.DemonEntity.Behaviours {
             finished = true;
         }
 
-        private void TargetCannotBeReached() {
+        private void TargetCannotBeReached(Entity ignored) {
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.DemonTargetReached), this, nameof(TargetReached));
             GetNode<Eventing>(Eventing.EventingNodePath).Disconnect(nameof(Eventing.TargetCannotBeReached), this, nameof(TargetCannotBeReached));
             btResult = BTResult.Failure;
