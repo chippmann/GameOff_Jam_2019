@@ -21,8 +21,7 @@ world_limit_title_lost,You lost! The world is doomed!,Du hast verloren! Die Welt
 world_limit_message_lost,The people who don't care about mother nature have won!\nFortunately this isn't the real world. Try again!\nKeep in mind: One cannot restart Mother Nature like this game!,Die Menschen welche sich nicht um Mutter Natur scheren haben gesiegt!\nGlücklicherweise ist dies nicht die richtige Welt. Versuche es nochmals!\nBedenke: Mutter Natur lässt sich nicht einfach so neustarten wie dieses Spiel!
 continue,Continue,Fortfahren
 ,,
-playerPointsKey,Player:,"Spieler
-:"
+playerPointsKey,Player:,Spieler:
 demonPointsKey,Demon:,Dämon:
 kill_tree,Kill Tree,Baum Zerstören
 heal_tree,Heal Tree,Baum heilen
