@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using Godot;
 using Planty.EngineUtils;
 using Planty.Entities.Common;
@@ -27,13 +26,14 @@ namespace Planty.Entities.PlayerEntity.States {
             if (!(message is MoveToPositionMessage)) {
                 throw new Exception("State message is not of Type \"MoveToPositionMessage\"");
             }
-            
+
+            soundPlayer = soundEngineNode.PlaySfxLoop(playerWalkSound, this);
+
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.PlayerTargetReached), this, nameof(TargetReached));
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.TargetCannotBeReached), this, nameof(PlayerTargetCannotBeReached));
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.InvalidatePlayerPath), this, nameof(OnPathInvalidated));
             targetPosition = ((MoveToPositionMessage) message).GetTargetPosition();
             OnPathInvalidated();
-            soundPlayer = soundEngineNode.PlaySfxLoop(playerWalkSound, this);
         }
 
         public override void UnhandledInput(InputEvent @event) { }
