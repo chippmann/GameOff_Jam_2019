@@ -12,7 +12,7 @@ namespace Planty.Ui.Menu.MainMenu {
         [Export] private readonly NodePath quitGameButtonNodePath = null;
         private Button quitGameButton;
 
-        private SoundEngineNode soundEngine;
+        private SoundEngineNode soundEngineNode;
 
         public override void _Ready() {
             base._Ready();
@@ -23,8 +23,8 @@ namespace Planty.Ui.Menu.MainMenu {
             quitGameButton = GetNode<Button>(quitGameButtonNodePath);
             quitGameButton.Connect("pressed", this, nameof(OnQuitPressed));
 
-            soundEngine = NodeGetter.GetFirstNodeInGroup<SoundEngineNode>(GetTree(), GameConstants.SoundEngineGroup, true);
-            soundEngine.PlayMusic("intro_03");
+            soundEngineNode = NodeGetter.GetFirstNodeInGroup<SoundEngineNode>(GetTree(), GameConstants.SoundEngineGroup, true);
+            soundEngineNode.PlayMusic("intro_03");
         }
 
         private void OnStartWithPointLimitPressed() {
@@ -34,7 +34,7 @@ namespace Planty.Ui.Menu.MainMenu {
 
         private void StartGame() {
             QueueFree();
-            soundEngine.StopMusic();
+            soundEngineNode.StopMusic();
             GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.StartGamePressed));
         }
 

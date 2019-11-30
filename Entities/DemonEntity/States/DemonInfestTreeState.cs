@@ -79,7 +79,7 @@ namespace Planty.Entities.DemonEntity.States {
                 treeTileMapObject.Infest();
                 gameState.AddDemonPoints(GameValues.infestTreePoints);
                 GetNode<Eventing>(Eventing.EventingNodePath).EmitSignal(nameof(Eventing.TreeInfested), treeTileMapObject);
-                soundEngineNode.PlaySfx(infestTreeSound);
+                soundEngineNode.PlaySfx(infestTreeSound, this, "SfxB");
             }
 
             GetStateMachine<DemonStateMachine>().TransitionTo(GetStateMachine<DemonStateMachine>().idle);

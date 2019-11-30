@@ -56,7 +56,7 @@ namespace Planty.Entities.Common.StateMachine {
 
             var targetState = GetNode<State>(targetStatePath);
 //            Logger.Debug($"Transitioning from state {currentState.GetName()} to {targetState.GetName()}");
-            currentState.Exit();
+            currentState?.Exit();
             currentState = targetState;
             targetState.Enter(message);
         }

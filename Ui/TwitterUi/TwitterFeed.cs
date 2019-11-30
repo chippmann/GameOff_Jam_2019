@@ -127,10 +127,10 @@ namespace Planty.Ui.TwitterUi {
             await ToSignal(animationTween, "tween_completed");
 
             if (tweet.entities.hashtags.Any(hashtag => hashtag.text.ToLower().Equals("tutorial")) || tweet.entities.hashtags.Any(hashtag => hashtag.text.ToLower().Equals("information"))) {
-                soundEngineNode.PlaySfx(tweetTutorSound);
+                soundEngineNode.PlaySfx(tweetTutorSound, this, "SfxB");
             }
             else {
-                soundEngineNode.PlaySfx(tweetNormalSound);
+                soundEngineNode.PlaySfx(tweetNormalSound, this, "SfxB");
             }
 
             tweetUi.SetGlobalPosition(fillerTweet.GetGlobalPosition() + new Vector2(250, 0));

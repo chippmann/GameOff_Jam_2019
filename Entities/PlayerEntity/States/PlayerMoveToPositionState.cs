@@ -27,7 +27,7 @@ namespace Planty.Entities.PlayerEntity.States {
                 throw new Exception("State message is not of Type \"MoveToPositionMessage\"");
             }
 
-            soundPlayer = soundEngineNode.PlaySfxLoop(playerWalkSound);
+            soundPlayer = soundEngineNode.PlaySfxLoop(playerWalkSound, this);
 
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.PlayerTargetReached), this, nameof(TargetReached));
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.TargetCannotBeReached), this, nameof(PlayerTargetCannotBeReached));

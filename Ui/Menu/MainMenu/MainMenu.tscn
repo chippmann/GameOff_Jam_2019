@@ -111,5 +111,5 @@ texture = ExtResource( 8 )
 position = Vector2( 1081.05, 188.421 )
 frames = ExtResource( 9 )
 animation = "down"
-frame = 11
+frame = 5
 playing = true
