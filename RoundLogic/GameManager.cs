@@ -25,6 +25,7 @@ namespace GameOff_2019.RoundLogic {
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.GameWon), this, nameof(OnGameWonOrGameOver));
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.GameOver), this, nameof(OnGameWonOrGameOver));
             GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.ContinuePressed), this, nameof(OnContinuePressed));
+            GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.FinishCurrentGame), this, nameof(OnFinishCurrentGamePressed));
 
             menuContainer.AddChild(introPackedScene.Instance());
             SetupMainLevel();
@@ -55,6 +56,12 @@ namespace GameOff_2019.RoundLogic {
             menuContainer.AddChild(mainMenuPackedScene.Instance());
             NodeGetter.GetFirstNodeInGroup<GameState>(GetTree(), GameConstants.GameStateGroup, true).QueueFree(); //reset game state
             AddChild(new GameState());
+        }
+
+        private void OnFinishCurrentGamePressed() {
+            mainLevel.QueueFree();
+            menuContainer.AddChild(mainMenuPackedScene.Instance());
+            SetupMainLevel(); //for the next round we can already prepare the level
         }
     }
 }

@@ -138,6 +138,7 @@
     <Compile Include="Ui\LevelMoveMouseControl.cs" />
       <Compile Include="Ui\Menu\EndMenu\EndMenuManager.cs" />
     <Compile Include="Ui\Menu\MainMenu\MainMenuManager.cs" />
+      <Compile Include="Ui\Menu\PauseMenu\PauseMenuManager.cs" />
     <Compile Include="Ui\PointsUi.cs" />
     <Compile Include="Ui\TwitterUi\Dynamic\FillerTweet.cs" />
     <Compile Include="Ui\TwitterUi\Dynamic\TweetUi.cs" />
@@ -213,6 +214,7 @@
     <Folder Include="Levels\MainLevel" />
     <Folder Include="Ui\Intro\assets" />
     <Folder Include="Ui\Menu\MainMenu\Assets" />
+      <Folder Include="Ui\Menu\PauseMenu\Assets" />
     <Folder Include="Ui\TwitterUi\Effects" />
     <Folder Include="Ui\TwitterUi\Static" />
   </ItemGroup>
