@@ -211,6 +211,7 @@
     <Folder Include="Entities\PlayerEntity\Assets" />
       <Folder Include="Levels\Assets" />
     <Folder Include="Levels\Common\TileMapObjects\TreeObject\Assets" />
+    <Folder Include="Levels\Common\TileMapObjects\TreeObject\Ui\Assets" />
     <Folder Include="Levels\MainLevel" />
     <Folder Include="Ui\Intro\assets" />
     <Folder Include="Ui\Menu\MainMenu\Assets" />
