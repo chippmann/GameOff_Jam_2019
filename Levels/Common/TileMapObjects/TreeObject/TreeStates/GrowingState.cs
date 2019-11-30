@@ -11,7 +11,6 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
         [Export] private readonly int treeGrowthRatePerMinute = 5;
         [Export] private readonly int treeGrowthValue = 5;
         [Export] private readonly int treeHealthIncreaseValue = 5;
-        [Export] private readonly int addPointsIntervalInSeconds = 5;
         [Export] private readonly int maxTreeGrowthValue = 100; //be careful with values over 100 as they apply 1:1 to the scale of the treeSprite!
         [Export] private readonly NodePath treeStateNodePath = null;
         private TreeState treeState;
@@ -56,7 +55,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
             }
 
             treeGrowthTimer.Start(60f / treeGrowthRatePerMinute);
-            pointTimer.Start(addPointsIntervalInSeconds);
+            pointTimer.Start(GameValues.treeAddPointsIntervalInSeconds);
             addEnergyTimer.Start(GameValues.treeAddEnergyPerSecondsInterval);
         }
 
@@ -90,7 +89,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
         }
 
         private void OnPointTimerTimeout() {
-            gameState.AddPlayerPoints(treeState.treeGrowth);
+            gameState.AddPlayerPoints(GameValues.pointsPerSecondForHealthyTree * treeState.treeGrowth);
         }
 
         private void OnEnergyTimerTimeout() {

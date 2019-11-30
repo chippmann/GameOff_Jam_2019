@@ -6,7 +6,7 @@ namespace GameOff_2019.RoundLogic {
         private int playerPoints = 0;
         private int playerEnergy = 100;
         private int demonPoints = 0;
-        private int demonEnergy = 50;
+        private int demonEnergy = 0;
 
         public int negativeTweetCount;
 

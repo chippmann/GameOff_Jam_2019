@@ -52,7 +52,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
         }
 
         private void OnPointTimerTimeout() {
-            gameState.AddPlayerPoints(treeState.treeGrowth);
+            gameState.AddPlayerPoints(GameValues.pointsPerSecondForHealthyTree * treeState.treeGrowth);
         }
 
         private void OnEnergyTimerTimeout() {

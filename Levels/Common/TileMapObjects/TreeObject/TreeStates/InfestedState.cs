@@ -44,7 +44,7 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
             timePassed = 0;
             pointTimer.Start(addPointsTimeIntervalInSeconds);
             damageTimer.Start(applyDamageIntervalInSeconds);
-            addEnergyTimer.Start(GameValues.treeAddEnergyPerSecondsInterval);
+            addEnergyTimer.Start(GameValues.treeAddDemonEnergyPerSecondsInterval);
         }
 
         public override void UnhandledInput(InputEvent @event) { }
@@ -53,9 +53,9 @@ namespace GameOff_2019.Levels.Common.TileMapObjects.TreeObject.TreeStates {
 
         public override void PhysicsProcess(float delta) {
             timePassed += delta;
-            if (timePassed >= 1) {
+            if (timePassed >= GameValues.treeAddPointsIntervalInSeconds) {
                 timePassed = 0;
-                gameState.AddDemonPoints(GameValues.pointsPerSecondForInfestedTree);
+                gameState.AddDemonPoints(GameValues.pointsPerSecondForInfestedTree * treeState.treeGrowth);
             }
 
             //TODO: show infested state on tree
