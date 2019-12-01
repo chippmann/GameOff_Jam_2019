@@ -16,7 +16,6 @@ namespace Planty.SoundEngine {
             //musicPlayer.SetBus("Music");
 
             AddChild(musicPlayer);
-            musicPlayer.SetVolumeDb(-12);
         }
 
         public void PlayMusic(string name, bool repeat = true, bool fade = true, string bus = "Music") { 
