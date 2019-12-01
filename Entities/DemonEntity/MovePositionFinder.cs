@@ -38,7 +38,8 @@ namespace Planty.Entities.DemonEntity {
             var treeTileMapObjectWithoutPlayerInActionRadius =
                 tileMapManipulator.GetTileMapObjectsOfType<TreeTileMapObject>().Where(treeTileMapObject => !treeTileMapObject.EntityInActionRadius(player) && !treeTileMapObject.IsInfested()).ToList();
             if (treeTileMapObjectWithoutPlayerInActionRadius.Count == 0) {
-                return null;
+                treeTileMapObjectWithoutPlayerInActionRadius = tileMapManipulator.GetTileMapObjectsOfType<TreeTileMapObject>().Where(treeTileMapObject => !treeTileMapObject.IsInfested())
+                    .ToList();
             }
 
             var random = new Random();
