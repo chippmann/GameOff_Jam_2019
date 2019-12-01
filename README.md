@@ -1,4 +1,4 @@
-# GameOff_Jam_2019
+# Planty
 Github GameOff Jam 2019 entry developed using the Godot Engine and C#.
 
 ## Description
