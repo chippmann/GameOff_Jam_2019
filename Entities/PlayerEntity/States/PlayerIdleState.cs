@@ -4,6 +4,7 @@ using Godot.Collections;
 using Planty.EngineUtils;
 using Planty.Entities.Common.StateMachine;
 using Planty.SoundEngine;
+using Array = System.Array;
 
 namespace Planty.Entities.PlayerEntity.States {
     public class PlayerIdleState : State {
@@ -42,7 +43,7 @@ namespace Planty.Entities.PlayerEntity.States {
         }
 
         private void OnTimerTimeout() {
-            player = soundEngineNode.PlaySfx(whistleSounds[new Random().Next(0,3)], this);
+            player = soundEngineNode.PlaySfx(whistleSounds[new Random().Next(0, whistleSounds.Count)], this);
         }
     }
 }

@@ -35,7 +35,14 @@ namespace Planty.Entities.DemonEntity.Behaviours {
                 btResult = BTResult.Running;
                 GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.TreeInfested), this, nameof(TreeInfested));
                 GetNode<Eventing>(Eventing.EventingNodePath).Connect(nameof(Eventing.TargetCannotBeReached), this, nameof(TargetCannotBeReached));
-                stateMachine.TransitionTo(stateMachine.infestTree, new MoveToPositionMessage(GetTreeToInfestWorldPosition()));
+                var treeToInfestWorldPosition = GetTreeToInfestWorldPosition();
+                if (treeToInfestWorldPosition == new Vector2(-1, -1)) {
+                    stateMachine.TransitionTo(stateMachine.idle);
+                    TargetCannotBeReached();
+                }
+                else {
+                    stateMachine.TransitionTo(stateMachine.infestTree, new MoveToPositionMessage(treeToInfestWorldPosition));
+                }
             }
 
             if (finished && running) {
