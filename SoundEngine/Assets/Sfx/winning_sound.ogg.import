@@ -11,5 +11,5 @@ dest_files=[ "res://.import/winning_sound.ogg-77c19976ea7d91a9462dc1ffb8a6ba49.o
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
