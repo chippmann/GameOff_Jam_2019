@@ -17,8 +17,6 @@ namespace Planty.SoundEngine {
 
             AddChild(musicPlayer);
             musicPlayer.SetVolumeDb(-12);
-            
-            // PlayMusic("rainforest-01", true);
         }
 
         public void PlayMusic(string name, bool repeat = true, bool fade = true, string bus = "Music") { 
