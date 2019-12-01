@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/losing_sound.ogg-319a1a1a74d5e25160b498a21b8452c5.oggstr"
+
+[deps]
+
+source_file="res://SoundEngine/Assets/Sfx/losing_sound.ogg"
+dest_files=[ "res://.import/losing_sound.ogg-319a1a1a74d5e25160b498a21b8452c5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

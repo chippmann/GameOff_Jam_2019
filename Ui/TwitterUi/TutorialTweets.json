@@ -1,0 +1,304 @@
+{
+  "statuses": [
+    {
+      "id": 0,
+      "text": "#Tutorial\nYou can walk to a position inside your forests using a left click.\nBut only if they are connected ;-)",
+      "entities": {
+        "hashtags": [
+          {
+            "text": "Tutorial"
+          }
+        ],
+        "symbols": [],
+        "user_mentions": [],
+        "urls": []
+      },
+      "user": {
+        "id": 2244994945,
+        "name": "Tutorial God",
+        "screen_name": "realtutorialgod",
+        "followers_count": 501947
+      },
+      "retweet_count": 0,
+      "favorite_count": 0
+    },
+    {
+      "id": 1,
+      "text": "#Tutorial\nAs a ForestGod you are bound to your forest. So you can only move inside it ;-)",
+      "entities": {
+        "hashtags": [
+          {
+            "text": "Tutorial"
+          }
+        ],
+        "symbols": [],
+        "user_mentions": [],
+        "urls": []
+      },
+      "user": {
+        "id": 2244994945,
+        "name": "Tutorial God",
+        "screen_name": "realtutorialgod",
+        "followers_count": 501947
+      },
+      "retweet_count": 0,
+      "favorite_count": 0
+    },
+    {
+      "id": 2,
+      "text": "#Tutorial\nYou can plant new trees using right click on a point you can reach.\nBut keep an eye on your energy bar.",
+      "entities": {
+        "hashtags": [
+          {
+            "text": "Tutorial"
+          }
+        ],
+        "symbols": [],
+        "user_mentions": [],
+        "urls": []
+      },
+      "user": {
+        "id": 2244994945,
+        "name": "Tutorial God",
+        "screen_name": "realtutorialgod",
+        "followers_count": 501947
+      },
+      "retweet_count": 0,
+      "favorite_count": 0
+    },
+    {
+      "id": 3,
+      "text": "#Tutorial\nYou have the ultimate power over your forest! Use it using right click on any tree you can reach.",
+      "entities": {
+        "hashtags": [
+          {
+            "text": "Tutorial"
+          }
+        ],
+        "symbols": [],
+        "user_mentions": [],
+        "urls": []
+      },
+      "user": {
+        "id": 2244994945,
+        "name": "Tutorial God",
+        "screen_name": "realtutorialgod",
+        "followers_count": 501947
+      },
+      "retweet_count": 0,
+      "favorite_count": 0
+    },
+    {
+      "id": 4,
+      "text": "#Tutorial\nYou gain energy by tweets with the hashtag #climatechange, #fridayforfuture and #teamtrees.\nBut the demon does also with the hashtags #climatehoax and #americafirst.",
+      "entities": {
+        "hashtags": [
+          {
+            "text": "Tutorial"
+          },
+          {
+            "text": "climatechange"
+          },
+          {
+            "text": "fridayforfuture"
+          },
+          {
+            "text": "teamtrees"
+          },
+          {
+            "text": "climatehoax"
+          },
+          {
+            "text": "americafirst"
+          }
+        ],
+        "symbols": [],
+        "user_mentions": [],
+        "urls": []
+      },
+      "user": {
+        "id": 2244994945,
+        "name": "Tutorial God",
+        "screen_name": "realtutorialgod",
+        "followers_count": 501947
+      },
+      "retweet_count": 0,
+      "favorite_count": 0
+    },
+    {
+      "id": 5,
+      "text": "#Information\nDid you know all tweets you see are real tweets?\nNow you can blame stupid peoples if you don't receive enough energy.\nUnfortunately the real world isn't a game. Take care to Mother Nature!",
+      "entities": {
+        "hashtags": [
+          {
+            "text": "Information"
+          }
+        ],
+        "symbols": [],
+        "user_mentions": [],
+        "urls": []
+      },
+      "user": {
+        "id": 2244994945,
+        "name": "Info God",
+        "screen_name": "randominfodude",
+        "followers_count": 501947
+      },
+      "retweet_count": 0,
+      "favorite_count": 0
+    },
+    {
+      "id": 6,
+      "text": "#Tutorial\nEach Tree gives you energy. Just stand close enough.",
+      "entities": {
+        "hashtags": [
+          {
+            "text": "Tutorial"
+          }
+        ],
+        "symbols": [],
+        "user_mentions": [],
+        "urls": []
+      },
+      "user": {
+        "id": 2244994945,
+        "name": "Tutorial God",
+        "screen_name": "realtutorialgod",
+        "followers_count": 501947
+      },
+      "retweet_count": 0,
+      "favorite_count": 0
+    },
+    {
+      "id": 7,
+      "text": "#Tutorial\nThe more trees surround you, the more energy you gain per time.",
+      "entities": {
+        "hashtags": [
+          {
+            "text": "Tutorial"
+          }
+        ],
+        "symbols": [],
+        "user_mentions": [],
+        "urls": []
+      },
+      "user": {
+        "id": 2244994945,
+        "name": "Tutorial God",
+        "screen_name": "realtutorialgod",
+        "followers_count": 501947
+      },
+      "retweet_count": 0,
+      "favorite_count": 0
+    },
+    {
+      "id": 8,
+      "text": "#Tutorial\nHealing a tree or planting one?\nAn important note: the older a tree the more points you get from it.",
+      "entities": {
+        "hashtags": [
+          {
+            "text": "Tutorial"
+          }
+        ],
+        "symbols": [],
+        "user_mentions": [],
+        "urls": []
+      },
+      "user": {
+        "id": 2244994945,
+        "name": "Tutorial God",
+        "screen_name": "realtutorialgod",
+        "followers_count": 501947
+      },
+      "retweet_count": 0,
+      "favorite_count": 0
+    },
+    {
+      "id": 9,
+      "text": "#Information\nThe demon gains far more points per infested tree than you do per healthy tree. Keep that in mind.",
+      "entities": {
+        "hashtags": [
+          {
+            "text": "Information"
+          }
+        ],
+        "symbols": [],
+        "user_mentions": [],
+        "urls": []
+      },
+      "user": {
+        "id": 2244994945,
+        "name": "Info God",
+        "screen_name": "randominfodude",
+        "followers_count": 501947
+      },
+      "retweet_count": 0,
+      "favorite_count": 0
+    },
+    {
+      "id": 10,
+      "text": "#Information\nPlanted with love from @cedric_hippmann and @josias_bruderer",
+      "entities": {
+        "hashtags": [
+          {
+            "text": "Information"
+          }
+        ],
+        "symbols": [],
+        "user_mentions": [
+          {
+            "screen_name": "cedric_hippmann",
+            "name": "Cedric Hippmann",
+            "id": 5680622,
+            "id_str": "5680622",
+            "indices": [
+              45,
+              53
+            ]
+          },
+          {
+            "screen_name": "josias_bruderer",
+            "name": "Josias Bruderer",
+            "id": 5680622,
+            "id_str": "5680622",
+            "indices": [
+              45,
+              53
+            ]
+          }
+        ],
+        "urls": []
+      },
+      "user": {
+        "id": 2244994945,
+        "name": "Info God",
+        "screen_name": "randominfodude",
+        "followers_count": 501947
+      },
+      "retweet_count": 0,
+      "favorite_count": 0
+    },
+    {
+      "id": 11,
+      "text": "#Tutorial\nYou can move the screen with the arrow keys, WASD or with the mouse on the screen edges.",
+      "entities": {
+        "hashtags": [
+          {
+            "text": "Tutorial"
+          }
+        ],
+        "symbols": [],
+        "user_mentions": [],
+        "urls": []
+      },
+      "user": {
+        "id": 2244994945,
+        "name": "Tutorial God",
+        "screen_name": "realtutorialgod",
+        "followers_count": 501947
+      },
+      "retweet_count": 0,
+      "favorite_count": 0
+    }
+  ]
+}

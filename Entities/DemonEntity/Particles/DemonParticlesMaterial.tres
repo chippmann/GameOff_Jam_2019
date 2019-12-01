@@ -1,0 +1,38 @@
+[gd_resource type="ParticlesMaterial" load_steps=6 format=2]
+
+[ext_resource path="res://Entities/DemonEntity/Particles/DemonNextPassCanvasItemMaterial.tres" type="Material" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.0860465, 0.309302, 0.588372, 0.895349, 1 )
+colors = PoolColorArray( 0.0156863, 0, 0.309804, 0, 0.218272, 0.0676174, 0.641113, 1, 0.393511, 0.1206, 0.58252, 1, 0.687988, 0.107498, 0.462935, 1, 0.317233, 0, 0.36377, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.2712 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[resource]
+next_pass = ExtResource( 1 )
+trail_size_modifier = SubResource( 4 )
+emission_shape = 1
+emission_sphere_radius = 32.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, -50, 0 )
+initial_velocity_random = 1.0
+angular_velocity = 0.992652
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 50.0
+radial_accel_random = 1.0
+tangential_accel = 50.0
+tangential_accel_random = 1.0
+damping = 10.0
+damping_random = 1.0
+scale = 0.5
+scale_random = 1.0
+color_ramp = SubResource( 2 )

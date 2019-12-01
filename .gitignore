@@ -358,7 +358,6 @@ MigrationBackup/
 # Godot-specific ignores
 .import/
 export.cfg
-export_presets.cfg
 
 # Mono-specific ignores
 .mono/
@@ -434,3 +433,5 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 # End of https://www.gitignore.io/api/godot,rider,csharp
+/Credentials/tweetsApiCredentials.json
+/Build

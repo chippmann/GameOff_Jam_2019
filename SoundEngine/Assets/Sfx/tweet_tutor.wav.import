@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/tweet_tutor.wav-c456ea8eda8e1472b1c67d48b5b94b76.sample"
+
+[deps]
+
+source_file="res://SoundEngine/Assets/Sfx/tweet_tutor.wav"
+dest_files=[ "res://.import/tweet_tutor.wav-c456ea8eda8e1472b1c67d48b5b94b76.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

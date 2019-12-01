@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/infect_tree.wav-084b167c8167bf6e05c604d7b88a77f4.sample"
+
+[deps]
+
+source_file="res://SoundEngine/Assets/Sfx/infect_tree.wav"
+dest_files=[ "res://.import/infect_tree.wav-084b167c8167bf6e05c604d7b88a77f4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

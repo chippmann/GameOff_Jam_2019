@@ -1,0 +1,27 @@
+id,en,de
+intro_skip_button,Skip,Überspringen
+,,
+game_start_point_limit_button,Start Game (Short: Reach 1'000'000 Points),"Spiel Starten (Kurz: Erreiche 1'000'000 Punkte)
+"
+game_start_world_limit_button,Start Game (Long: The whole Map has to be a forest),Spiel Starten (Lang: Die ganze Karte muss Bewaldet werden)
+game_quit_button,Quit Game,Spiel beenden
+about,planted with love by Cedric Hippmann and Josias Bruderer,mit Liebe gesäht durch Cedric Hippmann und Josias Bruderer
+,,
+pause_menu_title,Pause,Pause
+pause_menu_continue,Continue,Fortfahren
+pause_menu_finish_game,Close current game,Laufendes Spiel beenden
+,,
+points_limit_title_text_won,You saved the World (partially)!,Die hast die Welt (zu Teil) gerettet!
+points_limit_message_won,You have reached 1'000'000 Points before the People who don't care about mother nature have!\nBut the fight isn't over! Next time try to save the whole world by growing your forest over the whole world!,"Du hast 1'000'000 Punkte erreicht bevor es die Menschen geschafft haben, welche sich nicht um Mutter Natur scheren!\nAber der Kampf ist noch nicht vorbei! Versuche nächstes mal die ganze Welt zu retten und pflanze deinen Wald über die ganze Welt!"
+points_limit_title_text_lost,You lost! The world is doomed!,Du hast verloren! Die Welt ist dem Untergang geweiht!
+points_limit_message_lost,The people who don't care about mother nature have won!\nFortunately this isn't the real world. Try again!\nKeep in mind: One cannot restart Mother Nature like this game!,Die Menschen welche sich nicht um Mutter Natur scheren haben gesiegt!\nGlücklicherweise ist dies nicht die richtige Welt. Versuche es nochmals!\nBedenke: Mutter Natur lässt sich nicht einfach so neustarten wie dieses Spiel!
+world_limit_title_won,You saved the World!,Die hast die Welt gerettet!
+world_limit_message_won,You have successfully regrown the forest which keeps this world alive!\nNow continue doing the same in the real world! It really needs it and we only have this one.,Du hast erfolgreich den Wald welcher diese Welt am Leben erhält zu seiner Ursprünglichen grösse zurück verholfen!\nNun tu dies auch in der Realen Welt! Sie braucht es dringend und wir haben nur diese eine Erde.
+world_limit_title_lost,You lost! The world is doomed!,Du hast verloren! Die Welt ist dem Untergang geweiht!
+world_limit_message_lost,The people who don't care about mother nature have won!\nFortunately this isn't the real world. Try again!\nKeep in mind: One cannot restart Mother Nature like this game!,Die Menschen welche sich nicht um Mutter Natur scheren haben gesiegt!\nGlücklicherweise ist dies nicht die richtige Welt. Versuche es nochmals!\nBedenke: Mutter Natur lässt sich nicht einfach so neustarten wie dieses Spiel!
+continue,Continue,Fortfahren
+,,
+playerPointsKey,Player:,Spieler:
+demonPointsKey,Demon:,Dämon:
+kill_tree,Kill Tree,Baum Zerstören
+heal_tree,Heal Tree,Baum heilen

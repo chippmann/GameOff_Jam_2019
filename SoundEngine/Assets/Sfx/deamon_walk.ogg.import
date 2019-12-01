@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/deamon_walk.ogg-5df177759576c21869f7cfe51c43cf2e.oggstr"
+
+[deps]
+
+source_file="res://SoundEngine/Assets/Sfx/deamon_walk.ogg"
+dest_files=[ "res://.import/deamon_walk.ogg-5df177759576c21869f7cfe51c43cf2e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
